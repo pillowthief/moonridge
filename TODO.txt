@@ -1,0 +1,35 @@
+
+map-utils.lua:
+  make all layers of the screen render uniformly (inside camera view)
+  tile importer should take a name when called and assign that name to the quads for multiple tilesets
+    -make rest of game accept multiple tilesets
+
+colorassign.lua:
+  create an intepreter function to process between glyph.lua and the shader
+
+tile.lua
+  create the tile class, make stuff walkable, prepare for lighting
+
+player.lua
+  check if tile is walkable before moving
+
+field-of-view & lighting (no files)
+  fight libraries and/or build tools
+
+key-mgr.lua:
+  use the Talkbalk library to listen/transmit keypresses (eventually to state manager)
+
+State Manager (no file):
+  create a state manager layer linked to the state of ScreenManager
+
+text-to-glyph (no file):
+  convert text to glyphs and feed that information (probably a table) to other functions
+
+gui-tools (no file):
+  create tools to build custom gui elements
+
+mainmenu (no file)
+  create a main menu
+
+cheatmenu (no file)
+  add a debugging cheat menu

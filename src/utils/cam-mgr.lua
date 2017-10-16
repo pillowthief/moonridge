@@ -18,17 +18,17 @@ function setupCamera()
   Cam:setWindow(0,0,1280,768)
   Cam:setScale(1.0)
 
-  createCameraGrid(TileTable)
+  createCameraGrid()
 
   Cam:setPosition(PlayerPosition[2] * TileW, PlayerPosition[1] * TileH)
 end
 
-function createCameraGrid(gridtable)
+function createCameraGrid()
   --an empty space for the camera to pathfind in, mostly so it can see things on other grids in relation to itself
 
-  for rowIndex=1, #gridtable do
+  for rowIndex=1, MAP_WIDTH do
     cameragridtable[rowIndex] = {}
-    for columnIndex=1, #gridtable[rowIndex] do
+    for columnIndex=1, MAP_HEIGHT do
       cameragridtable[rowIndex][columnIndex] = 0
     end
   end

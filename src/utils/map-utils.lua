@@ -43,12 +43,14 @@ function drawMap()
   local max_y = (visible[4] / TileH)
 
   for rowIndex=1, max_y do
-    local row = TileTable[rowIndex + y_offset]
     for columnIndex=1, max_x do
-      local number = row[columnIndex + x_offset]
+      local number = TileTable[rowIndex + y_offset][columnIndex + x_offset]:getSymbol()
       local x,y = (columnIndex-1 + x_offset)*TileW, (rowIndex-1 + y_offset)*TileH
-
+      love.graphics.setShader(ColorAssign)
+      ColorAssign:send("bgcolor", {16, 15, 58, 255}, {})
+      ColorAssign:send("fgcolor", {255, 251, 142, 255}, {})
       love.graphics.draw(Tileset, Quads[number], x, y)
+      love.graphics.setShader()
     end
   end
 

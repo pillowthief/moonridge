@@ -1,3 +1,7 @@
+class = require('lib/middleclass')
+tiny = require('lib/tiny')
+talkback = require('lib/talkback')
+
 require 'src/utils/map-utils'
 require 'src/utils/actor-utils'
 require 'src/utils/key-mgr'
@@ -5,6 +9,8 @@ require 'src/utils/cam-mgr'
 require 'src/utils/shdr-mgr'
 require 'src/gen/cave-gen'
 require 'src/player'
+require 'src/tile'
+require 'src/glyph'
 
 require 'src/shaders/colorassign'
 
@@ -12,6 +18,7 @@ local ScreenManager = require('lib/ScreenManager/ScreenManager')
 
 function love.load()
   newTileMap(32,32,('assets/world_tiles.png'))
+  love.graphics.setDefaultFilter( 'nearest', 'nearest' )
 
   local screens = {
         game = require('src/screens/gamescreen')

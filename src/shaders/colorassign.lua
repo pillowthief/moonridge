@@ -1,4 +1,4 @@
-colorAssign = love.graphics.newShader[[
+ColorAssign = love.graphics.newShader[[
   extern vec4 bgcolor;
   extern vec4 fgcolor;
 

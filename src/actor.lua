@@ -1,0 +1,1 @@
+Actor = class('Actor', Glyph)
