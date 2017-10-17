@@ -1,17 +1,15 @@
-
 map-utils.lua:
   make all layers of the screen render uniformly (inside camera view)
-  tile importer should take a name when called and assign that name to the quads for multiple tilesets
-    -make rest of game accept multiple tilesets
-
-colorassign.lua:
-  create an intepreter function to process between glyph.lua and the shader
-
-tile.lua
-  create the tile class, make stuff walkable, prepare for lighting
 
 player.lua
   check if tile is walkable before moving
+  make player an actor
+
+actor.lua
+  establish actor class
+
+actor-utils.lua
+  tryMove function goes here
 
 field-of-view & lighting (no files)
   fight libraries and/or build tools

@@ -11,13 +11,18 @@ require 'src/gen/cave-gen'
 require 'src/player'
 require 'src/tile'
 require 'src/glyph'
+require 'src/block'
+require 'src/utils/sprite-interpret'
 
 require 'src/shaders/colorassign'
 
 local ScreenManager = require('lib/ScreenManager/ScreenManager')
 
 function love.load()
-  newTileMap(32,32,('assets/world_tiles.png'))
+  World_Tiles = loadTileImage('assets/world_tiles.png')
+  World_Quads = newTileMap(32,32,World_Tiles)
+  Actor_Sprites = loadTileImage('assets/masc_char.png')
+  Actor_Quads = newTileMap(32,32,Actor_Sprites)
   love.graphics.setDefaultFilter( 'nearest', 'nearest' )
 
   local screens = {
@@ -27,7 +32,8 @@ function love.load()
   MAP_WIDTH = 120
   MAP_HEIGHT = 120
 
-  TileTable = makeCave(MAP_WIDTH, MAP_HEIGHT)
+  TileTable = makeCaveFloor(MAP_WIDTH, MAP_HEIGHT)
+  BlockTable = makeCaveBlocks(MAP_WIDTH, MAP_HEIGHT)
   ActorTable = makeActorTable(MAP_WIDTH, MAP_HEIGHT)
 
   addPlayer()

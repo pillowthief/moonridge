@@ -1,13 +1,12 @@
 require 'src/shaders/colorassign'
-
-local frozenCameraRef = {}
+require 'src/utils/sprite-interpret'
 
 function newTileMap(tileW, tileH, tilesetPath)
   TileW = tileW
   TileH = tileH
-  Tileset = love.graphics.newImage(tilesetPath)
+  local tileset = tilesetPath
 
-  local tilesetW, tilesetH = Tileset:getWidth(), Tileset:getHeight()
+  local tilesetW, tilesetH = tileset:getWidth(), tileset:getHeight()
   local tilesW, tilesH = (tilesetW / TileW), (tilesetH / TileH)
 
   local quadInfo = {}
@@ -19,15 +18,69 @@ function newTileMap(tileW, tileH, tilesetPath)
     end
   end
 
-  Quads = {}
+  local quads = {}
   for i,info in ipairs(quadInfo) do
     -- info[1] = x, info[2] = y
-    Quads[i] = love.graphics.newQuad(info[1], info[2], TileW, TileH, tilesetW, tilesetH)
+    quads[i] = love.graphics.newQuad(info[1], info[2], TileW, TileH, tilesetW, tilesetH)
+  end
+
+  return quads
+end
+
+function loadTileImage(tilesetPath)
+  local tileset = love.graphics.newImage(tilesetPath)
+  return tileset
+end
+
+function drawGlyphs(imageset, tiles, tquads)
+  local quads = tquads
+  local tileset = imageset
+  local tiletable = tiles
+  local visible = getVisibleTiles()
+  local x_offset = visible[1]
+  local y_offset = visible[2]
+  local max_x = visible[3]
+  local max_y = visible[4]
+
+  for rowIndex=1, max_y do
+    for columnIndex=1, max_x do
+      local number = getQuadFromSName(tiletable[rowIndex + y_offset][columnIndex + x_offset])
+      local x,y = (columnIndex-1 + x_offset)*TileW, (rowIndex-1 + y_offset)*TileH
+      love.graphics.setShader(FullColorAssign)
+      FullColorAssign:send("color1", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor1(), {})
+      FullColorAssign:send("color2", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor2(), {})
+      FullColorAssign:send("color3", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor3(), {})
+      FullColorAssign:send("color4", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor4(), {})
+
+      love.graphics.draw(tileset, quads[number], x, y)
+      love.graphics.setShader()
+    end
   end
 end
 
 
-function drawMap()
+function drawActors()
+  for rowIndex=1, #ActorTable do
+    local row = ActorTable[rowIndex]
+    for columnIndex=1, #row do
+      local number = row[columnIndex]
+      local x,y = (columnIndex-1)*TileW, (rowIndex-1)*TileH
+      if number == 3 then
+        love.graphics.draw(World_Tiles, World_Quads[number], x, y)
+      else
+        love.graphics.setShader(FullColorAssign)
+        FullColorAssign:send("color1", {242, 190, 101, 255})
+        FullColorAssign:send("color2", {56, 35, 0, 255})
+        FullColorAssign:send("color3", {94, 175, 178, 255})
+        FullColorAssign:send("color4", {47, 40, 89, 255})
+        love.graphics.draw(Actor_Sprites, Actor_Quads[2], x, y)
+        love.graphics.setShader()
+      end
+    end
+  end
+end
+
+function getVisibleTiles()
   local visible = {}
   visible = {Cam:getVisible()}
   local x_offset = 0
@@ -42,30 +95,11 @@ function drawMap()
   local max_x = (visible[3] / TileW)
   local max_y = (visible[4] / TileH)
 
-  for rowIndex=1, max_y do
-    for columnIndex=1, max_x do
-      local number = TileTable[rowIndex + y_offset][columnIndex + x_offset]:getSymbol()
-      local x,y = (columnIndex-1 + x_offset)*TileW, (rowIndex-1 + y_offset)*TileH
-      love.graphics.setShader(ColorAssign)
-      ColorAssign:send("bgcolor", {16, 15, 58, 255}, {})
-      ColorAssign:send("fgcolor", {255, 251, 142, 255}, {})
-      love.graphics.draw(Tileset, Quads[number], x, y)
-      love.graphics.setShader()
-    end
-  end
+  visible[1] = x_offset
+  visible[2] = y_offset
+  visible[3] = max_x
+  visible[4] = max_y
 
-  frozenCameraRef = {x_offset, y_offset, max_x, max_y}
-end
+  return visible
 
-
-function drawActors()
-  for rowIndex=1, #ActorTable do
-    local row = ActorTable[rowIndex]
-    for columnIndex=1, #row do
-      local number = row[columnIndex]
-      local x,y = (columnIndex-1)*TileW, (rowIndex-1)*TileH
-
-      love.graphics.draw(Tileset, Quads[number], x, y)
-    end
-  end
 end

@@ -46,7 +46,7 @@ function checkPlayerDistFromCamera()
     local path = myFinder:getPath(cameraPosition[1], cameraPosition[2], PlayerPosition[2], PlayerPosition[1])
 
     if path then
-      if path:getLength() > 8 then
+      if path:getLength() > 9 then
         cameraStartPoint = {cameraPosition[2], cameraPosition[2]}
         cameraDestination = {PlayerPosition[2], PlayerPosition[1]}
         CameraMoving = true
@@ -119,7 +119,7 @@ function moveCameraTowards()
     edgeSanityCounter = edgeSanityCounter + 1 -- add to the sanity checker
   end
 
-  if edgeSanityCounter > 5 then -- we're stuck, stop trying to complete the path
+  if edgeSanityCounter > 3 then -- we're stuck, stop trying to complete the path
     recentCheckFlag = false
   elseif edgeSanityCounter > 20 then
     CameraMoving = false

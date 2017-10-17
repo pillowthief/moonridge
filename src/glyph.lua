@@ -3,25 +3,40 @@ Glyph = class('Glyph')
 function Glyph:initialize(properties)
   properties = properties or {}
   --self._tileset = properties['tileset']
-  self._symbol = properties['symbol']
-  self._foreground = properties['foreground'] or {255, 251, 142, 255}
-  self._background = properties['background'] or {16, 15, 58, 255}
+  self._sprite = properties['sprite']
+  self._spriteType = 'single'
+  self._color1 = properties['color1'] or {255, 255, 255, 255}
+  self._color2 = properties['color2'] or {0.0, 0.0, 0.0, 0.0}
+  self._color3 = properties['color3'] or {0.0, 0.0, 0.0, 0.0}
+  self._color4 = properties['color4'] or {0.0, 0.0, 0.0, 0.0}
 end
 
 --[[function Glyph:getTileset()
     return self._tileset
 end--]]
 
-function Glyph:getSymbol()
-  return self._symbol
+function Glyph:getSprite()
+  return self._sprite
 end
 
-function Glyph:getForeground()
-  return self._foreground
+function Glyph:getSpriteType()
+  return self._spriteType
 end
 
-function Glyph:getBackground()
-  return self._background
+function Glyph:getColor1()
+  return self._color1
+end
+
+function Glyph:getColor2()
+  return self._color2
+end
+
+function Glyph:getColor3()
+  return self._color3
+end
+
+function Glyph:getColor4()
+  return self._color4
 end
 
 return Glyph

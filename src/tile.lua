@@ -1,5 +1,4 @@
 require 'src/glyph'
-require 'src/entities/tiles'
 
 Tile = class('Tile', Glyph)
 
@@ -8,17 +7,12 @@ function Tile:initialize(properties)
 
   Glyph.initialize(self, properties)
 
-  self._walkable = properties['walkable'] or false
-  self._blockslight = properties['blockslight'] or false
+  self._walkable = properties['walkable'] or true
 
 end
 
 function Tile:getWalkable()
   return self._walkable
-end
-
-function Tile:getBlocksLight()
-  return self._blockslight
 end
 
 return Tile
