@@ -8,6 +8,7 @@ require 'src/utils/key-mgr'
 require 'src/utils/cam-mgr'
 require 'src/utils/shdr-mgr'
 require 'src/gen/cave-gen'
+require 'src/actor'
 require 'src/player'
 require 'src/tile'
 require 'src/glyph'
@@ -18,7 +19,13 @@ require 'src/shaders/colorassign'
 
 local ScreenManager = require('lib/ScreenManager/ScreenManager')
 
+love.frame = 0
 function love.load()
+  --love.profiler = require('lib/profile')
+  --love.profiler.hookall("Lua")
+  --love.profiler.start()
+
+
   World_Tiles = loadTileImage('assets/world_tiles.png')
   World_Quads = newTileMap(32,32,World_Tiles)
   Actor_Sprites = loadTileImage('assets/masc_char.png')
@@ -46,12 +53,18 @@ end
 local skip = 0
 
 function love.update(dt)
+  --love.frame = love.frame + 1
+  --if love.frame%100 == 0 then
+    --love.report = love.profiler.report('time', 20)
+    --love.profiler.reset()
+  --end
+
   updateKeys()
   updateCamera()
   ScreenManager.update(dt)
-  --print(ScreenManager.returnCurrent())
 end
 
 function love.draw()
   ScreenManager.draw()
+  --love.graphics.print(love.report or "Please wait...")
 end

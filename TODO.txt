@@ -1,15 +1,3 @@
-map-utils.lua:
-  make all layers of the screen render uniformly (inside camera view)
-
-player.lua
-  check if tile is walkable before moving
-  make player an actor
-
-actor.lua
-  establish actor class
-
-actor-utils.lua
-  tryMove function goes here
 
 field-of-view & lighting (no files)
   fight libraries and/or build tools

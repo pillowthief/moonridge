@@ -32,11 +32,9 @@ function loadTileImage(tilesetPath)
   return tileset
 end
 
-function drawGlyphs(imageset, tiles, tquads)
-  local quads = tquads
-  local tileset = imageset
+function drawGlyphs(tiles, visible)
   local tiletable = tiles
-  local visible = getVisibleTiles()
+  local visible = visible
   local x_offset = visible[1]
   local y_offset = visible[2]
   local max_x = visible[3]
@@ -45,13 +43,14 @@ function drawGlyphs(imageset, tiles, tquads)
   for rowIndex=1, max_y do
     for columnIndex=1, max_x do
       local number = getQuadFromSName(tiletable[rowIndex + y_offset][columnIndex + x_offset])
+      local tileset = getImageFromLastQuadLookup()
+      local quads = getQuadsFromLastQuadLookup()
       local x,y = (columnIndex-1 + x_offset)*TileW, (rowIndex-1 + y_offset)*TileH
-      love.graphics.setShader(FullColorAssign)
-      FullColorAssign:send("color1", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor1(), {})
-      FullColorAssign:send("color2", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor2(), {})
-      FullColorAssign:send("color3", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor3(), {})
-      FullColorAssign:send("color4", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor4(), {})
-
+      love.graphics.setShader(ColorAssign)
+      ColorAssign:send("color1", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor1(), {})
+      ColorAssign:send("color2", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor2(), {})
+      ColorAssign:send("color3", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor3(), {})
+      ColorAssign:send("color4", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor4(), {})
       love.graphics.draw(tileset, quads[number], x, y)
       love.graphics.setShader()
     end
@@ -68,11 +67,11 @@ function drawActors()
       if number == 3 then
         love.graphics.draw(World_Tiles, World_Quads[number], x, y)
       else
-        love.graphics.setShader(FullColorAssign)
-        FullColorAssign:send("color1", {242, 190, 101, 255})
-        FullColorAssign:send("color2", {56, 35, 0, 255})
-        FullColorAssign:send("color3", {94, 175, 178, 255})
-        FullColorAssign:send("color4", {47, 40, 89, 255})
+        love.graphics.setShader(ColorAssign)
+        ColorAssign:send("color1", {242, 190, 101, 255})
+        ColorAssign:send("color2", {56, 35, 0, 255})
+        ColorAssign:send("color3", {94, 175, 178, 255})
+        ColorAssign:send("color4", {47, 40, 89, 255})
         love.graphics.draw(Actor_Sprites, Actor_Quads[2], x, y)
         love.graphics.setShader()
       end
