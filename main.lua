@@ -45,6 +45,7 @@ function love.load()
 
   addPlayer()
   setupCamera()
+  drawAllGlyphsFirstTime()
   addShaderEffects()
 
   ScreenManager.init(screens, 'game')

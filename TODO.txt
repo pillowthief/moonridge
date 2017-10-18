@@ -1,6 +1,9 @@
+map-utils.Lua
+  optimize via the updateGlyphs function
 
-field-of-view & lighting (no files)
-  fight libraries and/or build tools
+
+lighting (no file)
+  build custom lighting shader
 
 key-mgr.lua:
   use the Talkbalk library to listen/transmit keypresses (eventually to state manager)

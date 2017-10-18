@@ -29,4 +29,5 @@ function moveActor(lastX, lastY, newX, newY)
   local mover = ActorTable[lastY][lastX]
   ActorTable[lastY][lastX] = Actor:new(ActorNull,lastX,lastY)
   ActorTable[newY][newX] = mover
+  ActorGlyphs = updateGlyphs(ActorTable)
 end

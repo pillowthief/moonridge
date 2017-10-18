@@ -65,6 +65,7 @@ function updateCamera()
       return
     else
       moveCameraTowards()
+      updateAllGlyphs()
     end
   end
 end
