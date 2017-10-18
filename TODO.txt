@@ -1,15 +1,4 @@
-map-utils.Lua
-  optimize via the updateGlyphs function
-
-
-lighting (no file)
-  build custom lighting shader
-
-key-mgr.lua:
-  use the Talkbalk library to listen/transmit keypresses (eventually to state manager)
-
-State Manager (no file):
-  create a state manager layer linked to the state of ScreenManager
+make 'walkable' an entity-component relationship
 
 text-to-glyph (no file):
   convert text to glyphs and feed that information (probably a table) to other functions
@@ -19,6 +8,24 @@ gui-tools (no file):
 
 mainmenu (no file)
   create a main menu
+
+objects & items
+  make them consistent
+
+saving & loading
+  make this possible
+
+wild-gen.lua
+  create a wilderness generator
+
+overworld-gen
+  create an overworld generator
+
+map-utils.Lua
+  optimize via the updateGlyphs function
+
+lighting (no file)
+  build custom lighting shader
 
 cheatmenu (no file)
   add a debugging cheat menu

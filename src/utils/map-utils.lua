@@ -60,6 +60,8 @@ function drawGlyphsFirstTime(tiles)
   local max_x = visible[3]
   local max_y = visible[4]
 
+  love.graphics.setShader(ColorAssign)
+
   for rowIndex=1, max_y do
     storage[rowIndex] = {}
     for columnIndex=1, max_x do
@@ -67,13 +69,13 @@ function drawGlyphsFirstTime(tiles)
       local tileset = getImageFromLastQuadLookup()
       local quads = getQuadsFromLastQuadLookup()
       local x,y = (columnIndex-1 + x_offset)*TileW, (rowIndex-1 + y_offset)*TileH
-      love.graphics.setShader(ColorAssign)
+
       ColorAssign:send("color1", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor1(), {})
       ColorAssign:send("color2", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor2(), {})
       ColorAssign:send("color3", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor3(), {})
       ColorAssign:send("color4", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor4(), {})
       love.graphics.draw(tileset, quads[number], x, y)
-      love.graphics.setShader()
+
       storage[rowIndex][columnIndex] = {
         number, tileset, quads, x, y,
         tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor1(),
@@ -84,6 +86,7 @@ function drawGlyphsFirstTime(tiles)
     end
   end
 
+  love.graphics.setShader()
   return storage
 end
 
@@ -97,6 +100,8 @@ function updateGlyphs(tiles)
   local max_x = visible[3]
   local max_y = visible[4]
 
+  love.graphics.setShader(ColorAssign)
+
   for rowIndex=1, max_y do
     storage[rowIndex] = {}
     for columnIndex=1, max_x do
@@ -104,13 +109,13 @@ function updateGlyphs(tiles)
       local tileset = getImageFromLastQuadLookup()
       local quads = getQuadsFromLastQuadLookup()
       local x,y = (columnIndex-1 + x_offset)*TileW, (rowIndex-1 + y_offset)*TileH
-      love.graphics.setShader(ColorAssign)
+
       ColorAssign:send("color1", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor1(), {})
       ColorAssign:send("color2", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor2(), {})
       ColorAssign:send("color3", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor3(), {})
       ColorAssign:send("color4", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor4(), {})
       love.graphics.draw(tileset, quads[number], x, y)
-      love.graphics.setShader()
+
       storage[rowIndex][columnIndex] = {
         number, tileset, quads, x, y,
         tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor1(),
@@ -121,6 +126,7 @@ function updateGlyphs(tiles)
     end
   end
 
+  love.graphics.setShader()
   return storage
 end
 
@@ -131,21 +137,25 @@ function drawGlyphs(storedglyphs, visible)
   local max_x = visible[3]
   local max_y = visible[4]
 
+  love.graphics.setShader(ColorAssign)
+
   for rowIndex=1, max_y do
     for columnIndex=1, max_x do
       local number = storedglyphs[rowIndex][columnIndex][1]
       local tileset = storedglyphs[rowIndex][columnIndex][2]
       local quads = storedglyphs[rowIndex][columnIndex][3]
       local x,y = storedglyphs[rowIndex][columnIndex][4],storedglyphs[rowIndex][columnIndex][5]
-      love.graphics.setShader(ColorAssign)
+
       ColorAssign:send("color1", storedglyphs[rowIndex][columnIndex][6], {})
       ColorAssign:send("color2", storedglyphs[rowIndex][columnIndex][7], {})
       ColorAssign:send("color3", storedglyphs[rowIndex][columnIndex][8], {})
       ColorAssign:send("color4", storedglyphs[rowIndex][columnIndex][9], {})
       love.graphics.draw(tileset, quads[number], x, y)
-      love.graphics.setShader()
+
     end
   end
+
+  love.graphics.setShader()
 end
 
 

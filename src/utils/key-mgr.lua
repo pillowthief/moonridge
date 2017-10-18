@@ -1,26 +1,26 @@
 function updateKeys()
   if love.keyboard.isDown( "up" ) then
-     movePlayer(PlayerPosition[2], PlayerPosition[1], PlayerPosition[2], PlayerPosition[1] - 1)
+    conversation:say('pressed up')
   end
 
   if love.keyboard.isDown( "down" ) then
-     movePlayer(PlayerPosition[2], PlayerPosition[1], PlayerPosition[2], PlayerPosition[1] + 1)
+    conversation:say('pressed down')
   end
 
   if love.keyboard.isDown( "right" ) then
-     movePlayer(PlayerPosition[2], PlayerPosition[1], PlayerPosition[2] + 1, PlayerPosition[1])
+    conversation:say('pressed right')
   end
 
   if love.keyboard.isDown( "left" ) then
-     movePlayer(PlayerPosition[2], PlayerPosition[1], PlayerPosition[2] - 1, PlayerPosition[1])
+    conversation:say('pressed left')
   end
 
   if love.keyboard.isDown ( "escape" ) then
-    love.event.quit()
+    conversation:say('pressed escape')
   end
 
   if love.keyboard.isDown ( "delete" ) then
-    love.event.quit("restart")
+    conversation:say('pressed delete')
   end
 
 

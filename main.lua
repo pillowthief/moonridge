@@ -17,9 +17,11 @@ require 'src/utils/sprite-interpret'
 
 require 'src/shaders/colorassign'
 
-local ScreenManager = require('lib/ScreenManager/ScreenManager')
+local ScreenManager = require('lib/ScreenManager/ScreenManager') -- manages which state the game is in
 
-love.frame = 0
+conversation = talkback.new()
+
+--love.frame = 0
 function love.load()
   --love.profiler = require('lib/profile')
   --love.profiler.hookall("Lua")
@@ -51,7 +53,7 @@ function love.load()
   ScreenManager.init(screens, 'game')
 end
 
-local skip = 0
+--local skip = 0
 
 function love.update(dt)
   --love.frame = love.frame + 1

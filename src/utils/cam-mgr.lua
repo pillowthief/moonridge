@@ -13,7 +13,7 @@ local cameraDestination = {}
 
 local cameraSpeed = 1
 
-function setupCamera()
+function setupCamera() --add camera to the map for the first time
   Cam = gamera.new(0,0,(MAP_WIDTH*TileW),(MAP_HEIGHT*TileH))
   Cam:setWindow(0,0,1280,768)
   Cam:setScale(1.0)
@@ -56,16 +56,16 @@ function checkPlayerDistFromCamera()
 end
 
 function updateCamera()
-  if CameraMoving == true then
+  if CameraMoving == true then --if the camera is moving, update it, else do nothing
     local cameraPosition = {Cam:getPosition()}
     cameraPosition[1] = cameraPosition[1] / TileW
     cameraPosition[2] = cameraPosition[2] / TileH
     if cameraPosition[1] == cameraDestination[1] and cameraPosition[2] == cameraDestination[2] then
-      CameraMoving = false
+      CameraMoving = false --if the camera is at its destination, it is no longer moving
       return
     else
       moveCameraTowards()
-      updateAllGlyphs()
+      --updateAllGlyphs()
     end
   end
 end
@@ -97,6 +97,7 @@ function moveCameraTowards()
 
   if path:getLength() < 2 then --we're close enough, clamp to location
     Cam:setPosition(cameraDestination[1] * TileW, cameraDestination[2] * TileH)
+    updateAllGlyphs()
     edgeSanityCounter = 0
   else
     local newX, newY
@@ -117,10 +118,13 @@ function moveCameraTowards()
       newY = cameraPosition[2] - cameraSpeed
     end
     Cam:setPosition(newX * TileW, newY * TileH)
+    updateAllGlyphs()
     edgeSanityCounter = edgeSanityCounter + 1 -- add to the sanity checker
   end
 
-  if edgeSanityCounter > 3 then -- we're stuck, stop trying to complete the path
+
+
+  if edgeSanityCounter > 5 then -- we're stuck, stop trying to complete the path
     recentCheckFlag = false
   elseif edgeSanityCounter > 20 then
     CameraMoving = false

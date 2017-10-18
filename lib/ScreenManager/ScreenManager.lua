@@ -48,7 +48,7 @@ You will have to add a new one to your screen list or use one of the existing sc
 
 local stack
 local screens
-local current
+local screenList = {}
 
 local changes = {}
 local height = 0 --Stack height
@@ -172,11 +172,11 @@ function ScreenManager.init( nscreens, screen, ... )
 end
 
 function ScreenManager.setCurrent(screen)
-  current = screen
+  screenList[#screenList+1] = screen
 end
 
 function ScreenManager.returnCurrent()
-  return current
+  return screenList[#screenList]
 end
 ---
 -- Switches to a screen.
@@ -192,6 +192,8 @@ function ScreenManager.switch( screen, ... )
     validateScreen( screen )
     height = 1
     changes[#changes + 1] = { action = 'switch', screen = screen, args = { ... } }
+    screenList = {}
+    ScreenManager.setCurrent(screen)
 end
 
 ---
@@ -208,6 +210,7 @@ function ScreenManager.push( screen, ... )
     validateScreen( screen )
     height = height + 1
     changes[#changes + 1] = { action = 'push', screen = screen, args = { ... } }
+    ScreenManager.setCurrent(screen)
 end
 
 ---
@@ -227,6 +230,8 @@ function ScreenManager.pop()
     if height > 1 then
         height = height - 1
         changes[#changes + 1] = { action = 'pop' }
+        table.remove(screenList)
+
     else
         error("Can't close the last screen. Use switch() to clear the screen manager and add a new screen.", 2)
     end

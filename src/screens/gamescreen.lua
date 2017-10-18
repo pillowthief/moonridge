@@ -1,4 +1,5 @@
 local Screen = require('lib/ScreenManager/Screen')
+require('src/screens/game-keys')
 
 --this is the main gameplay screen
 
