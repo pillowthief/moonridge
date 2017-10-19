@@ -49,7 +49,7 @@ function checkPlayerDistFromCamera()
     local path = myFinder:getPath(cameraPosition[1], cameraPosition[2], PlayerPosition[2], PlayerPosition[1])
 
     if path then
-      if path:getLength() > 9 then
+      if path:getLength() > 10 then
         cameraStartPoint = {cameraPosition[2], cameraPosition[2]}
         cameraDestination = {PlayerPosition[2], PlayerPosition[1]}
         CameraMoving = true

@@ -81,14 +81,6 @@ function makeCaveBlocks(width, height)
 
   end
 
-  for y=1, height do
-    for x=1, width do
-      if tileMap[y][x]:getSprite() == 'wall' then
-        BumpWorld:add(tileMap[y][x],((x-1)*TileW)-1,((y-1)*TileH),TileW,TileH)
-      end
-    end
-  end
-
   return tileMap
 
 end

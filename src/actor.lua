@@ -5,6 +5,8 @@ Actor = class('Actor', Glyph)
 function Actor:initialize(properties, x, y)
   properties = properties or {}
 
+  tiny.addEntity (ECSWorld, self)
+
   Glyph.initialize(self, properties)
 
   self._x = x

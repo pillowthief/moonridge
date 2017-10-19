@@ -3,7 +3,7 @@ tiny = require('lib/tiny')
 talkback = require('lib/talkback')
 bump = require('lib/bump')
 
-BumpWorld = bump.newWorld(32)
+ECSWorld = tiny.world()
 
 require 'src/utils/map-utils'
 require 'src/utils/anim-sprite-utils'
@@ -44,10 +44,13 @@ function love.load()
 
   MAP_WIDTH = 120
   MAP_HEIGHT = 120
+  BumpWorld = bump.newWorld(32)
 
   TileTable = makeCaveFloor(MAP_WIDTH, MAP_HEIGHT)
   BlockTable = makeCaveBlocks(MAP_WIDTH, MAP_HEIGHT)
   ActorList = {}
+
+  makeBumpWorld(BlockTable, MAP_WIDTH, MAP_HEIGHT)
 
   addPlayer()
   setupCamera()

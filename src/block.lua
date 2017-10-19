@@ -6,6 +6,7 @@ function Block:initialize(properties)
   properties = properties or {}
 
   Glyph.initialize(self, properties)
+  tiny.addEntity (ECSWorld, self)
 
   self._walkable = properties['walkable'] or false
   self._blockslight = properties['blockslight'] or true

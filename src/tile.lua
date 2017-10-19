@@ -7,6 +7,8 @@ function Tile:initialize(properties)
 
   Glyph.initialize(self, properties)
 
+  tiny.addEntity (ECSWorld, self)
+
 end
 
 
