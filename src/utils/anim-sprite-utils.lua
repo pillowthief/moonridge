@@ -2,8 +2,8 @@ function drawActors()
   love.graphics.setShader(ColorAssign)
 
   for i=1, #ActorList do
-    local x = ActorList[i]:getX() * TileW - 32
-    local y = ActorList[i]:getY() * TileH - 32
+    local x = ActorList[i]:getX()
+    local y = ActorList[i]:getY()
 
     ColorAssign:send("color1", ActorList[i]:getColor1(), {})
     ColorAssign:send("color2", ActorList[i]:getColor2(), {})

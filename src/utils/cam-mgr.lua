@@ -11,16 +11,18 @@ local grid
 local cameraStartPoint = {}
 local cameraDestination = {}
 
+
 local cameraSpeed = 1
 
 function setupCamera() --add camera to the map for the first time
+  PlayerPosition = {Player:getApproxGridY(), Player:getApproxGridX()}
   Cam = gamera.new(0,0,(MAP_WIDTH*TileW),(MAP_HEIGHT*TileH))
   Cam:setWindow(0,0,1280,768)
   Cam:setScale(1.0)
 
   createCameraGrid()
 
-  Cam:setPosition(Player:getX() * TileW, Player:getY() * TileH)
+  Cam:setPosition(PlayerPosition[2] * TileW, PlayerPosition[1] * TileH)
 end
 
 function createCameraGrid()
@@ -38,17 +40,18 @@ end
 
 function checkPlayerDistFromCamera()
   if CameraMoving == false then
+    PlayerPosition = {Player:getApproxGridY(), Player:getApproxGridX()}
     local myFinder = Pathfinder(grid, 'ASTAR', walkable)
     local cameraPosition = {Cam:getPosition()}
     cameraPosition[1] = cameraPosition[1] / TileW
     cameraPosition[2] = cameraPosition[2] / TileH
 
-    local path = myFinder:getPath(cameraPosition[1], cameraPosition[2], Player:getX(), Player:getY())
+    local path = myFinder:getPath(cameraPosition[1], cameraPosition[2], PlayerPosition[2], PlayerPosition[1])
 
     if path then
       if path:getLength() > 9 then
         cameraStartPoint = {cameraPosition[2], cameraPosition[2]}
-        cameraDestination = {Player:getX(), Player:getY()}
+        cameraDestination = {PlayerPosition[2], PlayerPosition[1]}
         CameraMoving = true
       end
     end
@@ -56,6 +59,7 @@ function checkPlayerDistFromCamera()
 end
 
 function updateCamera()
+  PlayerPosition = {Player:getApproxGridY(), Player:getApproxGridX()}
   if CameraMoving == true then --if the camera is moving, update it, else do nothing
     local cameraPosition = {Cam:getPosition()}
     cameraPosition[1] = cameraPosition[1] / TileW
@@ -75,13 +79,14 @@ local edgeSanityCounter = 0 -- to keep the camera from getting stuck on edges wh
 local recentCheckFlag = true
 
 function moveCameraTowards()
+  PlayerPosition = {Player:getApproxGridY(), Player:getApproxGridX()}
   local myFinder = Pathfinder(grid, 'ASTAR', walkable)
   local cameraPosition = {Cam:getPosition()}
   local path
   cameraPosition[1] = cameraPosition[1] / TileW
   cameraPosition[2] = cameraPosition[2] / TileH
   if math.floor(cameraPosition[1]) == cameraPosition[1] and math.floor(cameraPosition[2]) == cameraPosition[2] then -- sanity check
-    local pathTest = myFinder:getPath(cameraPosition[1], cameraPosition[2], Player:getX(), Player:getY())
+    local pathTest = myFinder:getPath(cameraPosition[1], cameraPosition[2], PlayerPosition[2], PlayerPosition[1])
     if pathTest:getLength() > 9 and recentCheckFlag == false then
       CameraMoving = false
       edgeSanityCounter = 0

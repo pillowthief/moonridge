@@ -33,6 +33,16 @@ function Actor:setCoords(x, y)
   self._y = y
 end
 
+function Actor:getApproxGridX()
+  local gridX = math.floor(self._x / TileW)
+  return gridX
+end
+
+function Actor:getApproxGridY()
+  local gridY = math.floor(self._y / TileH)
+  return gridY
+end
+
 function Actor:setSpeed(speed)
   self._speed = speed
 end
