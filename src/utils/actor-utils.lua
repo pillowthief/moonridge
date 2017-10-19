@@ -14,12 +14,9 @@ function makeActorTable(width, height)
 end
 
 function tryMoveActor(lastX, lastY, newX, newY)
-  if newX < 1 or newX > MAP_WIDTH or newY < 1 or newY > MAP_HEIGHT then
-    return false end
-  if TileTable[newY][newX] == nil then
-    return false end --attempted an invalid move off the map, reject
-  if BlockTable[newY][newX]:getWalkable() == false then
-    return false end --attempted to move into an unwalkable place
+  local actualX, actualY, cols, len = BumpWorld:move(Player, newX, newY)
+  if len > 0 then
+    return false end --we bumped into something on the collision map
   moveActor(lastX, lastY, newX, newY)
   return true
 end
@@ -29,5 +26,5 @@ function moveActor(lastX, lastY, newX, newY)
   local mover = ActorTable[lastY][lastX]
   ActorTable[lastY][lastX] = Actor:new(ActorNull,lastX,lastY)
   ActorTable[newY][newX] = mover
-  ActorGlyphs = updateGlyphs(ActorTable)
+  ActorGlyphs = redrawGlyphs(ActorTable)
 end

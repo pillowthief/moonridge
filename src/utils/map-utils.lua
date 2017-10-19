@@ -1,6 +1,8 @@
 require 'src/shaders/colorassign'
 require 'src/utils/sprite-interpret'
 
+--This file is for drawing static (non-moving) glyphs
+
 TileGlyphs = {}
 BlockGlyphs = {}
 ActorGlyphs = {}
@@ -44,13 +46,13 @@ function updateAllGlyphs()
   ActorGlyphs = updateGlyphs(ActorTable)
 end
 
-function drawAllGlyphsFirstTime()
-  TileGlyphs = updateGlyphs(TileTable)
-  BlockGlyphs = updateGlyphs(BlockTable)
-  ActorGlyphs = updateGlyphs(ActorTable)
+function redrawAllGlyphs()
+  TileGlyphs = redrawGlyphs(TileTable)
+  BlockGlyphs = redrawGlyphs(BlockTable)
+  ActorGlyphs = redrawGlyphs(ActorTable)
 end
 
-function drawGlyphsFirstTime(tiles)
+function redrawGlyphs(tiles)
   local visible = getVisibleTiles()
   local storage = {}
   local tiletable = tiles

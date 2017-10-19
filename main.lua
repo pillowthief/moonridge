@@ -1,6 +1,9 @@
 class = require('lib/middleclass')
 tiny = require('lib/tiny')
 talkback = require('lib/talkback')
+bump = require('lib/bump')
+
+BumpWorld = bump.newWorld(32)
 
 require 'src/utils/map-utils'
 require 'src/utils/actor-utils'
@@ -47,7 +50,7 @@ function love.load()
 
   addPlayer()
   setupCamera()
-  drawAllGlyphsFirstTime()
+  redrawAllGlyphs()
   addShaderEffects()
 
   ScreenManager.init(screens, 'game')

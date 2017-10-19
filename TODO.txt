@@ -1,4 +1,11 @@
-make 'walkable' an entity-component relationship
+create a (tiny-ecs) entity-component system for collision types
+
+make actors move freely
+
+implement Sodapop lib
+
+create time system (no files)
+  create a time tracking system, add the concept of pause, begin building the framework for the calendar
 
 text-to-glyph (no file):
   convert text to glyphs and feed that information (probably a table) to other functions
@@ -29,3 +36,5 @@ lighting (no file)
 
 cheatmenu (no file)
   add a debugging cheat menu
+
+craftingmenu

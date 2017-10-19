@@ -13,7 +13,6 @@ local actorNameToQuad = {
 
 function getQuadFromSName(glyph)
   local result
-  print()
   if glyph:getSpriteType() == 'merge' then
     result = getMergedSprite(glyph)
   else
