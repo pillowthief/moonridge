@@ -5,7 +5,7 @@ It is currently in the very early stages of development, with many core systems 
 
 Here is a very rough description of the planned gameplay:
 
-* A real-time tactical combat system slightly reminiscent of the Infinity System (Baldur's Gate).
+* A real-time Zelda-inspired combat, with some additional tactical inspiration from the Infinity System.
 * Stylistically inspired by many older rpgs, especially in the Final Fantasy and Zelda series.
 * One player character, but the ability to indirectly manage a party, as well as "followers" (non-combat but loyal npcs).
 * A farming and crafting system that will feature a large variety of crops as well as a deep crop quality system.

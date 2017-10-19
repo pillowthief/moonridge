@@ -1,17 +1,17 @@
 upListener = conversation:listen('pressed up', function()
-  movePlayer(PlayerPosition[2], PlayerPosition[1], PlayerPosition[2], PlayerPosition[1] - 1)
+  movePlayer(Player:getX(), Player:getY(), Player:getX(), Player:getY() - 1)
 end)
 
 downListener = conversation:listen('pressed down', function()
-  movePlayer(PlayerPosition[2], PlayerPosition[1], PlayerPosition[2], PlayerPosition[1] + 1)
+  movePlayer(Player:getX(), Player:getY(), Player:getX(), Player:getY() + 1)
 end)
 
 rightListener = conversation:listen('pressed right', function()
-  movePlayer(PlayerPosition[2], PlayerPosition[1], PlayerPosition[2] + 1, PlayerPosition[1])
+  movePlayer(Player:getX(), Player:getY(), Player:getX() + 1, Player:getY())
 end)
 
 leftListener = conversation:listen('pressed left', function()
-  movePlayer(PlayerPosition[2], PlayerPosition[1], PlayerPosition[2] - 1, PlayerPosition[1])
+  movePlayer(Player:getX(), Player:getY(), Player:getX() - 1, Player:getY())
 end)
 
 escListener = conversation:listen('pressed escape', function()

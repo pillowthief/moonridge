@@ -16,7 +16,7 @@ function GameScreen.new()
             local visible = getVisibleTiles()
             drawGlyphs(TileGlyphs, visible)
             drawGlyphs(BlockGlyphs, visible)
-            drawGlyphs(ActorGlyphs, visible)
+            drawActors()
           end)
         end)
     end

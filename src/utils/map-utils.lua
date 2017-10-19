@@ -5,7 +5,6 @@ require 'src/utils/sprite-interpret'
 
 TileGlyphs = {}
 BlockGlyphs = {}
-ActorGlyphs = {}
 ObjectGlyphs = {}
 ItemGlyphs = {}
 
@@ -43,13 +42,13 @@ end
 function updateAllGlyphs()
   TileGlyphs = updateGlyphs(TileTable)
   BlockGlyphs = updateGlyphs(BlockTable)
-  ActorGlyphs = updateGlyphs(ActorTable)
+  drawActors()
 end
 
 function redrawAllGlyphs()
   TileGlyphs = redrawGlyphs(TileTable)
   BlockGlyphs = redrawGlyphs(BlockTable)
-  ActorGlyphs = redrawGlyphs(ActorTable)
+  drawActors()
 end
 
 function redrawGlyphs(tiles)

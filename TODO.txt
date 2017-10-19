@@ -4,6 +4,8 @@ make actors move freely
 
 implement Sodapop lib
 
+implement a lib for controllers
+
 create time system (no files)
   create a time tracking system, add the concept of pause, begin building the framework for the calendar
 

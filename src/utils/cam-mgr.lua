@@ -20,7 +20,7 @@ function setupCamera() --add camera to the map for the first time
 
   createCameraGrid()
 
-  Cam:setPosition(PlayerPosition[2] * TileW, PlayerPosition[1] * TileH)
+  Cam:setPosition(Player:getX() * TileW, Player:getY() * TileH)
 end
 
 function createCameraGrid()
@@ -43,12 +43,12 @@ function checkPlayerDistFromCamera()
     cameraPosition[1] = cameraPosition[1] / TileW
     cameraPosition[2] = cameraPosition[2] / TileH
 
-    local path = myFinder:getPath(cameraPosition[1], cameraPosition[2], PlayerPosition[2], PlayerPosition[1])
+    local path = myFinder:getPath(cameraPosition[1], cameraPosition[2], Player:getX(), Player:getY())
 
     if path then
       if path:getLength() > 9 then
         cameraStartPoint = {cameraPosition[2], cameraPosition[2]}
-        cameraDestination = {PlayerPosition[2], PlayerPosition[1]}
+        cameraDestination = {Player:getX(), Player:getY()}
         CameraMoving = true
       end
     end
@@ -81,7 +81,7 @@ function moveCameraTowards()
   cameraPosition[1] = cameraPosition[1] / TileW
   cameraPosition[2] = cameraPosition[2] / TileH
   if math.floor(cameraPosition[1]) == cameraPosition[1] and math.floor(cameraPosition[2]) == cameraPosition[2] then -- sanity check
-    local pathTest = myFinder:getPath(cameraPosition[1], cameraPosition[2], PlayerPosition[2], PlayerPosition[1])
+    local pathTest = myFinder:getPath(cameraPosition[1], cameraPosition[2], Player:getX(), Player:getY())
     if pathTest:getLength() > 9 and recentCheckFlag == false then
       CameraMoving = false
       edgeSanityCounter = 0

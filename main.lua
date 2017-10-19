@@ -6,6 +6,7 @@ bump = require('lib/bump')
 BumpWorld = bump.newWorld(32)
 
 require 'src/utils/map-utils'
+require 'src/utils/anim-sprite-utils'
 require 'src/utils/actor-utils'
 require 'src/utils/key-mgr'
 require 'src/utils/cam-mgr'
@@ -46,7 +47,7 @@ function love.load()
 
   TileTable = makeCaveFloor(MAP_WIDTH, MAP_HEIGHT)
   BlockTable = makeCaveBlocks(MAP_WIDTH, MAP_HEIGHT)
-  ActorTable = makeActorTable(MAP_WIDTH, MAP_HEIGHT)
+  ActorList = {}
 
   addPlayer()
   setupCamera()

@@ -7,12 +7,7 @@ function Tile:initialize(properties)
 
   Glyph.initialize(self, properties)
 
-  self._walkable = properties['walkable'] or true
-
 end
 
-function Tile:getWalkable()
-  return self._walkable
-end
 
 return Tile

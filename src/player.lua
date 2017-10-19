@@ -7,9 +7,8 @@ function addPlayer()
     local y = love.math.random(1, MAP_HEIGHT)
     if BlockTable[y][x]:getWalkable() == true then --if the location is walkable, use it
       Player = Actor:new(ActorPlayer, x, y)
-      ActorTable[y][x] = Player
+      ActorList[#ActorList + 1] = Player
       BumpWorld:add(Player,x,y,1,1)
-      PlayerPosition = {y, x}
       success = true
     end
   end
@@ -17,7 +16,7 @@ end
 
 function movePlayer(lastX, lastY, newX, newY) --specialized wrapper for the tryMoveActor function
   if tryMoveActor(lastX, lastY, newX, newY) == true then
-    PlayerPosition = {newY, newX}
+    Player:setCoords(newX, newY)
     BumpWorld:update(Player, newX, newY)
     checkPlayerDistFromCamera()
   end
