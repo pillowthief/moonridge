@@ -10,7 +10,7 @@ function drawActors()
     ColorAssign:send("color3", ActorList[i]:getColor3(), {})
     ColorAssign:send("color4", ActorList[i]:getColor4(), {})
 
-    playerSprite:draw((x+16),(y+16))
+    playerSprite:draw((x),(y))
   end
 
   love.graphics.setShader()

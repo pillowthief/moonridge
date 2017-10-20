@@ -1,5 +1,4 @@
 ActorPlayer = {
-  sprite='player',
   speed='6',
   color1={242, 190, 101, 255},
   color2={148, 84, 20, 255},

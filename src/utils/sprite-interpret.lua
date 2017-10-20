@@ -15,7 +15,9 @@ function getQuadFromSName(glyph)
   local result
   if glyph:getSpriteType() == 'merge' then
     result = getMergedSprite(glyph)
-  else
+  elseif glyph:getSpriteType() == 'oversize' then
+    result = sendOversizeSprite(glyph)
+  else --type is 'single'
     result = getSingleSprite(glyph)
   end
 

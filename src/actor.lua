@@ -37,12 +37,22 @@ function Actor:setCoords(x, y)
 end
 
 function Actor:getApproxGridX()
-  local gridX = math.floor(self._x / TileW)
+  local gridX
+  if math.floor((self._x/TileW) + 0.5) == math.floor((self._x/TileW)+1) then
+    gridX = math.ceil(self._x / TileW)
+  else
+    gridX = math.floor(self._x / TileW)
+  end
   return gridX
 end
 
 function Actor:getApproxGridY()
-  local gridY = math.floor(self._y / TileH)
+  local gridY
+  if math.floor((self._y/TileH) + 0.5) == math.floor((self._y/TileH)+1) then
+    gridY = math.ceil(self._y / TileH)
+  else
+    gridY = math.floor(self._y / TileH)
+  end
   return gridY
 end
 

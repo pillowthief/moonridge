@@ -23,5 +23,10 @@ function updateKeys()
     conversation:say('pressed delete')
   end
 
+  function love.keyreleased( key )
+   if key == "`" then
+      conversation:say('pressed tilde')
+   end
+  end
 
 end

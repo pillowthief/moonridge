@@ -11,3 +11,7 @@ BlockWallBlock = {
   sprite='wall',
   color1={76, 51, 25, 255}
 }
+
+BlockPineTree = {
+
+}

@@ -41,6 +41,7 @@ end
 function checkPlayerDistFromCamera()
   if CameraMoving == false then
     PlayerPosition = {Player:getApproxGridY(), Player:getApproxGridX()}
+    addDebugTile((PlayerPosition[2]*TileW),(PlayerPosition[1]*TileH))
     local myFinder = Pathfinder(grid, 'ASTAR', walkable)
     local cameraPosition = {Cam:getPosition()}
     cameraPosition[1] = cameraPosition[1] / TileW
@@ -59,7 +60,6 @@ function checkPlayerDistFromCamera()
 end
 
 function updateCamera()
-  PlayerPosition = {Player:getApproxGridY(), Player:getApproxGridX()}
   if CameraMoving == true then --if the camera is moving, update it, else do nothing
     local cameraPosition = {Cam:getPosition()}
     cameraPosition[1] = cameraPosition[1] / TileW
@@ -80,6 +80,7 @@ local recentCheckFlag = true
 
 function moveCameraTowards()
   PlayerPosition = {Player:getApproxGridY(), Player:getApproxGridX()}
+  addDebugTile((PlayerPosition[2]*TileW),(PlayerPosition[1]*TileH))
   local myFinder = Pathfinder(grid, 'ASTAR', walkable)
   local cameraPosition = {Cam:getPosition()}
   local path

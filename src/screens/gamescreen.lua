@@ -11,14 +11,12 @@ function GameScreen.new()
 
 
     function self:draw()
-      post_effect:draw(function()
         Cam:draw(function(l,t,w,h)
-            local visible = getVisibleTiles()
-            drawGlyphs(TileGlyphs, visible)
-            drawGlyphs(BlockGlyphs, visible)
-            drawActors()
-            drawDebugTiles()
-          end)
+          local visible = getVisibleTiles()
+          drawGlyphs(TileGlyphs, visible)
+          drawGlyphs(BlockGlyphs, visible)
+          drawActors()
+          drawDebugTiles()
         end)
     end
 

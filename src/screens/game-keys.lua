@@ -25,3 +25,7 @@ end)
 delListener = conversation:listen('pressed delete', function()
   love.event.quit("restart")
 end)
+
+tildeListener = conversation:listen('pressed tilde', function()
+  debugDrawToggle()
+end)

@@ -3,8 +3,8 @@ Glyph = class('Glyph')
 function Glyph:initialize(properties)
   properties = properties or {}
   --self._tileset = properties['tileset']
-  self._sprite = properties['sprite']
-  self._spriteType = 'single'
+  self._sprite = properties['sprite'] or nil
+  self._spriteType = properties['spriteType'] or 'single'
   self._color1 = properties['color1'] or {255, 255, 255, 255}
   self._color2 = properties['color2'] or {0.0, 0.0, 0.0, 0.0}
   self._color3 = properties['color3'] or {0.0, 0.0, 0.0, 0.0}
@@ -37,6 +37,10 @@ end
 
 function Glyph:getColor4()
   return self._color4
+end
+
+function Glyph:getNeighbors()
+
 end
 
 return Glyph

@@ -1,5 +1,3 @@
-make sodapop work better, use it for more stuff
-
 add attacks for player
 
 implement a lib for controllers

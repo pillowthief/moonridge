@@ -24,7 +24,7 @@ function movePlayer(newX, newY) --specialized wrapper for the tryMoveActor funct
 end
 
 
-playerSprite = sodapop.newAnimatedSprite(0, 0)
+playerSprite = sodapop.newAnimatedSprite(16, 16)
 playerSprite:addAnimation('walkDown', {
   image        = love.graphics.newImage 'assets/masc_char_down.png',
   frameWidth   = 32,
