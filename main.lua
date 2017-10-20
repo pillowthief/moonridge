@@ -12,6 +12,7 @@ require 'src/utils/actor-utils'
 require 'src/utils/key-mgr'
 require 'src/utils/cam-mgr'
 require 'src/utils/shdr-mgr'
+require 'src/utils/debug-gui'
 require 'src/gen/cave-gen'
 require 'src/actor'
 require 'src/player'
@@ -62,7 +63,7 @@ end
 --local skip = 0
 
 function love.update(dt)
-  if dt < 1/30 then
+  if dt < 1/30 then --lock to 30 fps
       love.timer.sleep(1/30 - dt)
    end
   --love.frame = love.frame + 1
@@ -71,7 +72,7 @@ function love.update(dt)
     --love.profiler.reset()
   --end
 
-  updateKeys()
+  updateKeys() --generically update keys, to be interpreted by the ScreenManager
   ScreenManager.update(dt)
 end
 

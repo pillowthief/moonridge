@@ -12,6 +12,7 @@ function Actor:initialize(properties, x, y)
   self._x = x
   self._y = y
   self._speed = properties['speed'] or 1
+  self._facing = 'down'
 end
 
 function Actor:setX(x)
@@ -51,6 +52,14 @@ end
 
 function Actor:getSpeed()
   return self._speed
+end
+
+function Actor:setFacing(facing)
+  self._facing = facing
+end
+
+function Actor:getFacing()
+  return self._facing
 end
 
 return Actor

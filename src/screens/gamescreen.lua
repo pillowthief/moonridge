@@ -17,6 +17,7 @@ function GameScreen.new()
             drawGlyphs(TileGlyphs, visible)
             drawGlyphs(BlockGlyphs, visible)
             drawActors()
+            drawDebugTiles()
           end)
         end)
     end
