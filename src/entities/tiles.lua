@@ -1,5 +1,5 @@
 TileFloorTile = {
   sprite='floor',
-  color1={255, 251, 142, 255},
-  color4={16, 15, 58, 255}
+  color1={51, 76, 25, 255},
+  color4={84, 148, 20, 255}
 }

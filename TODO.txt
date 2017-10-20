@@ -1,15 +1,13 @@
-create a (tiny-ecs) entity-component system for collision types
-  create generic function to create bumpworlds
+make sodapop work better, use it for more stuff
 
-implement Sodapop lib
+add attacks for player
 
 implement a lib for controllers
 
 create time system (no files)
   create a time tracking system, add the concept of pause, begin building the framework for the calendar
 
-text-to-glyph (no file):
-  convert text to glyphs and feed that information (probably a table) to other functions
+create a morning/day/evening/night shader (+ gui clock element!)
 
 gui-tools (no file):
   create tools to build custom gui elements

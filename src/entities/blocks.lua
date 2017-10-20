@@ -9,5 +9,5 @@ BlockWallBlock = {
   walkable=false,
   blockslight=true,
   sprite='wall',
-  color1={63, 32, 18, 255}
+  color1={76, 51, 25, 255}
 }

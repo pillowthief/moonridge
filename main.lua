@@ -2,6 +2,7 @@ class = require('lib/middleclass')
 tiny = require('lib/tiny')
 talkback = require('lib/talkback')
 bump = require('lib/bump')
+sodapop = require('lib/sodapop')
 
 ECSWorld = tiny.world()
 
@@ -34,8 +35,6 @@ function love.load()
 
   World_Tiles = loadTileImage('assets/world_tiles.png')
   World_Quads = newTileMap(32,32,World_Tiles)
-  Actor_Sprites = loadTileImage('assets/masc_char.png')
-  Actor_Quads = newTileMap(32,32,Actor_Sprites)
   love.graphics.setDefaultFilter( 'nearest', 'nearest' )
 
   local screens = {
@@ -63,6 +62,9 @@ end
 --local skip = 0
 
 function love.update(dt)
+  if dt < 1/30 then
+      love.timer.sleep(1/30 - dt)
+   end
   --love.frame = love.frame + 1
   --if love.frame%100 == 0 then
     --love.report = love.profiler.report('time', 20)
@@ -70,7 +72,6 @@ function love.update(dt)
   --end
 
   updateKeys()
-  updateCamera()
   ScreenManager.update(dt)
 end
 

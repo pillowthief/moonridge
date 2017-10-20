@@ -22,6 +22,8 @@ function GameScreen.new()
     end
 
     function self:update(dt)
+      updateCamera()
+      playerSprite:update(dt)
     end
 
     return self

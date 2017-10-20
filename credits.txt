@@ -1,0 +1,32 @@
+The following credits are given to various people who created different tools/assets used by this project.
+
+First, a big thank you to the creators of the Love2D engine, an incredible open source framework that made this game possible.
+
+Additional thanks to everyone who helps maintain the Love2D engine, who develops tools for it, and to all the people in the Love2D discord!
+
+
+CODE LIBRARIES:
+
+Specific library license files included for all libraries which included a license file at the time of download.
+All library licenses are included seperately from these credits.
+
+The Jumper library is Copyright (c)  Roland Yonaba. (https://github.com/Yonaba)
+The ScreenManager library is Copyright (c)  Robert Machmer. (https://github.com/rm-code)
+	*In accordance with the ScreenManager license, I hereby state that the version of ScreenManager used in my project has been modified by me.
+
+The Bump, Middleclass, and Gamera libraries are Copyright (c) Enrique García Cota. (https://github.com/kikito)
+The Tiny-ECS library is Copyright (c) Calvin Rose. (https://github.com/bakpakin)
+The Sodapop and Talkback libraries are Copyright (c) Andrew Minnich. (https://github.com/tesselode)
+
+
+Big thanks to the many library creators whose tools helped me to make this project manageable.
+
+
+ART ASSETS:
+
+
+
+
+FONTS:
+
+The Arcade Alternate font is created and owned by Muizz Kasim, who allows its for all projects personal or commercial as long as attribution is given.
