@@ -1,3 +1,5 @@
+require('src/utils/menu-render')
+
 function updateKeys(dt)
   local curScreen = ScreenManager.getCurrent()
 
@@ -27,7 +29,7 @@ function updateKeys(dt)
         debugDrawToggle()
       elseif key == "m" then
       elseif key == "escape" then
-        love.event.quit()
+        ScreenManager.push('menu')
       elseif key == "delete" then
         love.event.quit("restart")
       end
@@ -35,23 +37,18 @@ function updateKeys(dt)
   end
 
   if curScreen == 'menu' then
-    if love.keyboard.isDown( "up" ) then
-    end
-
-    if love.keyboard.isDown( "down" ) then
-    end
-
-    if love.keyboard.isDown( "right" ) then
-    end
-
-    if love.keyboard.isDown( "left" ) then
-    end
-
     function love.keyreleased( key )
       if key == "`" then
       elseif key == "m" then
       elseif key == "escape" then
+        ScreenManager.pop()
       elseif key == "delete" then
+      elseif key == "up" then
+        setMenuSelector(-1)
+      elseif key == "down" then
+        setMenuSelector(1)
+      elseif key == "return" then
+        menuActions()
       end
     end
   end

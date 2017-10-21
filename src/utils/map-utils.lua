@@ -55,7 +55,6 @@ function redrawGlyphs(tiles)
   local visible = getVisibleTiles()
   local storage = {}
   local tiletable = tiles
-  local visible = visible
   local x_offset = visible[1]
   local y_offset = visible[2]
   local max_x = visible[3]
@@ -95,7 +94,6 @@ function updateGlyphs(tiles)
   local visible = getVisibleTiles()
   local storage = {}
   local tiletable = tiles
-  local visible = visible
   local x_offset = visible[1]
   local y_offset = visible[2]
   local max_x = visible[3]
