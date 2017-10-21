@@ -74,7 +74,16 @@ function menuActions()
   if menuSelector == 1 then
     ScreenManager.pop()
   elseif menuSelector == 2 then
+    local level_data = {TileTable, BlockTable, ActorList}
+    bitser.dumpLoveFile('save.dat', level_data)
   elseif menuSelector == 3 then
+    if love.filesystem.exists('save.dat') then
+      local level_data = bitser.loadLoveFile('save.dat')
+      TileTable = level_data[1]
+      BlockTable = level_data[2]
+      ActorList = level_data[3]
+      Player = ActorList[1]
+    end
   elseif menuSelector == 4 then
   elseif menuSelector == 5 then
     love.event.quit()

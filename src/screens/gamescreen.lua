@@ -1,5 +1,4 @@
 local Screen = require('lib/ScreenManager/Screen')
-require('src/screens/game-comps')
 
 --this is the main gameplay screen
 

@@ -1,6 +1,3 @@
-mainmenu (no file)
-  create a main menu screen
-
 gui-tools (no file):
     create tools to build custom gui elements
 

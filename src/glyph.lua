@@ -1,5 +1,7 @@
 Glyph = class('Glyph')
 
+bitser.registerClass(Glyph)
+
 function Glyph:initialize(properties)
   properties = properties or {}
   --self._tileset = properties['tileset']

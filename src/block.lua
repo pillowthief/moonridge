@@ -2,6 +2,8 @@ require 'src/glyph'
 
 Block = class('Block', Glyph)
 
+bitser.registerClass(Block)
+
 function Block:initialize(properties)
   properties = properties or {}
 

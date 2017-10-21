@@ -3,6 +3,7 @@ tiny = require('lib/tiny')
 talkback = require('lib/talkback')
 bump = require('lib/bump')
 sodapop = require('lib/sodapop')
+bitser = require('lib/bitser')
 
 ECSWorld = tiny.world()
 
@@ -39,6 +40,7 @@ function love.load()
   love.graphics.setDefaultFilter( 'nearest', 'nearest' )
 
   local screens = {
+        ['home'] = require('src/screens/homescreen'),
         ['game'] = require('src/screens/gamescreen'),
         ['menu'] = require('src/screens/menuscreen')
     }
