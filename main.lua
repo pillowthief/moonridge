@@ -3,7 +3,7 @@ tiny = require('lib/tiny')
 talkback = require('lib/talkback')
 bump = require('lib/bump')
 sodapop = require('lib/sodapop')
-bitser = require('lib/bitser')
+binser = require('lib/binser')
 
 ECSWorld = tiny.world()
 

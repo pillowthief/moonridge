@@ -2,7 +2,7 @@ require 'src/glyph'
 
 Tile = class('Tile', Glyph)
 
-bitser.registerClass(Tile)
+binser.registerClass(Tile)
 
 function Tile:initialize(properties)
   properties = properties or {}

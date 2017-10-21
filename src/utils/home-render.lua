@@ -68,9 +68,8 @@ function homeActions()
     STARTGAME()
   elseif homeSelector == 2 then
     if love.filesystem.exists('save.dat') then
-      local level_data = bitser.loadLoveFile('save.dat')
-      print(level_data[1])
-      --STARTGAME(level_data[1],level_data[2],level_data[3])
+      local level_data, len = binser.readFile('saves/save.dat')
+      STARTGAME(level_data[1],level_data[2],level_data[3])
     else
     end
   elseif homeSelector == 3 then

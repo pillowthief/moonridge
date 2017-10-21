@@ -1,5 +1,5 @@
-MAP_WIDTH = 120
-MAP_HEIGHT = 120
+MAP_WIDTH = 40
+MAP_HEIGHT = 40
 
 function STARTGAME(tiletable, blocktable, actorlist)
   TileTable = tiletable or makeCaveFloor(MAP_WIDTH, MAP_HEIGHT)

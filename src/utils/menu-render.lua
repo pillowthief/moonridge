@@ -73,8 +73,7 @@ function menuActions()
   if menuSelector == 1 then
     ScreenManager.pop()
   elseif menuSelector == 2 then
-    local level_data = {TileTable, BlockTable, ActorList}
-    bitser.dumpLoveFile('save.dat', level_data)
+    binser.writeFile('saves/save.dat', TileTable, BlockTable, ActorList)
   elseif menuSelector == 3 then
   elseif menuSelector == 4 then
     ScreenManager.switch('home')

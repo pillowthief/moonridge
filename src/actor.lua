@@ -2,7 +2,7 @@ require 'src/glyph'
 
 Actor = class('Actor', Glyph)
 
-bitser.registerClass(Actor)
+binser.registerClass(Actor)
 
 function Actor:initialize(properties, x, y)
   properties = properties or {}

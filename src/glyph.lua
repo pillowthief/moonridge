@@ -1,6 +1,6 @@
 Glyph = class('Glyph')
 
-bitser.registerClass(Glyph)
+binser.registerClass(Glyph)
 
 function Glyph:initialize(properties)
   properties = properties or {}
