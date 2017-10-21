@@ -64,15 +64,15 @@ end
 
 function love.update(dt)
   if dt < 1/30 then --lock to 30 fps
-      love.timer.sleep(1/30 - dt)
-   end
+    love.timer.sleep(1/30 - dt)
+  end
   --love.frame = love.frame + 1
   --if love.frame%100 == 0 then
     --love.report = love.profiler.report('time', 20)
     --love.profiler.reset()
   --end
 
-   --generically update keys, to be interpreted by the ScreenManager
+  updateKeys(dt)
   ScreenManager.update(dt)
 end
 

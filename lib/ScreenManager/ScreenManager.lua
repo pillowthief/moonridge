@@ -175,7 +175,7 @@ function ScreenManager.setCurrent(screen)
   screenList[#screenList+1] = screen
 end
 
-function ScreenManager.returnCurrent()
+function ScreenManager.getCurrent()
   return screenList[#screenList]
 end
 ---

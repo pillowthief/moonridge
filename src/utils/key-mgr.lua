@@ -1,35 +1,60 @@
 function updateKeys(dt)
-  if love.keyboard.isDown( "up" ) then
-    conversation:say('pressed up')
-  end
+  local curScreen = ScreenManager.getCurrent()
 
-  if love.keyboard.isDown( "down" ) then
-    conversation:say('pressed down')
-  end
+  if curScreen == 'game' then
+    if love.keyboard.isDown( "up" ) then
+      movePlayer(Player:getX(), Player:getY() - Player:getSpeed())
+      playerSprite:switch('walkUp', true)
+    end
 
-  if love.keyboard.isDown( "right" ) then
-    conversation:say('pressed right')
-  end
+    if love.keyboard.isDown( "down" ) then
+      movePlayer(Player:getX(), Player:getY() + Player:getSpeed())
+      playerSprite:switch('walkDown', true)
+    end
 
-  if love.keyboard.isDown( "left" ) then
-    conversation:say('pressed left')
-  end
+    if love.keyboard.isDown( "right" ) then
+      movePlayer(Player:getX() + Player:getSpeed(), Player:getY())
+      playerSprite:switch('walkRight', true)
+    end
 
-  if love.keyboard.isDown ( "escape" ) then
-    conversation:say('pressed escape')
-  end
+    if love.keyboard.isDown( "left" ) then
+      movePlayer(Player:getX() - Player:getSpeed(), Player:getY())
+      playerSprite:switch('walkLeft', true)
+    end
 
-  if love.keyboard.isDown ( "delete" ) then
-    conversation:say('pressed delete')
-  end
-
-  function love.keyreleased( key )
-    if key == "`" then
-      conversation:say('pressed tilde')
-    elseif key == "m" then
-      conversation:say('pressed m')
-
+    function love.keyreleased( key )
+      if key == "`" then
+        debugDrawToggle()
+      elseif key == "m" then
+      elseif key == "escape" then
+        love.event.quit()
+      elseif key == "delete" then
+        love.event.quit("restart")
+      end
     end
   end
+
+  if curScreen == 'menu' then
+    if love.keyboard.isDown( "up" ) then
+    end
+
+    if love.keyboard.isDown( "down" ) then
+    end
+
+    if love.keyboard.isDown( "right" ) then
+    end
+
+    if love.keyboard.isDown( "left" ) then
+    end
+
+    function love.keyreleased( key )
+      if key == "`" then
+      elseif key == "m" then
+      elseif key == "escape" then
+      elseif key == "delete" then
+      end
+    end
+  end
+
 
 end

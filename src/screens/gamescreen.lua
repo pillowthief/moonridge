@@ -1,5 +1,4 @@
 local Screen = require('lib/ScreenManager/Screen')
-require('src/screens/game-keys')
 require('src/screens/game-comps')
 
 --this is the main gameplay screen
@@ -21,10 +20,8 @@ function GameScreen.new()
     end
 
     function self:update(dt)
-      updateKeys(dt)
 
       updateCamera()
-
       playerSprite:update(dt)
     end
 
