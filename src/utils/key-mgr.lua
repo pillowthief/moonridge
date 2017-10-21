@@ -1,4 +1,5 @@
 require('src/utils/menu-render')
+require('src/utils/home-render')
 
 function updateKeys(dt)
   local curScreen = ScreenManager.getCurrent()
@@ -49,6 +50,23 @@ function updateKeys(dt)
         setMenuSelector(1)
       elseif key == "return" then
         menuActions()
+      end
+    end
+  end
+
+  if curScreen == 'home' then
+    function love.keyreleased( key )
+      if key == "`" then
+      elseif key == "m" then
+      elseif key == "escape" then
+        love.event.quit()
+      elseif key == "delete" then
+      elseif key == "up" then
+        setHomeSelector(-1)
+      elseif key == "down" then
+        setHomeSelector(1)
+      elseif key == "return" then
+        homeActions()
       end
     end
   end

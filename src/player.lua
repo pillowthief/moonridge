@@ -1,6 +1,12 @@
 require 'src/entities/actors'
 
 function addPlayer()
+  if #ActorList > 0 then
+    Player = ActorList[1]
+    BumpWorld:add(Player,nX,nY,TileW,TileH)
+    playerSprite:switch('standDown')
+    success = true
+  end
   local success = false
   while success == false do --attempt to add player at a random location on the map
     local x = love.math.random(1, MAP_WIDTH)

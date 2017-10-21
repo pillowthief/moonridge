@@ -4,7 +4,6 @@ local menuSelector = 1
 local menuItems = {
   "Return to Game",
   "Save Game",
-  "Load Game",
   "Settings",
   "Quit"
 }
@@ -43,7 +42,7 @@ function drawMenu()
       ColorAssign:send("color3", {60, 111, 193, 225}, {})
       ColorAssign:send("color4", {60, 111, 193, 225}, {})
 
-      love.graphics.draw(World_Tiles, World_Quads[2], x, y)
+      love.graphics.draw(Menu_Tiles, Menu_Quads[2], x, y)
     end
   end
 
@@ -77,16 +76,8 @@ function menuActions()
     local level_data = {TileTable, BlockTable, ActorList}
     bitser.dumpLoveFile('save.dat', level_data)
   elseif menuSelector == 3 then
-    if love.filesystem.exists('save.dat') then
-      local level_data = bitser.loadLoveFile('save.dat')
-      TileTable = level_data[1]
-      BlockTable = level_data[2]
-      ActorList = level_data[3]
-      Player = ActorList[1]
-    end
   elseif menuSelector == 4 then
-  elseif menuSelector == 5 then
-    love.event.quit()
+    ScreenManager.switch('home')
   end
 
 end

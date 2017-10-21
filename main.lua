@@ -33,10 +33,6 @@ function love.load()
   --love.profiler = require('lib/profile')
   --love.profiler.hookall("Lua")
   --love.profiler.start()
-
-
-  World_Tiles = loadTileImage('assets/world_tiles.png')
-  World_Quads = newTileMap(32,32,World_Tiles)
   love.graphics.setDefaultFilter( 'nearest', 'nearest' )
 
   local screens = {
@@ -45,21 +41,15 @@ function love.load()
         ['menu'] = require('src/screens/menuscreen')
     }
 
-  MAP_WIDTH = 120
-  MAP_HEIGHT = 120
   BumpWorld = bump.newWorld(32)
 
-  TileTable = makeCaveFloor(MAP_WIDTH, MAP_HEIGHT)
-  BlockTable = makeCaveBlocks(MAP_WIDTH, MAP_HEIGHT)
-  ActorList = {}
+  World_Tiles = loadTileImage('assets/world_tiles.png')
+  World_Quads = newTileMap(32,32,World_Tiles)
 
-  makeBumpWorld(BlockTable, MAP_WIDTH, MAP_HEIGHT)
+  Menu_Tiles = loadTileImage('assets/world_tiles.png')
+  Menu_Quads = newTileMap(32,32,Menu_Tiles)
 
-  addPlayer()
-  setupCamera()
-  redrawAllGlyphs()
-
-  ScreenManager.init(screens, 'game')
+  ScreenManager.init(screens, 'home')
 end
 
 --local skip = 0
