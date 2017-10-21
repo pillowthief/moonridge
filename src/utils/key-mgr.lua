@@ -1,4 +1,4 @@
-function updateKeys()
+function updateKeys(dt)
   if love.keyboard.isDown( "up" ) then
     conversation:say('pressed up')
   end
@@ -24,9 +24,12 @@ function updateKeys()
   end
 
   function love.keyreleased( key )
-   if key == "`" then
+    if key == "`" then
       conversation:say('pressed tilde')
-   end
+    elseif key == "m" then
+      conversation:say('pressed m')
+
+    end
   end
 
 end

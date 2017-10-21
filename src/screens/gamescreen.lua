@@ -21,7 +21,10 @@ function GameScreen.new()
     end
 
     function self:update(dt)
+      updateKeys(dt)
+
       updateCamera()
+
       playerSprite:update(dt)
     end
 

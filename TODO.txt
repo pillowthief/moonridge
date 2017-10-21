@@ -1,3 +1,9 @@
+mainmenu (no file)
+  create a main menu screen
+
+gui-tools (no file):
+    create tools to build custom gui elements
+
 add attacks for player
 
 implement a lib for controllers
@@ -6,12 +12,6 @@ create time system (no files)
   create a time tracking system, add the concept of pause, begin building the framework for the calendar
 
 create a morning/day/evening/night shader (+ gui clock element!)
-
-gui-tools (no file):
-  create tools to build custom gui elements
-
-mainmenu (no file)
-  create a main menu
 
 objects & items
   make them consistent

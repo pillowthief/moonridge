@@ -37,8 +37,12 @@ function drawDebugTiles()
       table.remove(DebugTiles[i][5])
 
       DebugTiles[i][3] = DebugTiles[i][3] - 1
+
+
     end
 
+    love.graphics.setShader()
+    
     local i = #DebugTiles
     while i > 0 do
       if DebugTiles[i][3] <1 then

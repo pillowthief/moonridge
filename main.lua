@@ -23,7 +23,7 @@ require 'src/utils/sprite-interpret'
 
 require 'src/shaders/colorassign'
 
-local ScreenManager = require('lib/ScreenManager/ScreenManager') -- manages which state the game is in
+ScreenManager = require('lib/ScreenManager/ScreenManager') -- manages which state the game is in
 
 conversation = talkback.new()
 
@@ -39,7 +39,8 @@ function love.load()
   love.graphics.setDefaultFilter( 'nearest', 'nearest' )
 
   local screens = {
-        game = require('src/screens/gamescreen')
+        ['game'] = require('src/screens/gamescreen'),
+        ['menu'] = require('src/screens/menuscreen')
     }
 
   MAP_WIDTH = 120
@@ -71,7 +72,7 @@ function love.update(dt)
     --love.profiler.reset()
   --end
 
-  updateKeys() --generically update keys, to be interpreted by the ScreenManager
+   --generically update keys, to be interpreted by the ScreenManager
   ScreenManager.update(dt)
 end
 
