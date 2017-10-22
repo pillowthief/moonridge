@@ -5,7 +5,8 @@ BlockNull = {
   color1={0,0,0,0}
 }
 
-BlockWallBlock = {
+CaveDirtWall = {
+  name='CaveDirtWall',
   walkable=false,
   blockslight=true,
   sprite='wall',

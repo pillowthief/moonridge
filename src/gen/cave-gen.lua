@@ -6,7 +6,7 @@ function makeCaveFloor(width, height)
   for y=1, height do
     tileMap[y] = {}
     for x=1, width do
-      tileMap[y][x] = Tile:new(TileFloorTile)
+      tileMap[y][x] = Tile:new(CaveFloorDirt)
     end
   end
   return tileMap
@@ -19,8 +19,8 @@ function makeCaveBlocks(width, height)
     tileMap[y] = {}
     for x=1, width do
       local ran = love.math.random(1,2)
-      if ran == 2 then
-        tileMap[y][x] = Block:new(BlockWallBlock)
+      if ran > 1 then
+        tileMap[y][x] = Block:new(CaveDirtWall)
       else
         tileMap[y][x] = Block:new(BlockNull)
       end
@@ -29,7 +29,7 @@ function makeCaveBlocks(width, height)
 
   for y=1, 2 do
     for x=1, width do
-      tileMap[y][x] = Block:new(BlockWallBlock)
+      tileMap[y][x] = Block:new(CaveDirtWall)
     end
   end
 
@@ -37,19 +37,19 @@ function makeCaveBlocks(width, height)
 
   for x=1, 2 do
     for y=1, height do
-      tileMap[y][x] = Block:new(BlockWallBlock)
+      tileMap[y][x] = Block:new(CaveDirtWall)
     end
   end
 
   for y=(height-1), height do
     for x=1, width do
-      tileMap[y][x] = Block:new(BlockWallBlock)
+      tileMap[y][x] = Block:new(CaveDirtWall)
     end
   end
 
   for x=(width-1), width do
     for y=1, height do
-      tileMap[y][x] = Block:new(BlockWallBlock)
+      tileMap[y][x] = Block:new(CaveDirtWall)
     end
   end
 
@@ -57,24 +57,16 @@ function makeCaveBlocks(width, height)
   for i=1,4 do
     for y=3, (height-2) do
       for x=3, (width-2) do
-        local totalWalls = 0 -- check for how many walls
 
-        -- is self wall?
-        if tileMap[y][x]:getSprite() == 'wall' then totalWalls = totalWalls + 1 end
+        if tileMap[y][x]:getName() == 'CaveDirtWall' then
+          local totalWalls = tileMap[y][x]:getLikeNeighbors(tileMap,x,y)
 
-        -- cardinal directions
-        if tileMap[y+1][x]:getSprite() == 'wall' then totalWalls = totalWalls + 1 end
-        if tileMap[y][x+1]:getSprite() == 'wall' then totalWalls = totalWalls + 1 end
-        if tileMap[y-1][x]:getSprite() == 'wall' then totalWalls = totalWalls + 1 end
-        if tileMap[y][x-1]:getSprite() == 'wall' then totalWalls = totalWalls + 1 end
+          if totalWalls >= 5 then tileMap[y][x] = Block:new(CaveDirtWall) else tileMap[y][x] = Block:new(BlockNull) end
+        else
+          local totalOpen = tileMap[y][x]:getLikeNeighbors(tileMap,x,y)
 
-        -- orthagonal directions
-        if tileMap[y+1][x+1]:getSprite() == 'wall' then totalWalls = totalWalls + 1 end
-        if tileMap[y+1][x-1]:getSprite() == 'wall' then totalWalls = totalWalls + 1 end
-        if tileMap[y-1][x+1]:getSprite() == 'wall' then totalWalls = totalWalls + 1 end
-        if tileMap[y-1][x-1]:getSprite() == 'wall' then totalWalls = totalWalls + 1 end
-
-        if totalWalls >= 5 then tileMap[y][x] = Block:new(BlockWallBlock) else tileMap[y][x] = Block:new(BlockNull) end
+          if totalOpen >= 5 then tileMap[y][x] = Block:new(BlockNull) else tileMap[y][x] = Block:new(CaveDirtWall) end
+        end
 
       end
     end

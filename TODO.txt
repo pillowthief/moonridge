@@ -1,6 +1,8 @@
 gui-tools (no file):
     create tools to build custom gui elements
 
+savegame management screen (no file)
+
 add attacks for player
 
 implement a lib for controllers
@@ -11,10 +13,7 @@ create time system (no files)
 create a morning/day/evening/night shader (+ gui clock element!)
 
 objects & items
-  make them consistent
-
-saving & loading
-  make this possible
+  make them
 
 wild-gen.lua
   create a wilderness generator

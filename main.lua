@@ -46,8 +46,6 @@ function love.update(dt)
     --love.report = love.profiler.report('time', 20)
     --love.profiler.reset()
   --end
-
-
   ScreenManager.update(dt)
 end
 

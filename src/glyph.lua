@@ -4,7 +4,7 @@ binser.registerClass(Glyph)
 
 function Glyph:initialize(properties)
   properties = properties or {}
-  --self._tileset = properties['tileset']
+  self.name = properties['name'] or ' '
   self._sprite = properties['sprite'] or nil
   self._spriteType = properties['spriteType'] or 'single'
   self._color1 = properties['color1'] or {255, 255, 255, 255}
@@ -13,9 +13,9 @@ function Glyph:initialize(properties)
   self._color4 = properties['color4'] or {0.0, 0.0, 0.0, 0.0}
 end
 
---[[function Glyph:getTileset()
-    return self._tileset
-end--]]
+function Glyph:getName()
+  return self.name
+end
 
 function Glyph:getSprite()
   return self._sprite
@@ -41,8 +41,33 @@ function Glyph:getColor4()
   return self._color4
 end
 
-function Glyph:getNeighbors()
+function Glyph:getLikeNeighbors(tiletable, x, y)
+  local totalSame = 1 -- same as itself
+  -- cardinal directions
+  if tiletable[y][x]:isNeighborSame(tiletable,x,y+1) == true then totalSame = totalSame + 1 end
+  if tiletable[y][x]:isNeighborSame(tiletable,x+1,y) == true then totalSame = totalSame + 1 end
+  if tiletable[y][x]:isNeighborSame(tiletable,x,y-1) == true then totalSame = totalSame + 1 end
+  if tiletable[y][x]:isNeighborSame(tiletable,x-1,y) == true then totalSame = totalSame + 1 end
 
+  -- orthagonal directions
+  if tiletable[y][x]:isNeighborSame(tiletable,x+1,y+1) == true then totalSame = totalSame + 1 end
+  if tiletable[y][x]:isNeighborSame(tiletable,x-1,y+1) == true then totalSame = totalSame + 1 end
+  if tiletable[y][x]:isNeighborSame(tiletable,x+1,y-1) == true then totalSame = totalSame + 1 end
+  if tiletable[y][x]:isNeighborSame(tiletable,x-1,y-1) == true then totalSame = totalSame + 1 end
+
+  return totalSame
+end
+
+function Glyph:isNeighborSame(tiletable, x, y)
+  if tiletable[y] == nil then
+    return false
+  elseif tiletable[y][x] == nil then
+    return false
+  elseif tiletable[y][x]:getName() == self.name then
+    return true
+  else
+    return false
+  end
 end
 
 return Glyph

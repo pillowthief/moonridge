@@ -1,9 +1,9 @@
-MAP_WIDTH = 100
-MAP_HEIGHT = 100
+MAP_WIDTH = 80
+MAP_HEIGHT = 80
 
 function STARTGAME(tiletable, blocktable, actorlist)
-  TileTable = tiletable or makeCaveFloor(MAP_WIDTH, MAP_HEIGHT)
-  BlockTable = blocktable or makeCaveBlocks(MAP_WIDTH, MAP_HEIGHT)
+  TileTable = tiletable or makeForestFloor(MAP_WIDTH, MAP_HEIGHT)
+  BlockTable = blocktable or makeForestBlocks(MAP_WIDTH, MAP_HEIGHT)
   ActorList = actorlist or {}
 
   makeBumpWorld(BlockTable, MAP_WIDTH, MAP_HEIGHT)
