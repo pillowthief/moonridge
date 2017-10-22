@@ -5,8 +5,7 @@ binser.registerClass(Glyph)
 function Glyph:initialize(properties)
   properties = properties or {}
   self.name = properties['name'] or ' '
-  self._sprite = properties['sprite'] or nil
-  self._spriteType = properties['spriteType'] or 'single'
+  self._quad = properties['quad'] or 1
   self._color1 = properties['color1'] or {255, 255, 255, 255}
   self._color2 = properties['color2'] or {0.0, 0.0, 0.0, 0.0}
   self._color3 = properties['color3'] or {0.0, 0.0, 0.0, 0.0}
@@ -17,12 +16,8 @@ function Glyph:getName()
   return self.name
 end
 
-function Glyph:getSprite()
-  return self._sprite
-end
-
-function Glyph:getSpriteType()
-  return self._spriteType
+function Glyph:getQuad()
+  return self._quad
 end
 
 function Glyph:getColor1()

@@ -26,6 +26,9 @@ function love.load()
 
   BumpWorld = bump.newWorld(32)
 
+  Floor_Tiles = loadTileImage('assets/floor_tiles.png')
+  Floor_Quads = newTileMap(32,32,Floor_Tiles)
+
   World_Tiles = loadTileImage('assets/world_tiles.png')
   World_Quads = newTileMap(32,32,World_Tiles)
 

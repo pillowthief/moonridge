@@ -1,7 +1,7 @@
 BlockNull = {
   walkable = true,
   blockslight = false,
-  sprite='null',
+  quad=1,
   color1={0,0,0,0}
 }
 
@@ -9,7 +9,7 @@ CaveDirtWall = {
   name='CaveDirtWall',
   walkable=false,
   blockslight=true,
-  sprite='wall',
+  quad=2,
   color1={76, 51, 25, 255}
 }
 

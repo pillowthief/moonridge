@@ -59,6 +59,17 @@ function makeForestFloor(width, height)
     end
   end
 
+  for i=1,10 do
+    local success = false --place stairs down
+    while success == false do
+      local ranX = love.math.random(8,(width-8))
+      local ranY = love.math.random(8, (height-8))
+      if tileMap[ranY][ranX]:getName() == 'ForestFloorGrass' then
+        tileMap[ranY][ranX] = Tile:new(ForestStairsDown)
+        success = true
+      end
+    end
+  end
   return tileMap
 end
 

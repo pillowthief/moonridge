@@ -15,7 +15,6 @@ require 'src/player'
 require 'src/tile'
 require 'src/glyph'
 require 'src/block'
-require 'src/utils/sprite-interpret'
 
 require 'src/shaders/colorassign'
 

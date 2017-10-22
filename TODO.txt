@@ -1,3 +1,7 @@
+fix up player animation
+
+universal color palette
+
 gui-tools (no file):
     create tools to build custom gui elements
 

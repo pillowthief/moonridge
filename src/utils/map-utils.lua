@@ -1,5 +1,4 @@
 require 'src/shaders/colorassign'
-require 'src/utils/sprite-interpret'
 
 --This file is for drawing static (non-moving) glyphs
 
@@ -40,18 +39,18 @@ function loadTileImage(tilesetPath)
 end
 
 function updateAllGlyphs()
-  TileGlyphs = updateGlyphs(TileTable)
-  BlockGlyphs = updateGlyphs(BlockTable)
+  TileGlyphs = updateGlyphs(TileTable, Floor_Tiles, Floor_Quads)
+  BlockGlyphs = updateGlyphs(BlockTable, World_Tiles, World_Quads)
   drawActors()
 end
 
 function redrawAllGlyphs()
-  TileGlyphs = redrawGlyphs(TileTable)
-  BlockGlyphs = redrawGlyphs(BlockTable)
+  TileGlyphs = redrawGlyphs(TileTable, Floor_Tiles, Floor_Quads)
+  BlockGlyphs = redrawGlyphs(BlockTable, World_Tiles, World_Quads)
   drawActors()
 end
 
-function redrawGlyphs(tiles)
+function redrawGlyphs(tiles, spriteset, quads)
   local visible = getVisibleTiles()
   local storage = {}
   local tiletable = tiles
@@ -65,19 +64,18 @@ function redrawGlyphs(tiles)
   for rowIndex=1, max_y do
     storage[rowIndex] = {}
     for columnIndex=1, max_x do
-      local number = getQuadFromSName(tiletable[rowIndex + y_offset][columnIndex + x_offset])
-      local tileset = getImageFromLastQuadLookup()
-      local quads = getQuadsFromLastQuadLookup()
+      local number = tiletable[rowIndex + y_offset][columnIndex + x_offset]:getQuad()
+      local quads = quads
       local x,y = (columnIndex-1 + x_offset)*TileW, (rowIndex-1 + y_offset)*TileH
 
       ColorAssign:send("color1", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor1(), {})
       ColorAssign:send("color2", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor2(), {})
       ColorAssign:send("color3", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor3(), {})
       ColorAssign:send("color4", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor4(), {})
-      love.graphics.draw(tileset, quads[number], x, y)
+      love.graphics.draw(spriteset, quads[number], x, y)
 
       storage[rowIndex][columnIndex] = {
-        number, tileset, quads, x, y,
+        number, spriteset, quads, x, y,
         tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor1(),
         tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor2(),
         tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor3(),
@@ -90,7 +88,7 @@ function redrawGlyphs(tiles)
   return storage
 end
 
-function updateGlyphs(tiles)
+function updateGlyphs(tiles, spriteset, quads)
   local visible = getVisibleTiles()
   local storage = {}
   local tiletable = tiles
@@ -104,19 +102,17 @@ function updateGlyphs(tiles)
   for rowIndex=1, max_y do
     storage[rowIndex] = {}
     for columnIndex=1, max_x do
-      local number = getQuadFromSName(tiletable[rowIndex + y_offset][columnIndex + x_offset])
-      local tileset = getImageFromLastQuadLookup()
-      local quads = getQuadsFromLastQuadLookup()
+      local number = tiletable[rowIndex + y_offset][columnIndex + x_offset]:getQuad()
       local x,y = (columnIndex-1 + x_offset)*TileW, (rowIndex-1 + y_offset)*TileH
 
       ColorAssign:send("color1", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor1(), {})
       ColorAssign:send("color2", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor2(), {})
       ColorAssign:send("color3", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor3(), {})
       ColorAssign:send("color4", tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor4(), {})
-      love.graphics.draw(tileset, quads[number], x, y)
+      love.graphics.draw(spriteset, quads[number], x, y)
 
       storage[rowIndex][columnIndex] = {
-        number, tileset, quads, x, y,
+        number, spriteset, quads, x, y,
         tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor1(),
         tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor2(),
         tiletable[rowIndex + y_offset][columnIndex + x_offset]:getColor3(),
