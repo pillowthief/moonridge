@@ -28,11 +28,43 @@ function updateKeys(dt)
     function love.keyreleased( key )
       if key == "`" then
         debugDrawToggle()
-      elseif key == "m" then
       elseif key == "escape" then
         ScreenManager.push('menu')
       elseif key == "delete" then
         love.event.quit("restart")
+      elseif key == "1" then
+        selectItem(1)
+      elseif key == "2" then
+        selectItem(2)
+      elseif key == "3" then
+        selectItem(3)
+      elseif key == "4" then
+        selectItem(4)
+      elseif key == "5" then
+        selectItem(5)
+      elseif key == "6" then
+        selectItem(6)
+      elseif key == "7" then
+        selectItem(7)
+      elseif key == "8" then
+        selectItem(8)
+      elseif key == "9" then
+        selectItem(9)
+      elseif key == "0" then
+        selectItem(10)
+      elseif key == "l" then
+        if xTabSelected() == 2 then
+          changeTab(0)
+        else
+          changeTab(2)
+        end
+      elseif key == "m" then
+        if xTabSelected() == 1 then
+          changeTab(0)
+        else
+          print('working')
+          changeTab(1)
+        end
       end
     end
   end

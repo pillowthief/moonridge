@@ -1,3 +1,5 @@
+require ('src/utils/draw-gui-text-icons')
+
 function generateMainPanel()
   local panel = {}
   for i=1,4 do
@@ -79,8 +81,8 @@ function generateSidePanel(height)
 end
 
 local tabButtons = {
-  {5,6,5,6,5,6},
-  {12,13,12,13,12,13}
+  {5,6,5,6},
+  {12,13,12,13}
 }
 
 local itemButtons = {
@@ -88,23 +90,72 @@ local itemButtons = {
   {12,13,12,13,12,13,12,13,12,13,12,13,12,13,12,13,12,13,12,13}
 }
 
-local mainPanel = generateMainPanel()
+local buttonMask = {
+  {32,29},
+  {31,30}
+}
 
+local mainPanel = generateMainPanel()
 local sidePanel = generateSidePanel()
-local sideLookPanel = generateSidePanel(2)
+
+local tabSelector = 0
+
+local tabs = {
+  'log',
+  'look'
+}
+
+function changeTab(num)
+  tabSelector = num
+  if tabSelector < 0 then
+    tabSelector = 0
+  end
+  if tabSelector > #tabs then
+    tabSelector = #tabs
+  end
+  if tabSelector == 0 then
+    setSidePanelOn(false)
+  else
+    setSidePanelOn(true)
+  end
+end
+
+
+function xTabSelected()
+  if tabSelector == 0 then
+    return false
+  else
+    return tabSelector
+  end
+end
+
+local itemSelector = 1
+
+function itemSelected()
+  return itemSelector
+end
+
+function selectItem(num)
+  itemSelector = num
+end
 
 local GUIFlip = false
+local sidePanelOn = false
 
 function setGUIFlip(bool)
   GUIFlip = bool
 end
 
+function setSidePanelOn(bool)
+  sidePanelOn = bool
+end
+
 function shouldGUIFlip()
   local visible = getVisibleTiles()
   local y = Player:getApproxGridY()
-  if y-visible[2] > ((visible[4]-visible[2])/2)+2 then
+  if y-visible[2] > (((visible[4])/2)+5) then
     setGUIFlip(true)
-  elseif y-visible[2] > ((visible[4]-visible[2])/2)-2 then
+  elseif y-visible[2] > (((visible[4])/2)-6) then
     --do nothing
   else
     setGUIFlip(false)
@@ -113,24 +164,48 @@ end
 
 function drawGUI()
   drawGUIFeatures()
+  drawButtonMasks()
   shouldGUIFlip()
 end
 
 function drawGUIFeatures()
+  local num = (itemSelected() - 1)
   if GUIFlip == true then
     drawGUIFeature(mainPanel, 0, 0, {0,0,0,0},{0,0,0,0},{247, 224, 79, 255},{229, 203, 39,255})
-    drawGUIFeature(tabButtons, 0, 4, {0,0,0,0}, {247, 224, 79, 255}, {193, 154, 23, 255}, {229, 203, 39,255})
+    drawGUIFeature(tabButtons, 0, 4, {0,0,0,0}, {133, 136, 145, 255}, {99, 102, 112, 255}, {57, 60, 68,255})
     drawGUIFeature(itemButtons, 14, 4, {0,0,0,0}, {247, 224, 79, 255}, {193, 154, 23, 255}, {229, 203, 39,255})
+    drawGUIFeature(buttonMask, ((num*2)+14), 4, {190, 244, 247,30}, {0,0,0,0}, {0,0,0,0}, {255, 255, 255, 255})
   else
     drawGUIFeature(mainPanel, 0, 20, {0,0,0,0},{0,0,0,0},{247, 224, 79, 255},{229, 203, 39,255})
-    drawGUIFeature(tabButtons, 0, 18, {0,0,0,0}, {247, 224, 79, 255}, {193, 154, 23, 255}, {229, 203, 39,255})
+    drawGUIFeature(tabButtons, 0, 18, {0,0,0,0}, {133, 136, 145, 255}, {99, 102, 112, 255}, {57, 60, 68,255})
     drawGUIFeature(itemButtons, 14, 18, {0,0,0,0}, {247, 224, 79, 255}, {193, 154, 23, 255}, {229, 203, 39,255})
+    drawGUIFeature(buttonMask, ((num*2)+14), 18, {190, 244, 247,30}, {0,0,0,0}, {0,0,0,0}, {255, 255, 255, 255})
+  end
+  if sidePanelOn == true then
+    drawGUIFeature(sidePanel,0,6,{0,0,0,0}, {72, 81, 107, 255}, {193, 154, 23, 225}, {40, 44, 56,220})
+  end
+end
+
+function drawButtonMasks()
+  if GUIFlip == true then
+    if xTabSelected() == false then
+      --do nothing
+    else
+      local num = (xTabSelected() - 1)
+      drawGUIFeature(buttonMask, (num*2), 4, {190, 244, 247,20}, {0,0,0,0}, {0,0,0,0}, {255, 255, 255, 255})
+    end
+  else
+    if xTabSelected() == false then
+      --do nothing
+    else
+      local num = (xTabSelected() - 1)
+      drawGUIFeature(buttonMask, (num*2), 18, {190, 244, 247,20}, {0,0,0,0}, {0,0,0,0}, {255, 255, 255, 255})
+    end
   end
 end
 
 function drawGUIFeature(tileset,offset_x,offset_y,color1,color2,color3,color4)
   love.graphics.setShader(ColorAssign)
-
   ColorAssign:send("color1", color1, {})
   ColorAssign:send("color2", color2, {})
   ColorAssign:send("color3", color3, {})
