@@ -8,6 +8,7 @@ require 'src/utils/key-mgr'
 require 'src/utils/cam-mgr'
 require 'src/utils/shdr-mgr'
 require 'src/utils/debug-gui'
+require 'src/utils/draw-gui'
 require 'src/gen/cave-gen'
 require 'src/gen/forest-gen'
 require 'src/classes/actor'
@@ -33,6 +34,8 @@ function GameScreen.new()
           drawActors()
           drawDebugTiles()
         end)
+
+        drawGUI()
     end
 
     function self:update(dt)

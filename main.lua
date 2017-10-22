@@ -6,10 +6,7 @@ binser = require('lib/binser')
 
 ECSWorld = tiny.world()
 
-
-
 ScreenManager = require('lib/ScreenManager/ScreenManager') -- manages which state the game is in
-
 
 --love.frame = 0
 function love.load()
@@ -29,8 +26,11 @@ function love.load()
   Floor_Tiles = loadTileImage('assets/floor_tiles.png')
   Floor_Quads = newTileMap(32,32,Floor_Tiles)
 
-  World_Tiles = loadTileImage('assets/world_tiles.png')
-  World_Quads = newTileMap(32,32,World_Tiles)
+  Block_Tiles = loadTileImage('assets/world_tiles.png')
+  Block_Quads = newTileMap(32,32,Block_Tiles)
+
+  GUI_Tiles = loadTileImage('assets/gui_tiles.png')
+  GUI_Quads = newTileMap(32,32,GUI_Tiles)
 
   Menu_Tiles = loadTileImage('assets/world_tiles.png')
   Menu_Quads = newTileMap(32,32,Menu_Tiles)

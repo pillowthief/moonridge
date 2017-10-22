@@ -33,7 +33,7 @@ function drawDebugTiles()
       ColorAssign:send("color3", {0.0, 0.0, 0.0, 0.0}, {})
       ColorAssign:send("color4", {0.0, 0.0, 0.0, 0.0}, {})
 
-      love.graphics.draw(World_Tiles, World_Quads[2], x, y)
+      love.graphics.draw(Menu_Tiles, Menu_Quads[2], x, y)
       table.remove(DebugTiles[i][5])
 
       DebugTiles[i][3] = DebugTiles[i][3] - 1
@@ -42,7 +42,7 @@ function drawDebugTiles()
     end
 
     love.graphics.setShader()
-    
+
     local i = #DebugTiles
     while i > 0 do
       if DebugTiles[i][3] <1 then

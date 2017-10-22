@@ -40,13 +40,13 @@ end
 
 function updateAllGlyphs()
   TileGlyphs = updateGlyphs(TileTable, Floor_Tiles, Floor_Quads)
-  BlockGlyphs = updateGlyphs(BlockTable, World_Tiles, World_Quads)
+  BlockGlyphs = updateGlyphs(BlockTable, Block_Tiles, Block_Quads)
   drawActors()
 end
 
 function redrawAllGlyphs()
   TileGlyphs = redrawGlyphs(TileTable, Floor_Tiles, Floor_Quads)
-  BlockGlyphs = redrawGlyphs(BlockTable, World_Tiles, World_Quads)
+  BlockGlyphs = redrawGlyphs(BlockTable, Block_Tiles, Block_Quads)
   drawActors()
 end
 

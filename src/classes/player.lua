@@ -9,8 +9,8 @@ function addPlayer()
     success = true
   end
   while success == false do --attempt to add player at a random location on the map
-    local x = love.math.random(1, MAP_WIDTH)
-    local y = love.math.random(1, MAP_HEIGHT)
+    local x = love.math.random(10, MAP_WIDTH-10)
+    local y = love.math.random(10, MAP_HEIGHT-10)
     if BlockTable[y][x]:getWalkable() == true then --if the location is walkable, use it
       local nX,nY = (x-1)*TileW,(y-1)*TileH
       Player = Actor:new(ActorPlayer, nX, nY)
