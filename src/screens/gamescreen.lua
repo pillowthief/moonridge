@@ -24,7 +24,7 @@ local GameScreen = {}
 
 function GameScreen.new()
     local self = Screen.new()
-    
+
     function self:draw()
         Cam:draw(function(l,t,w,h)
           local visible = getVisibleTiles()
@@ -36,7 +36,7 @@ function GameScreen.new()
     end
 
     function self:update(dt)
-
+      updateKeys(dt)
       updateCamera()
       playerSprite:update(dt)
     end

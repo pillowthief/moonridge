@@ -14,7 +14,7 @@ function HomeScreen.new()
 
 
     function self:update(dt)
-
+      updateKeys(dt)
     end
 
     return self

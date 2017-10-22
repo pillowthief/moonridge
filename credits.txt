@@ -16,7 +16,7 @@ The ScreenManager library is Copyright (c)  Robert Machmer. (https://github.com/
 
 The Bump, Middleclass, and Gamera libraries are Copyright (c) Enrique García Cota. (https://github.com/kikito)
 The Tiny-ECS library is Copyright (c) Calvin Rose. (https://github.com/bakpakin)
-The Sodapop and Talkback libraries are Copyright (c) Andrew Minnich. (https://github.com/tesselode)
+The Sodapop library is Copyright (c) Andrew Minnich. (https://github.com/tesselode)
 
 
 Big thanks to the many library creators whose tools helped me to make this project manageable.

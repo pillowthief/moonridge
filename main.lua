@@ -1,32 +1,15 @@
 class = require('lib/middleclass')
 tiny = require('lib/tiny')
-talkback = require('lib/talkback')
 bump = require('lib/bump')
 sodapop = require('lib/sodapop')
 binser = require('lib/binser')
 
 ECSWorld = tiny.world()
 
-require 'src/utils/map-utils'
-require 'src/utils/anim-sprite-utils'
-require 'src/utils/actor-utils'
-require 'src/utils/key-mgr'
-require 'src/utils/cam-mgr'
-require 'src/utils/shdr-mgr'
-require 'src/utils/debug-gui'
-require 'src/gen/cave-gen'
-require 'src/actor'
-require 'src/player'
-require 'src/tile'
-require 'src/glyph'
-require 'src/block'
-require 'src/utils/sprite-interpret'
 
-require 'src/shaders/colorassign'
 
 ScreenManager = require('lib/ScreenManager/ScreenManager') -- manages which state the game is in
 
-conversation = talkback.new()
 
 --love.frame = 0
 function love.load()
@@ -64,7 +47,7 @@ function love.update(dt)
     --love.profiler.reset()
   --end
 
-  updateKeys(dt)
+
   ScreenManager.update(dt)
 end
 

@@ -14,7 +14,7 @@ function MenuScreen.new()
     end
 
     function self:update(dt)
-
+      updateKeys(dt)
     end
 
     return self
