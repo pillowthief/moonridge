@@ -1,4 +1,4 @@
-require 'src/glyph'
+require 'src/classes/glyph'
 
 Actor = class('Actor', Glyph)
 

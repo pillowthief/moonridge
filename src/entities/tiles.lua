@@ -47,8 +47,8 @@ ForestFloorMoss = {
 ForestStairsDown = {
   name='ForestStairsDown',
   quad=1,
-  color1={242, 190, 101, 255},
-  color2={122, 186, 11,255},
+  color1={173, 125, 90, 255},
+  color2={117, 80, 53, 255},
   color3={151, 224, 24, 255},
   color4={47, 40, 89, 255}
 }

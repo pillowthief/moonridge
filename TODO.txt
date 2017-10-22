@@ -1,5 +1,8 @@
 fix up player animation
 
+change things so that glyphs are for static tiles and actors and other animated tiles get moved to new class
+  make both inherit some color info
+
 universal color palette
 
 gui-tools (no file):
