@@ -2,7 +2,7 @@ local font = love.graphics.newFont("assets/ArcadeAlternate.ttf", 32)
 
 local menuSelector = 1
 local menuItems = {
-  "Return to Game",
+  "Return",
   "Save Game",
   "Settings",
   "Quit"
@@ -18,31 +18,56 @@ function getMenuSelector()
   return menuSelector
 end
 
+function drawMenuFog()
+  local visible = getVisibleTiles()
+  local x_offset = visible[1]
+  local y_offset = visible[2]
+  local max_x = visible[3]
+  local max_y = visible[4]
+  love.graphics.setShader(ColorAssign)
 
-function drawMenu()
+
+  for i=0,max_y do
+    local y = (i+y_offset) * TileH
+    for q=0,max_x do
+      local x = (q+x_offset) * TileW
+
+      ColorAssign:send("color1", {60, 111, 193, 255}, {})
+      ColorAssign:send("color2", {60, 111, 193, 255}, {})
+      ColorAssign:send("color3", {60, 111, 193, 255}, {})
+      ColorAssign:send("color4", {36, 46, 58, 150}, {})
+
+      love.graphics.draw(GUI_Tiles, GUI_Quads[9], x, y)
+    end
+  end
+
+  love.graphics.setShader()
+end
+
+
+function drawMenu(tilemap)
   local visible = getVisibleTiles()
 
   love.graphics.setShader(ColorAssign)
 
-  local y_buffer = 3
-  local x_buffer = 10
+  local y_buffer = 4
+  local x_buffer = 14
 
   local x_offset = visible[1] + x_buffer
   local y_offset = visible[2] + y_buffer
-  local max_x = visible[3] - x_buffer
-  local max_y = visible[4] - y_buffer
 
-  for i=0,(max_y - y_buffer - 1) do
-    local y = (y_offset + i) * TileH
-    for q=0,(max_x - x_buffer - 1) do
-      local x = (x_offset + q) * TileW
+  for i=1,#tilemap do
+    local y = (y_offset + i -1) * TileH
+    for q=1,#tilemap[i] do
+      local x = (x_offset + q -1) * TileW
+      local number = tilemap[i][q]
 
-      ColorAssign:send("color1", {60, 111, 193, 225}, {})
-      ColorAssign:send("color2", {60, 111, 193, 225}, {})
-      ColorAssign:send("color3", {60, 111, 193, 225}, {})
-      ColorAssign:send("color4", {60, 111, 193, 225}, {})
+      ColorAssign:send("color1", {60, 111, 193, 235}, {})
+      ColorAssign:send("color2", {193, 190, 174, 235}, {})
+      ColorAssign:send("color3", {255, 216, 0, 235}, {})
+      ColorAssign:send("color4", {160, 1, 1, 235}, {})
 
-      love.graphics.draw(Menu_Tiles, Menu_Quads[2], x, y)
+      love.graphics.draw(GUI_Tiles, GUI_Quads[number], x, y)
     end
   end
 
@@ -52,8 +77,8 @@ end
 
 function drawMenuText()
   local visible = getVisibleTiles()
-  local height = (visible[2] + 5) * TileH
-  local width = (visible[1] + 13) * TileW
+  local height = (visible[2] + 7) * TileH
+  local width = (visible[1] + 14) * TileW
 
   love.graphics.setFont(font)
 
@@ -63,7 +88,7 @@ function drawMenuText()
     else
       love.graphics.setColor(255,255,255,255)
     end
-    love.graphics.print(menuItems[i], width, height)
+    love.graphics.printf(menuItems[i], width, height,400,"center")
     height = height + 64
   end
 
@@ -79,4 +104,36 @@ function menuActions()
     ScreenManager.switch('home')
   end
 
+end
+
+
+function generateMenuTileMap()
+  local panel = {}
+  local h = 16
+  local w = 12
+  for i=1,h do
+    panel[i] = {}
+  end
+
+  panel[1][1] = 47
+  for i=2,w-1 do
+    panel[1][i] = 48
+  end
+  panel[1][w] = 49
+
+  for i=2,(h-1) do
+    panel[i][1] = 46
+    for q=2,w-1 do
+      panel[i][q] = 9
+    end
+    panel[i][w] = 53
+  end
+
+  panel[h][1] = 54
+  for i=2,w-1 do
+    panel[h][i] = 55
+  end
+  panel[h][w] = 56
+
+  return panel
 end

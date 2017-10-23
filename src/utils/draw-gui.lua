@@ -1,4 +1,5 @@
-require ('src/utils/draw-gui-text-icons')
+require ('src/utils/gui-clock')
+require ('src/utils/gui-main-panel')
 
 function generateMainPanel()
   local panel = {}
@@ -105,6 +106,10 @@ local tabs = {
   'look'
 }
 
+local tabIcons = {
+  {33,35,34}
+}
+
 function changeTab(num)
   tabSelector = num
   if tabSelector < 0 then
@@ -174,12 +179,14 @@ function drawGUIFeatures()
     drawGUIFeature(mainPanel, 0, 0, {0,0,0,0},{0,0,0,0},{247, 224, 79, 255},{229, 203, 39,255})
     drawGUIFeature(tabButtons, 0, 4, {0,0,0,0}, {133, 136, 145, 255}, {99, 102, 112, 255}, {57, 60, 68,255})
     drawGUIFeature(itemButtons, 14, 4, {0,0,0,0}, {247, 224, 79, 255}, {193, 154, 23, 255}, {229, 203, 39,255})
-    drawGUIFeature(buttonMask, ((num*2)+14), 4, {190, 244, 247,30}, {0,0,0,0}, {0,0,0,0}, {255, 255, 255, 255})
+    drawGUIFeature(buttonMask, ((num*2)+14), 4, {190, 244, 247,30}, {0,0,0,0}, {0,0,0,0}, {255, 255, 255, 200})
+    drawGUIFeature(tabIcons, 0.5, 4.5, {255, 255, 255, 255}, {244, 227, 227, 255}, {79, 1, 1, 255}, {17, 9, 9, 255})
   else
     drawGUIFeature(mainPanel, 0, 20, {0,0,0,0},{0,0,0,0},{247, 224, 79, 255},{229, 203, 39,255})
     drawGUIFeature(tabButtons, 0, 18, {0,0,0,0}, {133, 136, 145, 255}, {99, 102, 112, 255}, {57, 60, 68,255})
     drawGUIFeature(itemButtons, 14, 18, {0,0,0,0}, {247, 224, 79, 255}, {193, 154, 23, 255}, {229, 203, 39,255})
-    drawGUIFeature(buttonMask, ((num*2)+14), 18, {190, 244, 247,30}, {0,0,0,0}, {0,0,0,0}, {255, 255, 255, 255})
+    drawGUIFeature(buttonMask, ((num*2)+14), 18, {190, 244, 247,30}, {0,0,0,0}, {0,0,0,0}, {255, 255, 255, 200})
+    drawGUIFeature(tabIcons, 0.5, 18.5, {255, 255, 255, 255}, {244, 227, 227, 255}, {79, 1, 1, 255}, {17, 9, 9, 255})
   end
   if sidePanelOn == true then
     drawGUIFeature(sidePanel,0,6,{0,0,0,0}, {72, 81, 107, 255}, {193, 154, 23, 225}, {40, 44, 56,220})
@@ -192,14 +199,14 @@ function drawButtonMasks()
       --do nothing
     else
       local num = (xTabSelected() - 1)
-      drawGUIFeature(buttonMask, (num*2), 4, {190, 244, 247,20}, {0,0,0,0}, {0,0,0,0}, {255, 255, 255, 255})
+      drawGUIFeature(buttonMask, (num*2), 4, {190, 244, 247,20}, {0,0,0,0}, {0,0,0,0}, {255, 255, 255, 200})
     end
   else
     if xTabSelected() == false then
       --do nothing
     else
       local num = (xTabSelected() - 1)
-      drawGUIFeature(buttonMask, (num*2), 18, {190, 244, 247,20}, {0,0,0,0}, {0,0,0,0}, {255, 255, 255, 255})
+      drawGUIFeature(buttonMask, (num*2), 18, {190, 244, 247,20}, {0,0,0,0}, {0,0,0,0}, {255, 255, 255, 200})
     end
   end
 end

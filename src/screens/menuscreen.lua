@@ -6,9 +6,12 @@ local MenuScreen = {}
 function MenuScreen.new()
     local self = Screen.new()
 
+    menuTiles = generateMenuTileMap()
+
     function self:draw()
       Cam:draw(function(l,t,w,h)
-        drawMenu()
+        drawMenuFog()
+        drawMenu(menuTiles)
         drawMenuText()
       end)
     end

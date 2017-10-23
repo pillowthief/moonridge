@@ -1,12 +1,13 @@
 fix up player animation
 
+create a morning/day/evening/night shader (+ gui clock element!)
+
 change things so that glyphs are for static tiles and actors and other animated tiles get moved to new class
   make both inherit some color info
 
-universal color palette
+make player inherit old facing on load game
 
-gui-tools (no file):
-    create tools to build custom gui elements
+universal color palette
 
 savegame management screen (no file)
 
@@ -16,8 +17,6 @@ implement a lib for controllers
 
 create time system (no files)
   create a time tracking system, add the concept of pause, begin building the framework for the calendar
-
-create a morning/day/evening/night shader (+ gui clock element!)
 
 objects & items
   make them
