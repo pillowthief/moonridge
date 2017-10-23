@@ -98,7 +98,8 @@ function menuActions()
   if menuSelector == 1 then
     ScreenManager.pop()
   elseif menuSelector == 2 then
-    binser.writeFile('saves/save.dat', TileTable, BlockTable, ActorList)
+    local time = getTotalMinutes()
+    binser.writeFile('saves/save.dat', TileTable, BlockTable, ActorList,time)
   elseif menuSelector == 3 then
   elseif menuSelector == 4 then
     ScreenManager.switch('home')

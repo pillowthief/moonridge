@@ -24,6 +24,7 @@ require 'src/shaders/colorassign'
 
 local GameScreen = {}
 
+
 function GameScreen.new()
     local self = Screen.new()
 

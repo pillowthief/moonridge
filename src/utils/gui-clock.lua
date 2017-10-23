@@ -20,21 +20,25 @@ function drawClock()
 end
 
 function updateClock()
-  local hour = getCurrentHour()
-  hour = hour/2
-  hourPosition = 1 + math.floor(hour/1.5)
-  if hourPosition > 8 then hourPosition = 1 end
   local minute = getCurrentMinute()
+  local hour = getCurrentHour()
+
+  if hour > 12 then
+    hour = hour - 12
+  end
+  hourPosition = 1 + math.floor((((hour*60)+minute)-1)/45)
+  if hourPosition > 16 then hourPosition = 1 end
+
   minutePosition = 1 + math.floor(minute/3.75)
-  if minutePosition > 8 then minutePosition = 1 end
+  if minutePosition > 16 then minutePosition = 1 end
 end
 
 function drawBase()
   love.graphics.setShader(ColorAssign)
   ColorAssign:send("color1", {219, 219, 206, 150}, {})
-  ColorAssign:send("color2", {71, 38, 68, 200}, {})
-  ColorAssign:send("color3", {8, 22, 8, 200}, {})
-  ColorAssign:send("color4", {34, 183, 29, 200}, {})
+  ColorAssign:send("color2", {147, 125, 51, 225}, {})
+  ColorAssign:send("color3", {89, 71, 12, 225}, {})
+  ColorAssign:send("color4", {147, 125, 51, 225}, {})
   local int
   if getGUIFlip() == true then
     int = 20
@@ -73,8 +77,8 @@ function drawHands()
   local offset_x, offset_y = 37.5,int
   local x = (offset_x-1) * TileW
   local y = (offset_y-1) * TileH
-  love.graphics.draw(Hand_Tiles, Hand_Quads[hourPosition], x, y)
-  love.graphics.draw(Hand_Tiles, Hand_Quads[minutePosition+8], x, y)
+  love.graphics.draw(Hand_Tiles, Hand_Quads[hourPosition+16], x, y)
+  love.graphics.draw(Hand_Tiles, Hand_Quads[minutePosition], x, y)
 
   love.graphics.setShader()
 

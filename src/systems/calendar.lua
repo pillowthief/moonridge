@@ -3,17 +3,11 @@
 8 months ~weeks in each
 6 day weeks
 24 hours in a day
-30 minutes in an hour
+60 minutes in an hour
 ]]--
 local daysYear = 147
 local hoursDay = 24
-local minutesHour = 30
-
-
-
-function getTotalMinutes()
-  return totalMinutes
-end
+local minutesHour = 60
 
 function getStartingYear()
   local year = 423
@@ -44,17 +38,21 @@ function startTheClock (totalminutes)
     currentYear = getStartingYear()
     currentDay = getStartingDay()
     currentHour = love.math.random(6,9)
-    currentMinute = love.math.random(1,30)
-    totalMinutes = (((currentYear * 147)*24)*30) + ((currentDay*24)*30) + (currentHour*30) + currentMinute
+    currentMinute = love.math.random(1,minutesHour)
+    totalMinutes = (((currentYear * 147)*24)*minutesHour) + ((currentDay*24)*minutesHour) + (currentHour*minutesHour) + currentMinute
   else
-    currentYear = math.floor(((totalMinutes / 30)/24)/147)
-    local tempMinutes = totalMinutes - (((currentYear * 147)*24)*30)
-    currentDay = math.floor((tempMinutes / 30)/24)
-    local tempMinutes2 = tempMinutes - ((currentDay*24)*30)
-    currentHour = math.floor(tempMinutes2/30)
-    tempMinutes = tempMinutes2 - (currentHour*30)
+    currentYear = math.floor(((totalMinutes / minutesHour)/24)/147)
+    local tempMinutes = totalMinutes - (((currentYear * 147)*24)*minutesHour)
+    currentDay = math.floor((tempMinutes / minutesHour)/24)
+    local tempMinutes2 = tempMinutes - ((currentDay*24)*minutesHour)
+    currentHour = math.floor(tempMinutes2/minutesHour)
+    tempMinutes = tempMinutes2 - (currentHour*minutesHour)
     currentMinute = tempMinutes
   end
+end
+
+function getTotalMinutes()
+  return totalMinutes
 end
 
 function getCurrentYear()
@@ -81,7 +79,7 @@ end
 
 function updateCurrentMinute()
   currentMinute = currentMinute + 1
-  if currentMinute > 30 then
+  if currentMinute > minutesHour then
     currentMinute = 1
     updateCurrentHour()
   end

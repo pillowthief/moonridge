@@ -62,7 +62,6 @@ function updateKeys(dt)
         if xTabSelected() == 1 then
           changeTab(0)
         else
-          print('working')
           changeTab(1)
         end
       end

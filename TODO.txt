@@ -1,9 +1,17 @@
 fix up player animation
 
-create a morning/day/evening/night shader (+ gui clock element!)
+add concept of Pause to gamescreen
 
-change things so that glyphs are for static tiles and actors and other animated tiles get moved to new class
-  make both inherit some color info
+add the concept of the Cursor
+
+add descriptions to glyphs
+  full description for look command
+
+create the atlas class
+  split the game into multiple maps
+  make generators able to create oversized maps that are split into chunks
+
+create a morning/day/evening/night shader
 
 make player inherit old facing on load game
 
@@ -15,14 +23,8 @@ add attacks for player
 
 implement a lib for controllers
 
-create time system (no files)
-  create a time tracking system, add the concept of pause, begin building the framework for the calendar
-
 objects & items
   make them
-
-wild-gen.lua
-  create a wilderness generator
 
 overworld-gen
   create an overworld generator
