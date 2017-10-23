@@ -1,4 +1,4 @@
-local font = love.graphics.newFont("assets/ArcadeAlternate.ttf", 32)
+local font = love.graphics.newFont("assets/Fipps-Regular.otf", 32)
 
 local menuSelector = 1
 local menuItems = {
@@ -10,8 +10,8 @@ local menuItems = {
 
 function setMenuSelector(int)
   menuSelector = menuSelector + int
-  if menuSelector < 1 then menuSelector = 1 end
-  if menuSelector > #menuItems then menuSelector = #menuItems end
+  if menuSelector < 1 then menuSelector = #menuItems end
+  if menuSelector > #menuItems then menuSelector = 1 end
 end
 
 function getMenuSelector()
@@ -89,7 +89,7 @@ function drawMenuText()
       love.graphics.setColor(255,255,255,255)
     end
     love.graphics.printf(menuItems[i], width, height,400,"center")
-    height = height + 64
+    height = height + 72
   end
 
 end

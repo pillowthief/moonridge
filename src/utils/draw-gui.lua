@@ -151,6 +151,10 @@ function setGUIFlip(bool)
   GUIFlip = bool
 end
 
+function getGUIFlip()
+  return GUIFlip
+end
+
 function setSidePanelOn(bool)
   sidePanelOn = bool
 end
@@ -171,6 +175,7 @@ function drawGUI()
   drawGUIFeatures()
   drawButtonMasks()
   shouldGUIFlip()
+  drawClock()
 end
 
 function drawGUIFeatures()

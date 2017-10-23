@@ -16,6 +16,7 @@ require 'src/classes/player'
 require 'src/classes/tile'
 require 'src/classes/glyph'
 require 'src/classes/block'
+require 'src/systems/calendar'
 
 require 'src/shaders/colorassign'
 
@@ -38,7 +39,16 @@ function GameScreen.new()
         drawGUI()
     end
 
+    local counter = 1
+
     function self:update(dt)
+      if counter > 30 then
+        updateCalendar()
+        counter = 1
+      else
+        counter = counter + 1
+      end
+
       updateKeys(dt)
       updateCamera()
       playerSprite:update(dt)
