@@ -1,4 +1,13 @@
-fix up player animation
+create a filled ground generator
+
+create the atlas class
+  split the game into multiple maps
+
+overworld-gen
+  create an overworld generator
+  make generators able to create oversized maps that are split into chunks
+
+world generation waiting screen
 
 add concept of Pause to gamescreen
 
@@ -7,11 +16,8 @@ add the concept of the Cursor
 add descriptions to glyphs
   full description for look command
 
-create the atlas class
-  split the game into multiple maps
-  make generators able to create oversized maps that are split into chunks
-
-create a morning/day/evening/night shader
+create a DAY shader and a NIGHT shader
+  day shader cycles through tints, night shader does the same but accounts for lights
 
 make player inherit old facing on load game
 
@@ -23,11 +29,17 @@ add attacks for player
 
 implement a lib for controllers
 
-objects & items
+use the calendar as a schedule
+
+inventory management
+
+items
+  make them, also allow other things to have the concept of "inventory"
+
+objects
   make them
 
-overworld-gen
-  create an overworld generator
+fix up player animation
 
 map-utils.Lua
   optimize via the updateGlyphs function

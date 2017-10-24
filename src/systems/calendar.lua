@@ -31,6 +31,7 @@ local currentHour
 local currentMinute
 local currentDayWeek
 local currentMonth
+local partOfDay
 
 function startTheClock (totalminutes)
   totalMinutes = totalminutes or 0
@@ -71,10 +72,15 @@ function getCurrentMinute()
   return currentMinute
 end
 
+function getPartOfDay()
+  return partOfDay
+end
+
 
 function updateCalendar()
   totalMinutes = totalMinutes + 1
   updateCurrentMinute()
+  updatePartOfDay()
 end
 
 function updateCurrentMinute()
@@ -103,4 +109,33 @@ end
 
 function updateCurrentYear()
   currentYear = currentYear + 1
+end
+
+function updatePartOfDay()
+  local hour = getCurrentHour()
+  local minute = getCurrentMinute()
+  minute = minute + (hour*60)
+  if minute < 180 then
+    partOfDay = 'midnight'
+  elseif minute < 300 then
+    partOfDay = 'predawn'
+  elseif minute < 390 then
+    partOfDay = 'dawn'
+  elseif minute < 540 then
+    partOfDay = 'earlymorn'
+  elseif minute < 690 then
+    partOfDay = "latemorn"
+  elseif minute < 780 then
+    partOfDay = "noon"
+  elseif minute < 890 then
+    partOfDay = "earlyaf"
+  elseif minute < 1020 then
+    partOfDay = "lateaf"
+  elseif minute < 1170 then
+    partOfDay = "evening"
+  elseif minute < 1230 then
+    partOfDay = "sunset"
+  else
+    partOfDay = "gloam"
+  end
 end

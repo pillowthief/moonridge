@@ -20,6 +20,10 @@ function Glyph:getQuad()
   return self._quad
 end
 
+function Glyph:getColFilter()
+  return self._colFilter
+end
+
 function Glyph:getColor1()
   return self._color1
 end

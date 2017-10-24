@@ -71,7 +71,6 @@ function updateKeys(dt)
   if curScreen == 'menu' then
     function love.keyreleased( key )
       if key == "`" then
-      elseif key == "m" then
       elseif key == "escape" then
         ScreenManager.pop()
       elseif key == "delete" then

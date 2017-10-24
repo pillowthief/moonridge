@@ -11,8 +11,12 @@ function Tile:initialize(properties)
 
   tiny.addEntity (ECSWorld, self)
 
-  self._isStairsUp = properties['isStairsUp'] or false
-  self._isStairsDown = properties['isStairsDown'] or false
+  self._isStairs = properties['isStairs'] or 'no'
+
+end
+
+function Tile:getIsStairs()
+  return self._isStairs
 end
 
 

@@ -21,8 +21,6 @@ function love.load()
         ['menu'] = require('src/screens/menuscreen')
     }
 
-  BumpWorld = bump.newWorld(32)
-
   Floor_Tiles = loadTileImage('assets/floor_tiles.png')
   Floor_Quads = newTileMap(32,32,Floor_Tiles)
 

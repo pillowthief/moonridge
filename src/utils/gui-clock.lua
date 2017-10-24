@@ -41,7 +41,7 @@ function drawBase()
   ColorAssign:send("color4", {147, 125, 51, 225}, {})
   local int
   if getGUIFlip() == true then
-    int = 20
+    int = 5
   else
     int = 1
   end
@@ -70,7 +70,7 @@ function drawHands()
   ColorAssign:send("color4", {140, 2, 16, 255}, {})
   local int
   if getGUIFlip() == true then
-    int = 21.5
+    int = 6.5
   else
     int = 2.5
   end

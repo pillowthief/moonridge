@@ -35,7 +35,7 @@ function drawMenuFog()
       ColorAssign:send("color1", {60, 111, 193, 255}, {})
       ColorAssign:send("color2", {60, 111, 193, 255}, {})
       ColorAssign:send("color3", {60, 111, 193, 255}, {})
-      ColorAssign:send("color4", {36, 46, 58, 150}, {})
+      ColorAssign:send("color4", {36, 46, 58, 200}, {})
 
       love.graphics.draw(GUI_Tiles, GUI_Quads[9], x, y)
     end

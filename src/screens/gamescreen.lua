@@ -1,5 +1,7 @@
 local Screen = require('lib/ScreenManager/Screen')
 
+local moonshine = require('lib/moonshine')
+
 require 'src/utils/start-game'
 require 'src/utils/map-utils'
 require 'src/utils/anim-sprite-utils'
@@ -28,7 +30,11 @@ local GameScreen = {}
 function GameScreen.new()
     local self = Screen.new()
 
+    effect = moonshine(moonshine.effects.colorgradesimple) -- set up to use for seasons
+    effect.colorgradesimple.factors = {1,1,1}
+
     function self:draw()
+      effect.draw(function()
         Cam:draw(function(l,t,w,h)
           local visible = getVisibleTiles()
           drawGlyphs(TileGlyphs, visible)
@@ -36,6 +42,7 @@ function GameScreen.new()
           drawActors()
           drawDebugTiles()
         end)
+      end)
 
         drawGUI()
     end
@@ -43,7 +50,7 @@ function GameScreen.new()
     local counter = 1
 
     function self:update(dt)
-      if counter > 30 then
+      if counter > 30 then -- makes the calendar update every 30 frames (so approx every 1 second)
         updateCalendar()
         counter = 1
       else

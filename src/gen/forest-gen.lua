@@ -59,7 +59,7 @@ function makeForestFloor(width, height)
     end
   end
 
-  local ran = love.math.random(1,7)
+  local ran = love.math.random(10,20)
 
   for i=3,ran do
     local success = false --place stairs down
