@@ -1,5 +1,5 @@
-MAP_WIDTH = 100
-MAP_HEIGHT = 100
+MAP_WIDTH = 80
+MAP_HEIGHT = 80
 
 function STARTGAME(tiletable, blocktable, actorlist, time)
   TileTable = tiletable or makeForestFloor(MAP_WIDTH, MAP_HEIGHT)

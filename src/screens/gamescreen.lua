@@ -1,5 +1,4 @@
 local Screen = require('lib/ScreenManager/Screen')
-
 local moonshine = require('lib/moonshine')
 
 require 'src/utils/start-game'
@@ -21,6 +20,15 @@ require 'src/classes/block'
 require 'src/systems/calendar'
 
 require 'src/shaders/colorassign'
+
+Floor_Tiles = loadTileImage('assets/floor_tiles.png')
+Floor_Quads = newTileMap(32,32,Floor_Tiles)
+
+Block_Tiles = loadTileImage('assets/world_tiles.png')
+Block_Quads = newTileMap(32,32,Block_Tiles)
+
+GUI_Tiles = loadTileImage('assets/gui_tiles.png')
+GUI_Quads = newTileMap(32,32,GUI_Tiles)
 
 --this is the main gameplay screen
 

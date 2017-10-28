@@ -1,5 +1,5 @@
-require ('src/utils/gui-clock')
-require ('src/utils/gui-main-panel')
+require ('src/utils/gui/gui-clock')
+require ('src/utils/gui/gui-main-panel')
 
 function generateMainPanel()
   local panel = {}
@@ -82,8 +82,8 @@ function generateSidePanel(height)
 end
 
 local tabButtons = {
-  {5,6,5,6},
-  {12,13,12,13}
+  {5,6,5,6,5,6},
+  {12,13,12,13,12,13}
 }
 
 local itemButtons = {
@@ -103,11 +103,12 @@ local tabSelector = 0
 
 local tabs = {
   'log',
-  'look'
+  'look',
+  'calendar'
 }
 
 local tabIcons = {
-  {33,35,34}
+  {33,35,34,35,41}
 }
 
 function changeTab(num)
@@ -176,6 +177,7 @@ function drawGUI()
   drawButtonMasks()
   shouldGUIFlip()
   drawClock()
+  drawMainPanelAll()
 end
 
 function drawGUIFeatures()
@@ -235,4 +237,12 @@ function drawGUIFeature(tileset,offset_x,offset_y,color1,color2,color3,color4)
 
 
   love.graphics.setShader()
+end
+
+function drawGUIText(colorString,tileX,tileY)
+    love.graphics.setFont(FontArcade)
+    local x = tileX * TileW
+    local y = tileY * TileH
+
+    love.graphics.print(colorString, x, y)
 end

@@ -64,7 +64,14 @@ function updateKeys(dt)
         else
           changeTab(1)
         end
+      elseif key == "r" then
+        if xTabSelected() == 3 then
+          changeTab(0)
+        else
+          changeTab(3)
+        end
       end
+
     end
   end
 

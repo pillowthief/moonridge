@@ -1,5 +1,3 @@
-local font = love.graphics.newFont("assets/Fipps-Regular.otf", 32)
-
 local menuSelector = 1
 local menuItems = {
   "Return",
@@ -80,15 +78,16 @@ function drawMenuText()
   local height = (visible[2] + 7) * TileH
   local width = (visible[1] + 14) * TileW
 
-  love.graphics.setFont(font)
+  love.graphics.setFont(FontFipps)
 
   for i=1, #menuItems do
+    local item = {}
     if menuSelector == i then
-      love.graphics.setColor(244,244,66,255)
+      item = {{244,244,66,255},menuItems[i]}
     else
-      love.graphics.setColor(255,255,255,255)
+      item = {{255,255,255,255},menuItems[i]}
     end
-    love.graphics.printf(menuItems[i], width, height,400,"center")
+    love.graphics.printf(item, width, height,400,"center")
     height = height + 72
   end
 

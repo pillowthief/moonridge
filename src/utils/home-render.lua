@@ -1,6 +1,6 @@
 local gamera = require 'lib/gamera'
 
-local font = love.graphics.newFont("assets/ArcadeAlternate.ttf", 32)
+
 
 Cam = gamera.new(0,0,1280,768)
 Cam:setScale(1.0)
@@ -49,7 +49,7 @@ function drawHomeText()
   local height = 8 * TileH
   local width = 16 * TileW
 
-  love.graphics.setFont(font)
+  love.graphics.setFont(FontArcade)
 
   for i=1, #homeItems do
     if homeSelector == i then

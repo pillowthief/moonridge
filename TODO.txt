@@ -1,3 +1,7 @@
+fix font issue
+
+make player inherit old facing on load game
+
 create a filled ground generator
 
 create the atlas class
@@ -14,22 +18,26 @@ add concept of Pause to gamescreen
 add the concept of the Cursor
 
 add descriptions to glyphs
-  full description for look command
+  make the look tab work
+
+make the calendar tab useful
+  make calendar cycles more interesting (moon cycles, etc)
+
+savegame management screen (no file)
 
 create a DAY shader and a NIGHT shader
   day shader cycles through tints, night shader does the same but accounts for lights
 
-make player inherit old facing on load game
+create a INDOORS/CAVE shader
+  simpler version of the NIGHT shader
 
-universal color palette
-
-savegame management screen (no file)
+universal color palette(maybe)
 
 add attacks for player
 
 implement a lib for controllers
 
-use the calendar as a schedule
+use the calendar as a scheduler
 
 inventory management
 
@@ -44,10 +52,7 @@ fix up player animation
 map-utils.Lua
   optimize via the updateGlyphs function
 
-lighting (no file)
-  build custom lighting shader
-
 cheatmenu (no file)
   add a debugging cheat menu
 
-craftingmenu
+crafting screen
