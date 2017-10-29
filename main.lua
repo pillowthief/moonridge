@@ -9,8 +9,7 @@ ECSWorld = tiny.world()
 ScreenManager = require('lib/ScreenManager/ScreenManager') -- manages which state the game is in
 
 FontArcade = love.graphics.newFont("assets/ArcadeAlternate.ttf", 32)
-FontCommo = love.graphics.newFont("assets/Commo-Regular.otf", 32)
-FontFipps = love.graphics.newFont("assets/Fipps-Regular.otf", 32)
+FontCommo = love.graphics.newFont("assets/Commo-Regular.otf", 24)
 
 --love.frame = 0
 function love.load()

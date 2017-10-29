@@ -30,12 +30,12 @@ function drawMenuFog()
     for q=0,max_x do
       local x = (q+x_offset) * TileW
 
-      ColorAssign:send("color1", {60, 111, 193, 255}, {})
-      ColorAssign:send("color2", {60, 111, 193, 255}, {})
+      ColorAssign:send("color1", {23, 232, 221, 100}, {})
+      ColorAssign:send("color2", {18, 186, 177, 100}, {})
       ColorAssign:send("color3", {60, 111, 193, 255}, {})
-      ColorAssign:send("color4", {36, 46, 58, 200}, {})
+      ColorAssign:send("color4", {18, 186, 177, 100}, {})
 
-      love.graphics.draw(GUI_Tiles, GUI_Quads[9], x, y)
+      love.graphics.draw(GUI_Tiles, GUI_Quads[50], x, y)
     end
   end
 
@@ -61,9 +61,9 @@ function drawMenu(tilemap)
       local number = tilemap[i][q]
 
       ColorAssign:send("color1", {60, 111, 193, 235}, {})
-      ColorAssign:send("color2", {193, 190, 174, 235}, {})
-      ColorAssign:send("color3", {255, 216, 0, 235}, {})
-      ColorAssign:send("color4", {160, 1, 1, 235}, {})
+      ColorAssign:send("color2", {123, 150, 128, 225}, {})
+      ColorAssign:send("color3", {69, 91, 73, 225}, {})
+      ColorAssign:send("color4", {0, 255, 42, 200}, {})
 
       love.graphics.draw(GUI_Tiles, GUI_Quads[number], x, y)
     end
@@ -78,14 +78,14 @@ function drawMenuText()
   local height = (visible[2] + 7) * TileH
   local width = (visible[1] + 14) * TileW
 
-  love.graphics.setFont(FontFipps)
+  love.graphics.setFont(FontCommo)
 
   for i=1, #menuItems do
     local item = {}
     if menuSelector == i then
-      item = {{244,244,66,255},menuItems[i]}
+      item = {{239, 72, 11,225},menuItems[i]}
     else
-      item = {{255,255,255,255},menuItems[i]}
+      item = {{255,255,255,225},menuItems[i]}
     end
     love.graphics.printf(item, width, height,400,"center")
     height = height + 72
@@ -98,7 +98,7 @@ function menuActions()
     ScreenManager.pop()
   elseif menuSelector == 2 then
     local time = getTotalMinutes()
-    binser.writeFile('saves/save.dat', TileTable, BlockTable, ActorList,time)
+    binser.writeFile('saves/save.dat', TileTable, BlockTable, ActorList, time)
   elseif menuSelector == 3 then
   elseif menuSelector == 4 then
     ScreenManager.switch('home')

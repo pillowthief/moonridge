@@ -2,6 +2,7 @@ local Screen = require('lib/ScreenManager/Screen')
 local moonshine = require('lib/moonshine')
 
 require 'src/utils/start-game'
+require 'src/utils/map-render'
 require 'src/utils/map-utils'
 require 'src/utils/anim-sprite-utils'
 require 'src/utils/actor-utils'

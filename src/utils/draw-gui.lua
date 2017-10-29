@@ -8,8 +8,7 @@ function generateMainPanel()
   end
 
   panel[1][1] = 1
-  panel[1][2] = 2
-  for i=3,38 do
+  for i=2,38 do
     panel[1][i] = 10
   end
   panel[1][39] = 3
@@ -55,20 +54,20 @@ function generateSidePanel(height)
   for i=1,h do
     panel[i+1][1] = 7
     for q=2,7 do
-      panel[i+1][q] = 9
+      panel[i+1][q] = 50
     end
     panel[i+1][8] = 28
   end
 
   panel[h+2][1] = 19
   for i=2,7 do
-    panel[h+2][i] = 9
+    panel[h+2][i] = 50
   end
   panel[h+2][8] = 28
 
   panel[h+3][1] = 19
   for i=2,7 do
-    panel[h+3][i] = 9
+    panel[h+3][i] = 50
   end
   panel[h+3][8] = 28
 
@@ -183,20 +182,20 @@ end
 function drawGUIFeatures()
   local num = (itemSelected() - 1)
   if GUIFlip == true then
-    drawGUIFeature(mainPanel, 0, 0, {0,0,0,0},{0,0,0,0},{247, 224, 79, 255},{229, 203, 39,255})
-    drawGUIFeature(tabButtons, 0, 4, {0,0,0,0}, {133, 136, 145, 255}, {99, 102, 112, 255}, {57, 60, 68,255})
-    drawGUIFeature(itemButtons, 14, 4, {0,0,0,0}, {247, 224, 79, 255}, {193, 154, 23, 255}, {229, 203, 39,255})
+    drawGUIFeature(mainPanel, 0, 0, {0,0,0,0},{0,0,0,0},{57, 60, 68,255},{99, 102, 112,255})
+    drawGUIFeature(tabButtons, 0, 4, {57, 60, 68,255}, {133, 136, 145, 255}, {99, 102, 112, 255}, {57, 60, 68,255})
+    drawGUIFeature(itemButtons, 14, 4, {23, 232, 221, 100}, {170, 237, 239, 200}, {0, 93, 181, 200}, {18, 186, 177, 100})
     drawGUIFeature(buttonMask, ((num*2)+14), 4, {190, 244, 247,30}, {0,0,0,0}, {0,0,0,0}, {255, 255, 255, 200})
     drawGUIFeature(tabIcons, 0.5, 4.5, {255, 255, 255, 255}, {244, 227, 227, 255}, {79, 1, 1, 255}, {17, 9, 9, 255})
   else
-    drawGUIFeature(mainPanel, 0, 20, {0,0,0,0},{0,0,0,0},{247, 224, 79, 255},{229, 203, 39,255})
-    drawGUIFeature(tabButtons, 0, 18, {0,0,0,0}, {133, 136, 145, 255}, {99, 102, 112, 255}, {57, 60, 68,255})
-    drawGUIFeature(itemButtons, 14, 18, {0,0,0,0}, {247, 224, 79, 255}, {193, 154, 23, 255}, {229, 203, 39,255})
+    drawGUIFeature(mainPanel, 0, 20, {0,0,0,0},{0,0,0,0},{57, 60, 68,255},{99, 102, 112,255})
+    drawGUIFeature(tabButtons, 0, 18, {57, 60, 68,255}, {133, 136, 145, 255}, {99, 102, 112, 255}, {57, 60, 68,255})
+    drawGUIFeature(itemButtons, 14, 18, {23, 232, 221, 100}, {170, 237, 239, 200}, {0, 93, 181, 200}, {18, 186, 177, 100})
     drawGUIFeature(buttonMask, ((num*2)+14), 18, {190, 244, 247,30}, {0,0,0,0}, {0,0,0,0}, {255, 255, 255, 200})
     drawGUIFeature(tabIcons, 0.5, 18.5, {255, 255, 255, 255}, {244, 227, 227, 255}, {79, 1, 1, 255}, {17, 9, 9, 255})
   end
   if sidePanelOn == true then
-    drawGUIFeature(sidePanel,0,6,{0,0,0,0}, {72, 81, 107, 255}, {193, 154, 23, 225}, {40, 44, 56,220})
+    drawGUIFeature(sidePanel,0,6,{23, 232, 221, 100}, {170, 237, 239, 200}, {0, 93, 181, 200}, {18, 186, 177, 100})
   end
 end
 
@@ -240,9 +239,9 @@ function drawGUIFeature(tileset,offset_x,offset_y,color1,color2,color3,color4)
 end
 
 function drawGUIText(colorString,tileX,tileY)
-    love.graphics.setFont(FontArcade)
+    love.graphics.setFont(FontCommo)
     local x = tileX * TileW
-    local y = tileY * TileH
+    local y = (tileY-1) * TileH
 
-    love.graphics.print(colorString, x, y)
+    love.graphics.print(colorString, x+3, y+16)
 end

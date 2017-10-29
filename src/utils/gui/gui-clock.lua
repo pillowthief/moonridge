@@ -35,10 +35,10 @@ end
 
 function drawBase()
   love.graphics.setShader(ColorAssign)
-  ColorAssign:send("color1", {219, 219, 206, 150}, {})
-  ColorAssign:send("color2", {147, 125, 51, 225}, {})
-  ColorAssign:send("color3", {89, 71, 12, 225}, {})
-  ColorAssign:send("color4", {147, 125, 51, 225}, {})
+  ColorAssign:send("color1", {23, 232, 221, 100}, {})
+  ColorAssign:send("color2", {255, 246, 0, 200}, {})
+  ColorAssign:send("color3", {18, 186, 177, 100}, {})
+  ColorAssign:send("color4", {0, 93, 181, 175}, {})
   local int
   if getGUIFlip() == true then
     int = 5
@@ -64,10 +64,10 @@ end
 
 function drawHands()
   love.graphics.setShader(ColorAssign)
-  ColorAssign:send("color1", {219, 219, 206, 150}, {})
+  ColorAssign:send("color1", {255, 246, 0, 175}, {})
   ColorAssign:send("color2", {71, 38, 68, 200}, {})
   ColorAssign:send("color3", {27, 81, 26, 200}, {})
-  ColorAssign:send("color4", {140, 2, 16, 255}, {})
+  ColorAssign:send("color4", {232, 75, 22, 175}, {})
   local int
   if getGUIFlip() == true then
     int = 6.5

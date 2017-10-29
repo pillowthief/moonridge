@@ -15,6 +15,9 @@ function Actor:initialize(properties, x, y)
   self._y = y
   self._speed = properties['speed'] or 1
   self._facing = 'down'
+  self._health = properties['health'] or 100
+  self._stamina = properties['stamina'] or 100
+  self._focus = properties['focus'] or 100
 end
 
 function Actor:setX(x)

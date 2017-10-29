@@ -1,5 +1,3 @@
-fix font issue
-
 make player inherit old facing on load game
 
 create a filled ground generator
@@ -9,11 +7,15 @@ create the atlas class
 
 overworld-gen
   create an overworld generator
-  make generators able to create oversized maps that are split into chunks
+  make generators able to apply to the overworld map
+  generate forests, lakes, rivers, deserts, swamps, plains, mountains
+  underground generate filled ground, caves, tombs,
 
 world generation waiting screen
 
 add concept of Pause to gamescreen
+
+tile transitions
 
 add the concept of the Cursor
 
