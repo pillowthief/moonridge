@@ -108,5 +108,14 @@ function updateKeys(dt)
     end
   end
 
+  if curScreen == 'worldgen' then
+    function love.keyreleased( key )
+      if key == "escape" then
+        ScreenManager.switch('home')
+      else
+        STARTGAME()
+      end
+    end
+  end
 
 end

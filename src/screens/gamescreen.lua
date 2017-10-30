@@ -1,10 +1,12 @@
 local Screen = require('lib/ScreenManager/Screen')
 local moonshine = require('lib/moonshine')
+sodapop = require('lib/sodapop')
 
 require 'src/utils/start-game'
 require 'src/utils/map-render'
 require 'src/utils/map-utils'
 require 'src/utils/anim-sprite-utils'
+require 'src/utils/anim-sprites'
 require 'src/utils/actor-utils'
 require 'src/utils/key-mgr'
 require 'src/utils/cam-mgr'

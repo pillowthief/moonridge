@@ -1,7 +1,6 @@
 class = require('lib/middleclass')
 tiny = require('lib/tiny')
 bump = require('lib/bump')
-sodapop = require('lib/sodapop')
 binser = require('lib/binser')
 
 ECSWorld = tiny.world()
@@ -21,7 +20,8 @@ function love.load()
   local screens = {
         ['home'] = require('src/screens/homescreen'),
         ['game'] = require('src/screens/gamescreen'),
-        ['menu'] = require('src/screens/menuscreen')
+        ['menu'] = require('src/screens/menuscreen'),
+        ['worldgen'] = require('src/screens/worldgenscreen')
     }
 
 

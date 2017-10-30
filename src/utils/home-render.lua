@@ -65,7 +65,7 @@ end
 
 function homeActions()
   if homeSelector == 1 then
-    STARTGAME()
+    ScreenManager.switch('worldgen')
   elseif homeSelector == 2 then
     if love.filesystem.exists('saves/save.dat') then
       local level_data, len = binser.readFile('saves/save.dat')
