@@ -4,6 +4,31 @@ require('src/utils/worldgen-render')
 
 local zoneSize = 384
 
+local curColorMap = {}
+for y=1,zoneSize do
+  curColorMap[y] = {}
+  for x=1,zoneSize do
+    curColorMap[y][x] = {79, 202, 209, 255}
+  end
+end
+
+function setCurColorMap(tiles, typetag, tiles2)
+  local ptiles = {}
+  if typetag == 'climate' then
+    for y=1,zoneSize do
+      ptiles[y] = {}
+      for x=1,zoneSize do
+        ptiles[y][x] = getColorFromTemp(tiles[y][x])
+      end
+    end
+  end
+  curColorMap = ptiles
+end
+
+function returnCurColorMap()
+  return curColorMap
+end
+
 function generateOverworld()
   local tiles = {}
   local tempMap = generateTemperatureMap()
@@ -40,6 +65,8 @@ function generateTemperatureMap()
     end
   end
 
+  setCurColorMap(map, 'climate')
+
   for i=1,4000000 do
     local y = love.math.random(2,(zoneSize-1))
     local x = love.math.random(2,(zoneSize-1))
@@ -47,7 +74,9 @@ function generateTemperatureMap()
     map[y-1][x] = map[y][x]
     map[y][x+1] = map[y][x]
     map[y][x-1] = map[y][x]
-
+    if i%500000 == 0 then
+      setCurColorMap(map, 'climate')
+    end
   end
 
   for i=1,600000 do

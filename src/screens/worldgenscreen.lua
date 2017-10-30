@@ -28,6 +28,7 @@ function WorldGenScreen.new()
     function self:update(dt)
 
       if done == true then
+        updateProgress()
         updateKeys(dt)
       end
     end

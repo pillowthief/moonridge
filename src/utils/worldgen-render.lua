@@ -84,6 +84,32 @@ function drawWorldGenProgressBars()
 
 end
 
+
+local skip = 0
+local storedMaps = {}
+function updateProgress()
+  local map = returnCurColorMap()
+  if #storedMaps == 0 then
+    storedMaps[1] = map
+  end
+  for i=1,#storedMaps do
+    if map == storedMaps[i] then
+      --do nothing for now
+    else
+      storedMaps[storedMaps+1] = map
+    end
+  end
+  if skip > 30 then
+    table.remove(storedMaps,1)
+    skip = 0
+  elseif skip > 0 then
+    skip = skip + 1
+  elseif skip == 0 then
+    setWorldGenScreenTiles(storedMaps[1])
+  end
+
+end
+
 function drawWolrdGenCurMap(TileTable)
   for y=1,#TileTable do
     for x=1,#TileTable[y] do
@@ -101,8 +127,14 @@ function drawWorldGenText()
   love.graphics.setFont(FontCommo)
 
   for l=1,#progressBars do
-    love.graphics.setColor(244,244,66,255)
-    love.graphics.print(progressBars[l], width, height)
+
+    if l < activeBar then
+      love.graphics.setColor(77, 193, 19,255)
+      love.graphics.print('Done!', width, height)
+    else
+      love.graphics.setColor(244,244,66,255)
+      love.graphics.print(progressBars[l], width, height)
+    end
     height = height + 64
 
   end
