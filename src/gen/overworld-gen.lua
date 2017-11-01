@@ -12,7 +12,7 @@ for y=1,zoneSize do
   end
 end
 
-function setCurColorMap(tiles, typetag, tiles2)
+function setCurColorMap(tiles, typetag)
   local ptiles = {}
   if typetag == 'climate' then
     for y=1,zoneSize do
@@ -22,37 +22,81 @@ function setCurColorMap(tiles, typetag, tiles2)
       end
     end
   end
-  curColorMap = ptiles
-end
-
-function returnCurColorMap()
-  return curColorMap
-end
-
-function generateOverworld()
-  local tiles = {}
-  local tempMap = generateTemperatureMap()
-  local wetMap = generateTemperatureMap()
-
-  for y=1,zoneSize do
-    tiles[y] = {}
-    for x=1,zoneSize do
-      tiles[y][x] = getColorFromBiome(tempMap[y][x], wetMap[y][x])
-    end
-  end
-
-  local rivers = generateRivers(wetMap)
-  local lakes = generateLakes(wetMap,rivers)
-
-  for y=1,zoneSize do
-    for x=1,zoneSize do
-      if rivers[y][x] or lakes[y][x] == true then
-        tiles[y][x] = {124, 255, 248, 255}
+  if typetag == 'biome' then
+    for y=1,zoneSize do
+      ptiles[y] = {}
+      for x=1,zoneSize do
+        ptiles[y][x] = getColorFromBiome(tiles[y][x])
       end
     end
   end
+  curColorMap = ptiles
+end
 
+local takeNextStep = true
+local generatorStarted = false
+function setNextStep(bool)
+  if generatorStarted == true then
+    takeNextStep = bool
+  end
+end
 
+function updateGenerator()
+  if generatorStarted == true then
+    generateOverworld()
+  end
+end
+
+local tiles,tempMap,wetMap,rivers,lakes = {},{},{},{},{}
+function generateOverworld()
+  generatorStarted = true
+    if takeNextStep == true then
+      if tempMap[1] == nil then
+        tempMap = generateTemperatureMap()
+        stepForwardActiveBar()
+      elseif wetMap[1] == nil then
+        wetMap = generateTemperatureMap()
+        stepForwardActiveBar()
+      elseif tiles[1] == nil then
+        for y=1,zoneSize do
+          tiles[y] = {}
+          for x=1,zoneSize do
+            tiles[y][x] = getBiomeFromTM(tempMap[y][x],wetMap[y][x])
+          end
+        end
+
+        setCurColorMap(tiles, 'biome')
+        pushToStoredMaps(curColorMap)
+        stepForwardActiveBar()
+      elseif rivers[1] == nil then
+        rivers = generateRivers(wetMap)
+        for y=1,zoneSize do
+          for x=1,zoneSize do
+            if rivers[y][x] == true then
+              tiles[y][x] = {124, 255, 248, 255}
+              curColorMap[y][x] = {124, 255, 248, 255}
+            end
+          end
+        end
+        stepForwardActiveBar()
+      elseif lakes[1] == nil then
+        lakes = generateLakes(wetMap,rivers)
+
+        for y=1,zoneSize do
+          for x=1,zoneSize do
+            if rivers[y][x] or lakes[y][x] == true then
+              tiles[y][x] = {124, 255, 248, 255}
+              curColorMap[y][x] = {124, 255, 248, 255}
+            end
+          end
+        end
+        stepForwardActiveBar()
+      else
+        setDoneToTrue()
+        stepForwardActiveBar()
+      end
+      takeNextStep = false
+    end
   return tiles
 end
 
@@ -66,6 +110,7 @@ function generateTemperatureMap()
   end
 
   setCurColorMap(map, 'climate')
+  pushToStoredMaps(curColorMap)
 
   for i=1,4000000 do
     local y = love.math.random(2,(zoneSize-1))
@@ -76,6 +121,7 @@ function generateTemperatureMap()
     map[y][x-1] = map[y][x]
     if i%500000 == 0 then
       setCurColorMap(map, 'climate')
+      pushToStoredMaps(curColorMap)
     end
   end
 
@@ -103,6 +149,10 @@ function generateTemperatureMap()
       map[y][x-1] = map[y][x-1] - 1
     end
 
+    if i%100000 == 0 then
+      setCurColorMap(map, 'climate')
+      pushToStoredMaps(curColorMap)
+    end
   end
 
   for y=2,#map-1 do
@@ -121,6 +171,8 @@ function generateTemperatureMap()
     end
   end
 
+  setCurColorMap(map, 'climate')
+  pushToStoredMaps(curColorMap)
 
   return map
 end
@@ -145,75 +197,81 @@ function getColorFromTemp(number)
   if number == 10 then return {211, 76, 31, 255} end
 end
 
+local biomeTable = {
+  'coldRocky', 'coldPlains', 'coldForest','coldRainforest','coldSwamp',
+  'modRocky', 'modPlains', 'modForest', 'modRainforest', 'modSwamp',
+  'warmRocky', 'warmPlains', 'warmForest', 'warmRainforest', 'warmSwamp'
+}
+
 function getBiomeFromTM(temp,moist)
   local biome
-  if temp < 4 and moist < 3 then biome = 'coldRocky'
-  elseif temp < 4 and moist < 5 then biome = 'coldPlains'
-  elseif temp < 4 and moist < 8 then biome = 'coldForest'
-  elseif temp < 4 and moist < 10 then biome = 'coldRainforest'
-  elseif temp < 4 and moist == 10 then biome = 'coldSwamp'
-  elseif temp < 8 and moist < 3 then biome = 'modRocky'
-  elseif temp < 8 and moist < 5 then biome = 'modPlains'
-  elseif temp < 8 and moist < 8 then biome = 'modForest'
-  elseif temp < 8 and moist < 10 then biome = 'modRainforest'
-  elseif temp < 8 and moist == 10 then biome = 'modSwamp'
-  elseif temp >=8 and moist < 3 then biome = 'warmRocky'
-  elseif temp >=8 and moist < 5 then biome = 'warmPlains'
-  elseif temp >=8 and moist < 8 then biome = 'warmForest'
-  elseif temp >=8 and moist < 10 then biome = 'warmRainforest'
-  elseif temp >=8 and moist == 10 then biome = 'warmSwamp'
+  if temp < 4 and moist < 3 then biome = biomeTable[1]
+  elseif temp < 4 and moist < 5 then biome = biomeTable[2]
+  elseif temp < 4 and moist < 8 then biome = biomeTable[3]
+  elseif temp < 4 and moist < 10 then biome = biomeTable[4]
+  elseif temp < 4 and moist == 10 then biome = biomeTable[5]
+  elseif temp < 8 and moist < 3 then biome = biomeTable[6]
+  elseif temp < 8 and moist < 5 then biome = biomeTable[7]
+  elseif temp < 8 and moist < 8 then biome = biomeTable[8]
+  elseif temp < 8 and moist < 10 then biome = biomeTable[9]
+  elseif temp < 8 and moist == 10 then biome = biomeTable[10]
+  elseif temp >=8 and moist < 3 then biome = biomeTable[11]
+  elseif temp >=8 and moist < 5 then biome = biomeTable[12]
+  elseif temp >=8 and moist < 8 then biome = biomeTable[13]
+  elseif temp >=8 and moist < 10 then biome = biomeTable[14]
+  elseif temp >=8 and moist == 10 then biome = biomeTable[15]
   end
   return biome
 end
 
-function getColorFromBiome(temp,moist)
-  if getBiomeFromTM(temp,moist) == 'coldRocky' then
+function getColorFromBiome(biome)
+  if biome == 'coldRocky' then
     return {56, 66, 81, 255}
   end
-  if getBiomeFromTM(temp,moist) == 'coldPlains' then
+  if biome == 'coldPlains' then
     return {142, 206, 186, 255}
   end
-  if getBiomeFromTM(temp,moist) == 'coldForest' then
+  if biome == 'coldForest' then
     return {33, 188, 95, 255}
   end
-  if getBiomeFromTM(temp,moist) == 'coldRainforest' then
+  if biome == 'coldRainforest' then
     return {16, 160, 90, 255}
   end
-  if getBiomeFromTM(temp,moist) == 'coldSwamp' then
+  if biome == 'coldSwamp' then
     return {67, 18, 91, 255}
   end
 
 
-  if getBiomeFromTM(temp,moist) == 'modRocky' then
+  if biome == 'modRocky' then
     return {53, 79, 55, 255}
   end
-  if getBiomeFromTM(temp,moist) == 'modPlains' then
+  if biome == 'modPlains' then
     return {205, 239, 119, 255}
   end
-  if getBiomeFromTM(temp,moist) == 'modForest' then
+  if biome == 'modForest' then
     return {81, 204, 75, 255}
   end
-  if getBiomeFromTM(temp,moist) == 'modRainforest' then
+  if biome == 'modRainforest' then
     return {5, 140, 14, 255}
   end
-  if getBiomeFromTM(temp,moist) == 'modSwamp' then
+  if biome == 'modSwamp' then
     return {89, 16, 86, 255}
   end
 
 
-  if getBiomeFromTM(temp,moist) == 'warmRocky' then
+  if biome == 'warmRocky' then
     return {81, 74, 55, 255}
   end
-  if getBiomeFromTM(temp,moist) == 'warmPlains' then
+  if biome == 'warmPlains' then
     return {219, 190, 103, 255}
   end
-  if getBiomeFromTM(temp,moist) == 'warmForest' then
+  if biome == 'warmForest' then
     return {124, 209, 33, 255}
   end
-  if getBiomeFromTM(temp,moist) == 'warmRainforest' then
+  if biome == 'warmRainforest' then
     return {65, 147, 7, 255}
   end
-  if getBiomeFromTM(temp,moist) == 'warmSwamp' then
+  if biome == 'warmSwamp' then
     return {114, 13, 55, 255}
   end
 end

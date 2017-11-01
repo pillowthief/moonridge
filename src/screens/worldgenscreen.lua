@@ -3,15 +3,20 @@ require('src/utils/worldgen-render')
 require('src/utils/start-game')
 require('src/gen/overworld-gen')
 
-
 local WorldGenScreen = {}
 
 function WorldGenScreen.new()
     local self = Screen.new()
     local curMap = {}
-    local done = true
+    local done = false
     local tiles = {}
-    local tempMap = generateTemperatureMap()
+    local firstStep = true
+    local tiles = {}
+    setEmptyMap()
+
+    function setDoneToTrue()
+      done = true
+    end
 
     function setWorldGenScreenTiles(ptiles)
       tiles = ptiles
@@ -19,17 +24,23 @@ function WorldGenScreen.new()
 
 
     function self:draw()
-      drawWorldGenProgressBars()
       drawWorldGenText()
       drawWolrdGenCurMap(tiles)
+      if done == true then
+
+      else
+
+      end
     end
 
 
     function self:update(dt)
-
+      updateProgress()
+      updateGenerator()
       if done == true then
-        updateProgress()
         updateKeys(dt)
+      else
+        updateKeyStart()
       end
     end
 

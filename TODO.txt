@@ -2,9 +2,6 @@ make player inherit old facing on load game
 
 create a filled ground generator
 
-create the atlas class
-  split the game into multiple maps
-
 overworld-gen
   create an overworld generator
   make generators able to apply to the overworld map
@@ -18,6 +15,9 @@ add concept of Pause to gamescreen
 tile transitions
 
 add the concept of the Cursor
+
+create own entity component system, get rid of the lib
+  entities contain tables of traits, functions to parse this shit
 
 add descriptions to glyphs
   make the look tab work

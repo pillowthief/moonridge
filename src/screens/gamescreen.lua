@@ -43,6 +43,7 @@ function GameScreen.new()
 
     effect = moonshine(moonshine.effects.colorgradesimple) -- set up to use for seasons
     effect.colorgradesimple.factors = {1,1,1}
+    love.graphics.setColor(255,255,255)
 
     function self:draw()
       effect.draw(function()

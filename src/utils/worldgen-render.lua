@@ -4,7 +4,8 @@ Cam = gamera.new(0,0,1280,768)
 Cam:setScale(1.0)
 
 local progressBars = {
-  'Climate Generation',
+  'Temperature Generation',
+  'Moisture Generation',
   'Biome Assigment',
   'River Placement',
   'Lake Placement'
@@ -16,99 +17,56 @@ function stepForwardActiveBar()
   activeBar = activeBar + 1
 end
 
+local skip = 0
+local storedMaps = {}
 
-
-function drawWorldGenProgressBars()
-  love.graphics.setShader(ColorAssign)
-
-
-  for l=1,#progressBars do
-    local x,y = (1*TileW),(4+(l*2))*TileH
-    if l<activeBar then
-      for i=1,12 do
-        local nX = x + (i*TileW)
-        ColorAssign:send("color1", {255, 255, 255, 255}, {})
-        ColorAssign:send("color2", {60, 111, 193, 255}, {})
-        ColorAssign:send("color3", {60, 111, 193, 255}, {})
-        ColorAssign:send("color4", {60, 111, 193, 255}, {})
-        local num
-        if i==1 then
-          num = 43
-        elseif i==12 then
-          num = 45
-        else
-          num = 44
-        end
-        love.graphics.draw(GUI_Tiles, GUI_Quads[num], nX, y)
-      end
-    elseif l== activeBar then
-      for i=1,12 do
-        local nX = x + (i*TileW)
-        ColorAssign:send("color1", {255, 255, 255, 255}, {})
-        ColorAssign:send("color2", {60, 111, 193, 255}, {})
-        ColorAssign:send("color3", {60, 111, 193, 255}, {})
-        ColorAssign:send("color4", {60, 111, 193, 255}, {})
-        local num
-        if i==1 then
-          num = 43
-        elseif i==12 then
-          num = 45
-        else
-          num = 44
-        end
-        love.graphics.draw(GUI_Tiles, GUI_Quads[num], nX, y)
-      end
-    else
-      for i=1,12 do
-        local nX = x + (i*TileW)
-        ColorAssign:send("color1", {255, 255, 255, 255}, {})
-        ColorAssign:send("color2", {0,0,0,0}, {})
-        ColorAssign:send("color3", {0,0,0,0}, {})
-        ColorAssign:send("color4", {0,0,0,0}, {})
-        local num
-        if i==1 then
-          num = 43
-        elseif i==12 then
-          num = 45
-        else
-          num = 44
-        end
-        love.graphics.draw(GUI_Tiles, GUI_Quads[num], nX, y)
-      end
-    end
-
-
-  end
-
-  love.graphics.setShader()
-
+function pushToStoredMaps(map)
+  storedMaps[#storedMaps+1] = map
 end
 
 
-local skip = 0
-local storedMaps = {}
 function updateProgress()
-  local map = returnCurColorMap()
-  if #storedMaps == 0 then
-    storedMaps[1] = map
-  end
-  for i=1,#storedMaps do
-    if map == storedMaps[i] then
-      --do nothing for now
+  if skip > 5 then
+    if #storedMaps > 1 then
+      emptyMap = false
+      table.remove(storedMaps,1)
     else
-      storedMaps[storedMaps+1] = map
+      setNextStep(true)
     end
-  end
-  if skip > 30 then
-    table.remove(storedMaps,1)
     skip = 0
   elseif skip > 0 then
     skip = skip + 1
   elseif skip == 0 then
     setWorldGenScreenTiles(storedMaps[1])
+    skip = skip + 1
   end
 
 end
+
+
+function updateKeyStart()
+  function love.keyreleased( key )
+    if key == 'escape' then
+      ScreenManager.switch('home')
+    else
+      generateOverworld()
+    end
+  end
+end
+
+local emptyMap = false
+function setEmptyMap()
+  local tiles = {}
+    for i=1,384 do
+      tiles[i] = {}
+      for q=1,384 do
+        tiles[i][q] = {60, 111, 193, 255}
+      end
+    end
+    emptyMap = true
+    pushToStoredMaps(tiles)
+end
+
 
 function drawWolrdGenCurMap(TileTable)
   for y=1,#TileTable do
@@ -120,24 +78,25 @@ function drawWolrdGenCurMap(TileTable)
   end
 end
 
+
 function drawWorldGenText()
+  love.graphics.setColor(255,255,255)
   local height = (5 * TileH)-16
   local width = (2 * TileW)
 
   love.graphics.setFont(FontCommo)
 
   for l=1,#progressBars do
-
-    if l < activeBar then
-      love.graphics.setColor(77, 193, 19,255)
-      love.graphics.print('Done!', width, height)
+    local item = {}
+    if l == activeBar then
+      item = {{239, 72, 11,225},progressBars[l]}
+    elseif l < activeBar then
+      item = {{77, 193, 19,255},'Done!'}
     else
-      love.graphics.setColor(244,244,66,255)
-      love.graphics.print(progressBars[l], width, height)
+      item = {{255,255,255,225},progressBars[l]}
     end
-    height = height + 64
 
+    love.graphics.printf(item, width, height, 400)
+    height = height + 32
   end
-
-
 end
