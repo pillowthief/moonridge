@@ -43,6 +43,7 @@ end
 
 function updateGenerator()
   if generatorStarted == true then
+    setWGStartedToBool(true)
     generateOverworld()
   end
 end
@@ -92,8 +93,9 @@ function generateOverworld()
         end
         stepForwardActiveBar()
       else
-        setDoneToTrue()
+        setWGDoneToBool(true)
         stepForwardActiveBar()
+        generatorStarted = false
       end
       takeNextStep = false
     end

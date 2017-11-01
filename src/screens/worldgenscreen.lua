@@ -9,13 +9,18 @@ function WorldGenScreen.new()
     local self = Screen.new()
     local curMap = {}
     local done = false
+    local started = false
     local tiles = {}
     local firstStep = true
     local tiles = {}
     setEmptyMap()
 
-    function setDoneToTrue()
-      done = true
+    function setWGDoneToBool(bool)
+      done = bool
+    end
+
+    function setWGStartedToBool(bool)
+      started = bool
     end
 
     function setWorldGenScreenTiles(ptiles)
@@ -27,9 +32,9 @@ function WorldGenScreen.new()
       drawWorldGenText()
       drawWolrdGenCurMap(tiles)
       if done == true then
-
-      else
-
+        drawUnstartedText('Press esc to go back, R to draw a new map, press any other key to move forward.')
+      elseif started == false then
+        drawUnstartedText('Press any key to start world generation or press esc to go back.')
       end
     end
 
@@ -39,8 +44,10 @@ function WorldGenScreen.new()
       updateGenerator()
       if done == true then
         updateKeys(dt)
-      else
+      elseif started == false then
         updateKeyStart()
+      else
+        --do nothing for now
       end
     end
 

@@ -1,8 +1,3 @@
-local gamera = require 'lib/gamera'
-
-Cam = gamera.new(0,0,1280,768)
-Cam:setScale(1.0)
-
 local progressBars = {
   'Temperature Generation',
   'Moisture Generation',
@@ -81,7 +76,7 @@ end
 
 function drawWorldGenText()
   love.graphics.setColor(255,255,255)
-  local height = (5 * TileH)-16
+  local height = (4 * TileH)-16
   local width = (2 * TileW)
 
   love.graphics.setFont(FontCommo)
@@ -99,4 +94,32 @@ function drawWorldGenText()
     love.graphics.printf(item, width, height, 400)
     height = height + 32
   end
+end
+
+local phase = 255
+local phasing = 'down'
+function drawUnstartedText(message)
+  local height = (10 * TileH)
+  local width = (5 * TileW)
+  love.graphics.setColor(0, 0, 0, phase)
+  love.graphics.rectangle("fill", width, height, 928, 128 )
+  if phase >= 255 then
+    phase = 255 --in case it came in above 255 which is bad
+    phasing = 'down'
+  elseif phase <= 0 then
+    phase = 0
+    phasing = 'up'
+  end
+  if phasing == 'up' then
+    phase = phase + 5
+  elseif phasing == 'down' then
+    phase = phase - 5
+  end
+  love.graphics.setColor(255, 238, 0, ((255+phase)/2))
+
+  love.graphics.setFont(FontCommo)
+
+  love.graphics.printf(message, (width+32),(height)+8, 864, 'center')
+
+  love.graphics.setColor(255,255,255)
 end
