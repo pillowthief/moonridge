@@ -7,16 +7,20 @@ require 'src/utils/map-render'
 require 'src/utils/map-utils'
 require 'src/utils/anim-sprite-utils'
 require 'src/utils/anim-sprites'
-require 'src/utils/actor-utils'
+
 require 'src/utils/key-mgr'
 require 'src/utils/cam-mgr'
 require 'src/utils/shdr-mgr'
 require 'src/utils/debug-gui'
 require 'src/utils/draw-gui'
+require 'src/utils/saveload'
 require 'src/gen/cave-gen'
 require 'src/gen/forest-gen'
+require 'src/classtools/player'
+require 'src/classtools/actor-utils'
+require 'src/classes/atlas'
 require 'src/classes/actor'
-require 'src/classes/player'
+require 'src/classes/mapchunk'
 require 'src/classes/tile'
 require 'src/classes/glyph'
 require 'src/classes/block'
@@ -41,7 +45,7 @@ local GameScreen = {}
 function GameScreen.new()
     local self = Screen.new()
 
-    effect = moonshine(moonshine.effects.colorgradesimple) -- set up to use for seasons
+    local effect = moonshine(moonshine.effects.colorgradesimple) -- set up to use for seasons
     effect.colorgradesimple.factors = {1,1,1}
     love.graphics.setColor(255,255,255)
 

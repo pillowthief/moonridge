@@ -1,5 +1,6 @@
 local Screen = require('lib/ScreenManager/Screen')
 require('src/utils/menu-render')
+require 'src/utils/saveload'
 
 local MenuScreen = {}
 

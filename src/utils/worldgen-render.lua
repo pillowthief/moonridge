@@ -12,6 +12,10 @@ function stepForwardActiveBar()
   activeBar = activeBar + 1
 end
 
+function resetActiveBar()
+  activeBar = 1
+end
+
 local skip = 0
 local storedMaps = {}
 
