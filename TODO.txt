@@ -58,3 +58,16 @@ cheatmenu (no file)
   add a debugging cheat menu
 
 crafting screen
+
+time-passage storage/simulation
+  when the player leaves an area start a clock
+  after a certain amount of real-time (maybe 5 minutes, maybe more) the clock stops
+  before the clock stops, if player comes back game quickly passes that much time
+  after clock stops, game passes a less specific "randomize based on time-passed" upon player return
+    time passed is "short","medium","long","very long" and will effect certain types of content change
+    randomized change will still be made aware of factors like current time of day
+
+procedural dialogue generation
+  create a dialogue parser that can read an easy to write filesystem
+  create functions that can randomly generate aspects of the dialogue
+  create a procedural dialogue tree building system
