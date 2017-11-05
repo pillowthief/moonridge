@@ -13,6 +13,8 @@ function WorldGenScreen.new()
     local tiles = {}
     local firstStep = true
     local tiles = {}
+    local staringCoords = {0,0}
+    local startingCoordsSet = false
     setEmptyMap()
 
     function setWGDoneToBool(bool)
@@ -27,12 +29,27 @@ function WorldGenScreen.new()
       tiles = ptiles
     end
 
+    function setWGStartingCoords(x,y)
+      startingCoords = {x,y}
+      startingCoordsSet = true
+    end
+
+    function returnWGStartingCoords()
+      return startingCoords
+    end
+
+    function returnStartingCoordsSet()
+      return startingCoordsSet
+    end
 
     function self:draw()
       drawWorldGenText()
       drawWolrdGenCurMap(tiles)
-      if done == true then
+      if done == true and startingCoordsSet == true then
+        drawWGCursor()
         drawUnstartedText('Press esc to go back, R to draw a new map, press any other key to move forward.')
+      elseif done == true then
+        drawWGCursor()
       elseif started == false then
         drawUnstartedText('Press any key to start world generation or press esc to go back.')
       end

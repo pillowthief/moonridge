@@ -21,7 +21,9 @@ function love.load()
         ['home'] = require('src/screens/homescreen'),
         ['game'] = require('src/screens/gamescreen'),
         ['menu'] = require('src/screens/menuscreen'),
-        ['worldgen'] = require('src/screens/worldgenscreen')
+        ['worldgen'] = require('src/screens/worldgenscreen'),
+
+        ['wgc'] = require('src/screens/alerts/wgconfirmation')
     }
 
 

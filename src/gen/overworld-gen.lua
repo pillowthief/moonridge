@@ -111,8 +111,8 @@ function generateTemperatureMap()
     end
   end
 
-  setCurColorMap(map, 'climate')
-  pushToStoredMaps(curColorMap)
+  --setCurColorMap(map, 'climate')
+  --pushToStoredMaps(curColorMap)
 
   for i=1,4000000 do
     local y = love.math.random(2,(zoneSize-1))
@@ -122,8 +122,8 @@ function generateTemperatureMap()
     map[y][x+1] = map[y][x]
     map[y][x-1] = map[y][x]
     if i%500000 == 0 then
-      setCurColorMap(map, 'climate')
-      pushToStoredMaps(curColorMap)
+      --setCurColorMap(map, 'climate')
+      --pushToStoredMaps(curColorMap)
     end
   end
 
@@ -152,8 +152,8 @@ function generateTemperatureMap()
     end
 
     if i%100000 == 0 then
-      setCurColorMap(map, 'climate')
-      pushToStoredMaps(curColorMap)
+      --setCurColorMap(map, 'climate')
+      --pushToStoredMaps(curColorMap)
     end
   end
 

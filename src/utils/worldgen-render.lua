@@ -77,6 +77,31 @@ function drawWolrdGenCurMap(TileTable)
   end
 end
 
+local cursorCoords = {192,192}
+
+function adjustWGCursorCoords(aX,aY)
+  if cursorCoords[1] + aX < 5 or cursorCoords[1] + aX > 380 then
+    return
+  else
+    cursorCoords[1] = cursorCoords[1] + aX
+  end
+
+  if cursorCoords[2] + aY < 5 or cursorCoords[2] + aY > 380 then
+    return
+  else
+    cursorCoords[2] = cursorCoords[2] + aY
+  end
+end
+
+function setWGCoordsFromCursor()
+  setWGStartingCoords(cursorCoords[1],cursorCoords[2])
+end
+
+function drawWGCursor()
+  local x,y = cursorCoords[1],cursorCoords[2]
+  love.graphics.setColor(255, 255, 43, 180)
+  love.graphics.rectangle("fill", ((x-11)*2)+512, ((y-11)*2), 24, 24 )
+end
 
 function drawWorldGenText()
   love.graphics.setColor(255,255,255)

@@ -110,10 +110,30 @@ function updateKeys(dt)
 
   if curScreen == 'worldgen' then
     function love.keyreleased( key )
-      if key == "escape" then
-        ScreenManager.switch('home')
+      if returnStartingCoordsSet() == true then
+        if key == "escape" then
+          ScreenManager.switch('home')
+        elseif key == "r" then
+          --start over worldgen
+        else
+          STARTGAME()
+        end
       else
-        STARTGAME()
+        if key == "escape" then
+          ScreenManager.switch('home')
+        elseif key == "w" then
+          adjustWGCursorCoords(0,-1)
+        elseif key == "a" then
+          adjustWGCursorCoords(-1,0)
+        elseif key == "s" then
+          adjustWGCursorCoords(0,1)
+        elseif key == "d" then
+          adjustWGCursorCoords(1,0)
+        elseif key == "return" then
+          ScreenManager.push('wgc')
+        else
+          --do nothing for now
+        end
       end
     end
   end
