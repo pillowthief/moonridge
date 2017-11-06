@@ -2,13 +2,13 @@ Atlas = class('Atlas')
 
 binser.registerClass(Atlas)
 
-function Atlas:initialize(properties)
-  properties = properties or {}
-  self._wetmap = properties['wetmap'] or {}
-  self._tempmap = properties['tempmap'] or {}
-  self._rivers = properties['rivers'] or {}
-  self._lakes = properties['lakes'] or {}
-  self._chunks = properties['chunks'] or {}
+function Atlas:initialize(wm,tm,rivs,lks,chks)
+  print('Beware, I live!')
+  self._wetmap = wm
+  self._tempmap = tm
+  self._rivers = rivs
+  self._lakes = lks
+  self._chunks = chnks or {}
 end
 
 function Atlas:setWetMap(wtiles)

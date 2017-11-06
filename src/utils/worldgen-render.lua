@@ -80,13 +80,13 @@ end
 local cursorCoords = {192,192}
 
 function adjustWGCursorCoords(aX,aY)
-  if cursorCoords[1] + aX < 5 or cursorCoords[1] + aX > 380 then
+  if cursorCoords[1] + aX < 16 or cursorCoords[1] + aX > 360 then
     return
   else
     cursorCoords[1] = cursorCoords[1] + aX
   end
 
-  if cursorCoords[2] + aY < 5 or cursorCoords[2] + aY > 380 then
+  if cursorCoords[2] + aY < 16 or cursorCoords[2] + aY > 360 then
     return
   else
     cursorCoords[2] = cursorCoords[2] + aY
@@ -97,10 +97,26 @@ function setWGCoordsFromCursor()
   setWGStartingCoords(cursorCoords[1],cursorCoords[2])
 end
 
+local phase2 = 0
+local phasing2 = 'up'
 function drawWGCursor()
   local x,y = cursorCoords[1],cursorCoords[2]
-  love.graphics.setColor(255, 255, 43, 180)
-  love.graphics.rectangle("fill", ((x-11)*2)+512, ((y-11)*2), 24, 24 )
+  love.graphics.setColor(255, 255, 43, (100+phase2))
+  love.graphics.rectangle("fill", ((x-8)*2)+512, ((y-8)*2), 48, 48 )
+  love.graphics.setColor(255, 255, 255, 140)
+  love.graphics.rectangle("fill", ((x)*2)+512, ((y)*2), 16, 16 )
+  if phase2 >= 100 then
+    phase2 = 100 --in case it came in above 255 which is bad
+    phasing2 = 'down'
+  elseif phase2 <= 0 then
+    phase2 = 0
+    phasing2 = 'up'
+  end
+  if phasing2 == 'up' then
+    phase2 = phase2 + 5
+  elseif phasing2 == 'down' then
+    phase2 = phase2 - 5
+  end
 end
 
 function drawWorldGenText()
@@ -123,6 +139,22 @@ function drawWorldGenText()
     love.graphics.printf(item, width, height, 400)
     height = height + 32
   end
+end
+
+function drawChooseEmbarkText()
+  love.graphics.setColor(255,255,255)
+  local height = (4 * TileH)-16
+  local width = (2 * TileW)
+
+  love.graphics.setFont(FontCommo)
+  love.graphics.printf("Choose your starting", width, height, 416)
+  height = height + 32
+  love.graphics.printf("location with wasd or", width, height, 416)
+  height = height + 32
+  love.graphics.printf("arrrow keys. Press enter", width, height, 416)
+  height = height + 32
+  love.graphics.printf("to confirm your choice.", width, height, 416)
+
 end
 
 local phase = 255

@@ -10,7 +10,7 @@ function makeForestFloor(width, height)
       if ran > 4 then
         tileMap[y][x] = Tile:new(ForestFloorGrass)
       else
-        tileMap[y][x] = Tile:new(ForestFloorDirt)
+        tileMap[y][x] = Tile:new(SoilFloorDirt)
       end
 
     end
@@ -22,11 +22,11 @@ function makeForestFloor(width, height)
         if tileMap[y][x]:getName() == 'ForestFloorGrass' then
           local totalWalls = tileMap[y][x]:getLikeNeighbors(tileMap,x,y)
 
-          if totalWalls >= 5 then tileMap[y][x] = Tile:new(ForestFloorGrass) else tileMap[y][x] = Tile:new(ForestFloorDirt) end
+          if totalWalls >= 5 then tileMap[y][x] = Tile:new(ForestFloorGrass) else tileMap[y][x] = Tile:new(SoilFloorDirt) end
         else
           local totalOpen = tileMap[y][x]:getLikeNeighbors(tileMap,x,y)
 
-          if totalOpen >= 5 then tileMap[y][x] = Tile:new(ForestFloorDirt) else tileMap[y][x] = Tile:new(ForestFloorGrass) end
+          if totalOpen >= 5 then tileMap[y][x] = Tile:new(SoilFloorDirt) else tileMap[y][x] = Tile:new(ForestFloorGrass) end
         end
       end
     end

@@ -8,21 +8,25 @@ local WorldGenScreen = {}
 function WorldGenScreen.new()
     local self = Screen.new()
     local curMap = {}
-    local done = false
-    local started = false
-    local tiles = {}
-    local firstStep = true
+    local step = 1
     local tiles = {}
     local staringCoords = {0,0}
-    local startingCoordsSet = false
     setEmptyMap()
 
-    function setWGDoneToBool(bool)
-      done = bool
+    function stepWGScreenForward()
+      step = step + 1
     end
 
-    function setWGStartedToBool(bool)
-      started = bool
+    function stepWGScreenBack()
+      step = step - 1
+    end
+
+    function resetWGStep()
+      step = 1
+    end
+
+    function returnWGStep()
+      return step
     end
 
     function setWorldGenScreenTiles(ptiles)
@@ -31,27 +35,24 @@ function WorldGenScreen.new()
 
     function setWGStartingCoords(x,y)
       startingCoords = {x,y}
-      startingCoordsSet = true
-    end
-
-    function returnWGStartingCoords()
-      return startingCoords
-    end
-
-    function returnStartingCoordsSet()
-      return startingCoordsSet
+      stepWGScreenForward()
     end
 
     function self:draw()
-      drawWorldGenText()
       drawWolrdGenCurMap(tiles)
-      if done == true and startingCoordsSet == true then
+      if step == 5 then
         drawWGCursor()
-        drawUnstartedText('Press esc to go back, R to draw a new map, press any other key to move forward.')
-      elseif done == true then
+        drawUnstartedText('Press ESC to go back to the home screen, press any other key to move forward.')
+      elseif step == 4 then
+        --generate chunks
+      elseif step == 3 then
         drawWGCursor()
-      elseif started == false then
-        drawUnstartedText('Press any key to start world generation or press esc to go back.')
+        drawChooseEmbarkText()
+      elseif step == 2 then
+        drawWorldGenText()
+      elseif step == 1 then
+        drawWorldGenText()
+        drawUnstartedText('Press any key to start world generation or press ESC to go back.')
       end
     end
 
@@ -59,12 +60,10 @@ function WorldGenScreen.new()
     function self:update(dt)
       updateProgress()
       updateGenerator()
-      if done == true then
+      if step == 3 or step == 5 then
         updateKeys(dt)
-      elseif started == false then
+      elseif step == 1 then
         updateKeyStart()
-      else
-        --do nothing for now
       end
     end
 

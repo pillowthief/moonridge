@@ -9,10 +9,10 @@ function WGConfirm.new()
 
     function self:draw()
       love.graphics.setColor(33, 45, 104,200)
-        love.graphics.rectangle("fill", 64, 192, 384, 128 )
+        love.graphics.rectangle("fill", 704, 320, 384, 116 )
       love.graphics.setColor(255,255,255)
-        love.graphics.printf('Press ENTER to accept', 74, 204, 374, "center")
-        love.graphics.printf('or ESC to choose again', 74, 228, 374, "center")
+        love.graphics.printf('Press ENTER to accept', 714, 330, 374, "center")
+        love.graphics.printf('or ESC to choose again', 714, 354, 374, "center")
       love.graphics.setColor(255,255,255)
     end
 

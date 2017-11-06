@@ -43,7 +43,9 @@ end
 
 function updateGenerator()
   if generatorStarted == true then
-    setWGStartedToBool(true)
+    if returnWGStep() == 1 then
+      stepWGScreenForward()
+    end
     generateOverworld()
   end
 end
@@ -93,8 +95,9 @@ function generateOverworld()
         end
         stepForwardActiveBar()
       else
-        setWGDoneToBool(true)
+        stepWGScreenForward()
         stepForwardActiveBar()
+        THEATLAS = Atlas:new(wetMap,tempMap,rivers,lakes)
         generatorStarted = false
       end
       takeNextStep = false

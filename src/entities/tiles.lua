@@ -25,11 +25,25 @@ CaveStairsDown = {
   color4={40, 27, 18, 255}
 }
 
-ForestFloorDirt = {
-  name='ForestFloorDirt',
+SoilFloorDirt = {
+  name='SoilFloorDirt',
   quad=4,
   color2={109, 69, 32, 255},
   color3={73, 45, 19,255}
+}
+
+SoilFloorSand = {
+  name='SoilFloorDirt',
+  quad=4,
+  color2={232, 198, 76, 255},
+  color3={193, 162, 52,255}
+}
+
+SoilFloorLoam = {
+  name='SoilFloorDirt',
+  quad=4,
+  color2={25, 15, 6, 255},
+  color3={43, 26, 12,255}
 }
 
 ForestFloorGrass = {
