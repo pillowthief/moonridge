@@ -3,6 +3,8 @@ tiny = require('lib/tiny')
 bump = require('lib/bump')
 binser = require('lib/binser')
 
+require 'src/utils/map-utils'
+
 ECSWorld = tiny.world()
 
 ScreenManager = require('lib/ScreenManager/ScreenManager') -- manages which state the game is in

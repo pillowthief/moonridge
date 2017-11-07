@@ -110,11 +110,13 @@ function updateKeys(dt)
 
   if curScreen == 'worldgen' then
     function love.keyreleased( key )
-      if returnWGStep() == 4 then
+      if returnWGStep() == 5 then
         if key == "escape" then
           ScreenManager.switch('home')
         else
-          STARTGAME()
+          local coords = returnWGStartingCoords()
+          local chunk = THEATLAS:getChunk((coords[1]/8),(coords[2]/8))
+          STARTGAME(chunk:getTileMap(),chunk:getBlockMap(),chunk:getActorList())
         end
       else
         if key == "escape" then
@@ -126,6 +128,14 @@ function updateKeys(dt)
         elseif key == "s" then
           adjustWGCursorCoords(0,8)
         elseif key == "d" then
+          adjustWGCursorCoords(8,0)
+        elseif key == "up" then
+          adjustWGCursorCoords(0,-8)
+        elseif key == "left" then
+          adjustWGCursorCoords(-8,0)
+        elseif key == "down" then
+          adjustWGCursorCoords(0,8)
+        elseif key == "right" then
           adjustWGCursorCoords(8,0)
         elseif key == "return" then
           ScreenManager.push('wgc')

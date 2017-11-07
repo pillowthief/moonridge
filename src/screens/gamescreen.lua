@@ -7,7 +7,7 @@ require 'src/utils/map-render'
 require 'src/utils/map-utils'
 require 'src/utils/anim-sprite-utils'
 require 'src/utils/anim-sprites'
-
+require 'src/gen/mapchunk-gen-util'
 require 'src/utils/key-mgr'
 require 'src/utils/cam-mgr'
 require 'src/utils/shdr-mgr'

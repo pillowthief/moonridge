@@ -99,6 +99,7 @@ function generateOverworld()
         stepForwardActiveBar()
         THEATLAS = Atlas:new(wetMap,tempMap,rivers,lakes)
         generatorStarted = false
+        tiles,tempMap,wetMap,rivers,lakes = {},{},{},{},{}
       end
       takeNextStep = false
     end

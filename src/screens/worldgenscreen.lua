@@ -2,6 +2,7 @@ local Screen = require('lib/ScreenManager/Screen')
 require('src/utils/worldgen-render')
 require('src/utils/start-game')
 require('src/gen/overworld-gen')
+require('src/gen/mapchunk-gen-util')
 
 local WorldGenScreen = {}
 
@@ -38,13 +39,17 @@ function WorldGenScreen.new()
       stepWGScreenForward()
     end
 
+    function returnWGStartingCoords()
+      return startingCoords
+    end
+
     function self:draw()
       drawWolrdGenCurMap(tiles)
       if step == 5 then
         drawWGCursor()
         drawUnstartedText('Press ESC to go back to the home screen, press any other key to move forward.')
       elseif step == 4 then
-        --generate chunks
+        drawGeneratingNGChunkText()
       elseif step == 3 then
         drawWGCursor()
         drawChooseEmbarkText()
@@ -56,10 +61,16 @@ function WorldGenScreen.new()
       end
     end
 
-
+    local chunkstart = false
     function self:update(dt)
       updateProgress()
       updateGenerator()
+      if step == 4 then
+        if chunkstart == false then
+          generateNewGameChunks(THEATLAS,startingCoords[1],startingCoords[2])
+          chunkstart = true
+        end
+      end
       if step == 3 or step == 5 then
         updateKeys(dt)
       elseif step == 1 then

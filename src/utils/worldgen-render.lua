@@ -154,7 +154,28 @@ function drawChooseEmbarkText()
   love.graphics.printf("arrrow keys. Press enter", width, height, 416)
   height = height + 32
   love.graphics.printf("to confirm your choice.", width, height, 416)
+end
 
+local frame = 1
+function drawGeneratingNGChunkText()
+  love.graphics.setColor(255,255,255)
+  local height = (8 * TileH)-16
+  local width = (2 * TileW)
+  love.graphics.setFont(FontCommo)
+
+  if frame == 1 then
+    love.graphics.printf("Generating Chunks /", width, height, 416)
+    frame = 2
+  elseif frame == 2 then
+    love.graphics.printf("Generating Chunks -", width, height, 416)
+    frame = 3
+  elseif frame == 3 then
+    love.graphics.printf("Generating Chunks \\", width, height, 416)
+    frame = 4
+  elseif frame == 4 then
+    love.graphics.printf("Generating Chunks |", width, height, 416)
+    frame = 1
+  end
 end
 
 local phase = 255

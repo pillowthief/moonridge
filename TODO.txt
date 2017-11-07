@@ -8,7 +8,8 @@ overworld-gen
   generate forests, lakes, rivers, deserts, swamps, plains, mountains
   underground generate filled ground, caves, tombs,
 
-world generation waiting screen
+savegame management screen (no file)
+  save worlds, load worlds, independent of chars
 
 add concept of Pause to gamescreen
 
@@ -24,8 +25,6 @@ add descriptions to glyphs
 
 make the calendar tab useful
   make calendar cycles more interesting (moon cycles, etc)
-
-savegame management screen (no file)
 
 create a DAY shader and a NIGHT shader
   day shader cycles through tints, night shader does the same but accounts for lights
