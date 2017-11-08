@@ -1,4 +1,8 @@
-make player inherit old facing on load game
+FIX LOAD IN GENERAL make player inherit old facing on load game
+
+make sure chunks are saving their data correctly on player exit (probably not!)
+remove player from actorlist when it leaves a chunk
+make player enter chunks at the correct x/y/z and fix addPlayer in general
 
 overworld-gen
   underground generate filled ground, caves, tombs,
@@ -19,6 +23,10 @@ create own entity component system, get rid of the lib
 
 add descriptions to glyphs
   make the look tab work
+  +quicklook via a keyboard command (quicklooks everything 'important' on screen)
+  +quicklook via mouse
+
+mouse support
 
 make the calendar tab useful
   make calendar cycles more interesting (moon cycles, etc)
@@ -29,11 +37,11 @@ create a DAY shader and a NIGHT shader
 create a INDOORS/CAVE shader
   simpler version of the NIGHT shader
 
-universal color palette(maybe)
+universal color palette(unlikely)
 
-add attacks for player
+implement a combat system
 
-implement a lib for controllers
+implement a lib for controllers(maybe)
 
 use the calendar as a scheduler
 
@@ -44,8 +52,6 @@ items
 
 objects
   make them
-
-fix up player animation
 
 map-utils.Lua
   optimize via the updateGlyphs function
@@ -62,6 +68,10 @@ time-passage storage/simulation
   after clock stops, game passes a less specific "randomize based on time-passed" upon player return
     time passed is "short","medium","long","very long" and will effect certain types of content change
     randomized change will still be made aware of factors like current time of day
+
+travellers
+  travellers will be npcs (and possibly other things like seeds) that can change maps, and therefore need
+  to be checked at times when the player isn't around
 
 procedural dialogue generation
   create a dialogue parser that can read an easy to write filesystem

@@ -28,6 +28,11 @@ function updateKeys(dt)
     function love.keyreleased( key )
       if key == "`" then
         debugDrawToggle()
+      elseif key == "g" then
+        local x = Player:getApproxGridX()
+        local y = Player:getApproxGridY()
+        TileTable[y][x] = Tile:new(ForestFloorGrass)
+        updateAllGlyphs()
       elseif key == "escape" then
         ScreenManager.push('menu')
       elseif key == "delete" then

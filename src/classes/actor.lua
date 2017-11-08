@@ -44,9 +44,9 @@ end
 function Actor:getApproxGridX()
   local gridX
   if math.floor((self._x/TileW) + 0.5) == math.floor((self._x/TileW)+1) then
-    gridX = math.ceil(self._x / TileW)
+    gridX = math.ceil(self._x / TileW) + 1
   else
-    gridX = math.floor(self._x / TileW)
+    gridX = math.floor(self._x / TileW) + 1
   end
   return gridX
 end
@@ -54,9 +54,9 @@ end
 function Actor:getApproxGridY()
   local gridY
   if math.floor((self._y/TileH) + 0.9) == math.floor((self._y/TileH)+1) then
-    gridY = math.ceil(self._y / TileH)
+    gridY = math.ceil(self._y / TileH) + 1
   else
-    gridY = math.floor(self._y / TileH)
+    gridY = math.floor(self._y / TileH) + 1
   end
   return gridY
 end

@@ -21,7 +21,9 @@ function STARTGAME(atlas, time)
   ScreenManager.switch('game')
 end
 
-function CHANGEMAP(cX,cY)
+function CHANGEMAP(oX,oY,cX,cY,pX,pY)
+  local oldchunk = THEATLAS:getChunkAt(oX,oY)
+  removeActorFromActorlist(Player, oldchunk:getActorList())
   local chunk = THEATLAS:getChunkAt(cX,cY)
   if THEATLAS:getChunkAt(cX+1,cY) == false then
     generateMapChunk(THEATLAS,cX+1,cY)
@@ -37,16 +39,20 @@ function CHANGEMAP(cX,cY)
   end
 
   local chunk = THEATLAS:getChunkAt(cX,cY)
-  TileTable = chunk:getTileMap() or makeCaveFloor(MAP_WIDTH, MAP_HEIGHT)
+  TileTable = chunk:getTileMap()
   BlockTable = makeForestBlocks(MAP_WIDTH, MAP_HEIGHT)
   ActorList = chunk:getActorList() or {}
 
   BumpWorld = bump.newWorld(32)
   makeBumpWorld(BlockTable, MAP_WIDTH, MAP_HEIGHT)
 
-  addPlayer()
+  addPlayer(pX,pY)
   setupCamera()
   redrawAllGlyphs()
 
   THEATLAS:setPlayerChunk(cX,cY)
+end
+
+function NPCHANGEMAP()
+--for later!
 end

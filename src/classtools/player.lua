@@ -32,7 +32,7 @@ function setPlayerSprite()
   end
 end
 
-function addPlayer()
+function addPlayer(x,y)
   local success = false
   if #ActorList > 0 then
     Player = ActorList[1]
@@ -42,8 +42,8 @@ function addPlayer()
     success = true
   end
   while success == false do --attempt to add player at a random location on the map
-    local x = love.math.random(10, MAP_WIDTH-10)
-    local y = love.math.random(10, MAP_HEIGHT-10)
+    local x = x or love.math.random(10, MAP_WIDTH-10)
+    local y = y or love.math.random(10, MAP_HEIGHT-10)
     if BlockTable[y][x]:getWalkable() == true then --if the location is walkable, use it
       local nX,nY = (x-1)*TileW,(y-1)*TileH
       Player = GamePlayer:new(ActorPlayer, nX, nY)
@@ -52,7 +52,7 @@ function addPlayer()
       playerSprite = setPlayerSprite()
       playerSprite:switch('standDown')
       success = true
-    end
+    end    
   end
 end
 
