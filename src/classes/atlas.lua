@@ -7,7 +7,16 @@ function Atlas:initialize(wm,tm,rivs,lks,chks)
   self._tempmap = tm
   self._rivers = rivs
   self._lakes = lks
-  self._chunks = chnks or expandTable(48,48)
+  self._chunks = chnks or expandTableFilled(48,48,false)
+  self._playerChunk = {}
+end
+
+function Atlas:setPlayerChunk(x,y)
+  self._playerChunk = {x,y}
+end
+
+function Atlas:getPlayerChunk()
+  return self._playerChunk
 end
 
 function Atlas:setWetMap(wtiles)
@@ -39,7 +48,7 @@ function Atlas:addChunk(chunk)
   self._chunks[coords[2]][coords[1]] = chunk
 end
 
-function Atlas:getChunk(aX,aY)
+function Atlas:getChunkAt(aX,aY)
   return self._chunks[aY][aX]
 end
 

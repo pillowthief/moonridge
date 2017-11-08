@@ -37,10 +37,7 @@ function WorldGenScreen.new()
     function setWGStartingCoords(x,y)
       startingCoords = {x,y}
       stepWGScreenForward()
-    end
-
-    function returnWGStartingCoords()
-      return startingCoords
+      THEATLAS:setPlayerChunk(startingCoords[1]/8,startingCoords[2]/8)
     end
 
     function self:draw()
@@ -67,7 +64,7 @@ function WorldGenScreen.new()
       updateGenerator()
       if step == 4 then
         if chunkstart == false then
-          generateNewGameChunks(THEATLAS,startingCoords[1],startingCoords[2])
+          generateNewGameChunks(THEATLAS,startingCoords[1]/8,startingCoords[2]/8)
           chunkstart = true
         end
       end

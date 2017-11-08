@@ -4,14 +4,14 @@ CHUNKSIZE = 80
 
 function generateNewGameChunks(a,aX,aY)
   generateMapChunk(a,aX,aY)
-  generateMapChunk(a,aX+8,aY)
-  generateMapChunk(a,aX-8,aY)
-  generateMapChunk(a,aX,aY+8)
-  generateMapChunk(a,aX,aY-8)
-  generateMapChunk(a,aX+8,aY+8)
-  generateMapChunk(a,aX+8,aY-8)
-  generateMapChunk(a,aX-8,aY+8)
-  generateMapChunk(a,aX-8,aY-8)
+  generateMapChunk(a,aX+1,aY)
+  generateMapChunk(a,aX-1,aY)
+  generateMapChunk(a,aX,aY+1)
+  generateMapChunk(a,aX,aY-1)
+  generateMapChunk(a,aX+1,aY+1)
+  generateMapChunk(a,aX+1,aY-1)
+  generateMapChunk(a,aX-1,aY+1)
+  generateMapChunk(a,aX-1,aY-1)
   stepWGScreenForward()
 end
 
@@ -55,7 +55,7 @@ function generateMapChunk(atlas,atlasX,atlasY)
 
   local tiles = generateSurfaceTiles(lwet,ltmp,lwater)
 
-  local chunk = MapChunk:new((atlasX/8),(atlasY/8), tiles)
+  local chunk = MapChunk:new((atlasX),(atlasY), tiles)
 
   atlas:addChunk(chunk)
 end

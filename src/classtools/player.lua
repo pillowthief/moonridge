@@ -57,10 +57,8 @@ function addPlayer()
 end
 
 function movePlayer(newX, newY) --specialized wrapper for the tryMoveActor function
-  coords = {tryMoveActor(Player, newX, newY)}
-    Player:setCoords(coords[1], coords[2])
-    BumpWorld:update(Player, coords[1], coords[2])
-    checkPlayerDistFromCamera()
+  tryMoveActor(Player, newX, newY)
+  checkPlayerDistFromCamera()
 end
 
 

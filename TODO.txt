@@ -1,15 +1,12 @@
 make player inherit old facing on load game
 
-create a filled ground generator
-
 overworld-gen
-  create an overworld generator
-  make generators able to apply to the overworld map
-  generate forests, lakes, rivers, deserts, swamps, plains, mountains
   underground generate filled ground, caves, tombs,
 
 savegame management screen (no file)
   save worlds, load worlds, independent of chars
+
+consider if the Atlas should store time
 
 add concept of Pause to gamescreen
 

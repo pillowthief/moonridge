@@ -114,9 +114,7 @@ function updateKeys(dt)
         if key == "escape" then
           ScreenManager.switch('home')
         else
-          local coords = returnWGStartingCoords()
-          local chunk = THEATLAS:getChunk((coords[1]/8),(coords[2]/8))
-          STARTGAME(chunk:getTileMap(),chunk:getBlockMap(),chunk:getActorList())
+          STARTGAME(THEATLAS)
         end
       else
         if key == "escape" then
