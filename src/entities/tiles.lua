@@ -33,14 +33,14 @@ SoilFloorDirt = {
 }
 
 SoilFloorSand = {
-  name='SoilFloorDirt',
+  name='SoilFloorSand',
   quad=4,
   color2={232, 198, 76, 255},
   color3={193, 162, 52,255}
 }
 
 SoilFloorLoam = {
-  name='SoilFloorDirt',
+  name='SoilFloorLoam',
   quad=4,
   color2={25, 15, 6, 255},
   color3={43, 26, 12,255}

@@ -1,5 +1,9 @@
 FIX LOAD IN GENERAL make player inherit old facing on load game
 
+minimap
+
+make the player not care what chunk they're in, camera not care, just render what's around
+
 make sure chunks are saving their data correctly on player exit (probably not!)
 remove player from actorlist when it leaves a chunk
 make player enter chunks at the correct x/y/z and fix addPlayer in general

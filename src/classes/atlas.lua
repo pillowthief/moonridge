@@ -23,7 +23,7 @@ function Atlas:setWetMap(wtiles)
   self._wetmap = wtiles
 end
 
-function Atlas:returnWetMap()
+function Atlas:getWetMap()
   return self._wetmap
 end
 
@@ -51,8 +51,6 @@ end
 function Atlas:getChunkAt(aX,aY)
   return self._chunks[aY][aX]
 end
-
-
 
 
 return Atlas

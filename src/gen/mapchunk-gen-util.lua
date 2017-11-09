@@ -8,20 +8,16 @@ function generateNewGameChunks(a,aX,aY)
   generateMapChunk(a,aX-1,aY)
   generateMapChunk(a,aX,aY+1)
   generateMapChunk(a,aX,aY-1)
-  generateMapChunk(a,aX+1,aY+1)
-  generateMapChunk(a,aX+1,aY-1)
-  generateMapChunk(a,aX-1,aY+1)
-  generateMapChunk(a,aX-1,aY-1)
   stepWGScreenForward()
 end
 
 function generateMapChunk(atlas,atlasX,atlasY)
-  local wet = atlas:returnWetMap()
+  local wet = atlas:getWetMap()
   local lwet = {}
   for i=1,8 do
     lwet[i] = {}
     for q=1,8 do
-      lwet[i][q] = wet[atlasY+(i-1)][atlasX+(q-1)]
+      lwet[i][q] = wet[((atlasY-1)*8)+i][((atlasX-1)*8)+q]
     end
   end
 
@@ -30,7 +26,7 @@ function generateMapChunk(atlas,atlasX,atlasY)
   for i=1,8 do
     ltmp[i] = {}
     for q=1,8 do
-      ltmp[i][q] = tmp[atlasY+(i-1)][atlasX+(q-1)]
+      ltmp[i][q] = tmp[((atlasY-1)*8)+i][((atlasX-1)*8)+q]
     end
   end
 
@@ -40,10 +36,10 @@ function generateMapChunk(atlas,atlasX,atlasY)
   for i=1,8 do
     lwater[i] = {}
     for q=1,8 do
-      if rivers[atlasY+(i-1)][atlasX+(q-1)] == true then
+      if rivers[((atlasY-1)*8)+i][((atlasX-1)*8)+q] == true then
         lwater[i][q] = 'river'
       end
-      if lakes[atlasY+(i-1)][atlasX+(q-1)] == true then
+      if lakes[((atlasY-1)*8)+i][((atlasX-1)*8)+q] == true then
         lwater[i][q] = 'lake'
       end
       if lwater[i][q] == nil then
@@ -53,7 +49,7 @@ function generateMapChunk(atlas,atlasX,atlasY)
   end
 
 
-  local tiles = generateSurfaceTiles(lwet,ltmp,lwater)
+  local tiles = generateSurfaceTiles(atlas,atlasX,atlasY,lwet,ltmp,lwater)
 
   local chunk = MapChunk:new((atlasX),(atlasY), tiles)
 
