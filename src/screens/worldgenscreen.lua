@@ -1,8 +1,9 @@
 local Screen = require('lib/ScreenManager/Screen')
-require('src/utils/worldgen-render')
-require('src/utils/start-game')
-require('src/gen/overworld-gen')
-require('src/gen/mapchunk-gen-util')
+require 'src/utils/worldgen-render'
+require 'src/utils/start-game'
+require 'src/utils/chunk-mgr'
+require 'src/gen/overworld-gen'
+require 'src/gen/mapchunk-gen-util'
 
 local WorldGenScreen = {}
 

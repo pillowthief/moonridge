@@ -3,7 +3,8 @@ MAP_HEIGHT = 80
 
 function STARTGAME(atlas, time)
   local coords = THEATLAS:getPlayerChunk()
-  local chunk = THEATLAS:getChunkAt((coords[1]),(coords[2]))
+  fetchLocalChunks({(coords[1]),(coords[2])})
+  local chunk = getLocalChunk('cen')
 
   TileTable = chunk:getTileMap()
   --BlockTable = chunk:getBlockMap() USE THIS VERSION ASAP
@@ -24,21 +25,10 @@ end
 function CHANGEMAP(oX,oY,cX,cY,pX,pY)
   local oldchunk = THEATLAS:getChunkAt(oX,oY)
   removeActorFromActorlist(Player, oldchunk:getActorList())
-  local chunk = THEATLAS:getChunkAt(cX,cY)
-  if THEATLAS:getChunkAt(cX+1,cY) == false then
-    generateMapChunk(THEATLAS,cX+1,cY)
-  end
-  if THEATLAS:getChunkAt(cX-1,cY) == false then
-    generateMapChunk(THEATLAS,cX-1,cY)
-  end
-  if THEATLAS:getChunkAt(cX,cY+1) == false then
-    generateMapChunk(THEATLAS,cX,cY+1)
-  end
-  if THEATLAS:getChunkAt(cX,cY-1) == false then
-    generateMapChunk(THEATLAS,cX,cY-1)
-  end
+  THEATLAS:setPlayerChunk(cX,cY)
+  fetchLocalChunks({cX,cY})
 
-  local chunk = THEATLAS:getChunkAt(cX,cY)
+  local chunk = getLocalChunk('cen')
   TileTable = chunk:getTileMap()
   BlockTable = makeForestBlocks(MAP_WIDTH, MAP_HEIGHT)
   ActorList = chunk:getActorList() or {}
@@ -49,10 +39,4 @@ function CHANGEMAP(oX,oY,cX,cY,pX,pY)
   addPlayer(pX,pY)
   setupCamera()
   redrawAllGlyphs()
-
-  THEATLAS:setPlayerChunk(cX,cY)
-end
-
-function NPCHANGEMAP()
---for later!
 end

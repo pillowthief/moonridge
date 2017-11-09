@@ -39,27 +39,21 @@ function loadTileImage(tilesetPath)
 end
 
 function updateAllGlyphs()
-  TileGlyphs = updateGlyphs('tile', Floor_Tiles, Floor_Quads)
-  BlockGlyphs = updateGlyphs('block', Block_Tiles, Block_Quads)
+  TileGlyphs = updateGlyphs(TileTable, Floor_Tiles, Floor_Quads)
+  BlockGlyphs = updateGlyphs(BlockTable, Block_Tiles, Block_Quads)
   drawActors()
 end
 
 function redrawAllGlyphs()
-  TileGlyphs = redrawGlyphs('tile', Floor_Tiles, Floor_Quads)
-  BlockGlyphs = redrawGlyphs('block', Block_Tiles, Block_Quads)
+  TileGlyphs = redrawGlyphs(TileTable, Floor_Tiles, Floor_Quads)
+  BlockGlyphs = redrawGlyphs(BlockTable, Block_Tiles, Block_Quads)
   drawActors()
 end
 
-function redrawGlyphs(gType, spriteset, quads)
-  local chunk = getLocalChunk('cen')
+function redrawGlyphs(tiles, spriteset, quads)
   local visible = getVisibleTiles()
   local storage = {}
-  local tiletable = {}
-  if gType == 'tile' then
-    tiletable = chunk:getTileMap()
-  elseif gType == 'block' then
-    tileTable = BlockTable
-  end
+  local tiletable = tiles
   local x_offset = visible[1]
   local y_offset = visible[2]
   local max_x = visible[3]
@@ -96,15 +90,9 @@ function redrawGlyphs(gType, spriteset, quads)
 end
 
 function updateGlyphs(tiles, spriteset, quads)
-  local chunk = getLocalChunk('cen')
   local visible = getVisibleTiles()
   local storage = {}
-  local tiletable = {}
-  if gType == 'tile' then
-    tiletable = chunk:getTileMap()
-  elseif gType == 'block' then
-    tileTable = BlockTable
-  end
+  local tiletable = tiles
   local x_offset = visible[1]
   local y_offset = visible[2]
   local max_x = visible[3]

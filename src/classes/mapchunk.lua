@@ -8,6 +8,7 @@ function MapChunk:initialize(x,y,tilemap,blockmap,actorlist)
   self._tilemap = tilemap
   self._blockmap = blockmap or {}
   self._actorlist = actorlist or {}
+  self._utileguide = {}
 end
 
 function MapChunk:getAtlasCoords()

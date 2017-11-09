@@ -8,6 +8,10 @@ function generateNewGameChunks(a,aX,aY)
   generateMapChunk(a,aX-1,aY)
   generateMapChunk(a,aX,aY+1)
   generateMapChunk(a,aX,aY-1)
+  generateMapChunk(a,aX+1,aY+1)
+  generateMapChunk(a,aX+1,aY-1)
+  generateMapChunk(a,aX-1,aY+1)
+  generateMapChunk(a,aX-1,aY-1)
   stepWGScreenForward()
 end
 
