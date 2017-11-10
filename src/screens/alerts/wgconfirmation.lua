@@ -1,5 +1,5 @@
 local Screen = require('lib/ScreenManager/Screen')
-require('src/utils/worldgen-render')
+require('src/render/worldgen-render')
 
 
 local WGConfirm = {}

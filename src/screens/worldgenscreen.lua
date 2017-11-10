@@ -1,5 +1,5 @@
 local Screen = require('lib/ScreenManager/Screen')
-require 'src/utils/worldgen-render'
+require 'src/render/worldgen-render'
 require 'src/utils/start-game'
 require 'src/utils/chunk-mgr'
 require 'src/gen/overworld-gen'

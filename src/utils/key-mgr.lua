@@ -1,5 +1,5 @@
-require('src/utils/menu-render')
-require('src/utils/home-render')
+require('src/render/menu-render')
+require('src/render/home-render')
 
 function updateKeys(dt)
   local curScreen = ScreenManager.getCurrent()
@@ -32,7 +32,6 @@ function updateKeys(dt)
         local x = Player:getApproxGridX()
         local y = Player:getApproxGridY()
         TileTable[y][x] = Tile:new(ForestFloorGrass)
-        updateAllGlyphs()
       elseif key == "escape" then
         ScreenManager.push('menu')
       elseif key == "delete" then

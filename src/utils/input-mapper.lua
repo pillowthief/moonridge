@@ -1,1 +1,0 @@
-local curScreen = ScreenManager.getCurrent()

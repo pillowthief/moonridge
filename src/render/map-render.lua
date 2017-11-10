@@ -1,4 +1,4 @@
-require 'src/shaders/colorassign'
+require 'src/render/shaders/colorassign'
 
 --This file is for drawing static (non-moving) glyphs
 
@@ -7,36 +7,6 @@ BlockGlyphs = {}
 ObjectGlyphs = {}
 ItemGlyphs = {}
 
-function newTileMap(tileW, tileH, tilesetPath)
-  TileW = tileW
-  TileH = tileH
-  local tileset = tilesetPath
-
-  local tilesetW, tilesetH = tileset:getWidth(), tileset:getHeight()
-  local tilesW, tilesH = (tilesetW / TileW), (tilesetH / TileH)
-
-  local quadInfo = {}
-  local counter = 1
-  for y=1, tilesH do
-    for x=1, tilesW do
-       quadInfo[counter] = {(0 + TileW*(x-1)),(0 + TileH*(y-1))}
-       counter = counter + 1;
-    end
-  end
-
-  local quads = {}
-  for i,info in ipairs(quadInfo) do
-    -- info[1] = x, info[2] = y
-    quads[i] = love.graphics.newQuad(info[1], info[2], TileW, TileH, tilesetW, tilesetH)
-  end
-
-  return quads
-end
-
-function loadTileImage(tilesetPath)
-  local tileset = love.graphics.newImage(tilesetPath)
-  return tileset
-end
 
 function updateAllGlyphs()
   TileGlyphs = updateGlyphs(TileTable, Floor_Tiles, Floor_Quads)
@@ -89,6 +59,7 @@ function redrawGlyphs(tiles, spriteset, quads)
   return storage
 end
 
+
 function updateGlyphs(tiles, spriteset, quads)
   local visible = getVisibleTiles()
   local storage = {}
@@ -126,6 +97,7 @@ function updateGlyphs(tiles, spriteset, quads)
   return storage
 end
 
+
 function drawGlyphs(storedglyphs, visible)
   local visible = visible
   local x_offset = visible[1]
@@ -152,16 +124,6 @@ function drawGlyphs(storedglyphs, visible)
   end
 
   love.graphics.setShader()
-end
-
-function makeBumpWorld(tileMap, width, height)
-  for y=1, height do
-    for x=1, width do
-      if tileMap[y][x]:getWalkable() == false then
-        BumpWorld:add(tileMap[y][x],((x-1)*TileW)-1,((y-1)*TileH),TileW,TileH)
-      end
-    end
-  end
 end
 
 

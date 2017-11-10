@@ -1,5 +1,5 @@
 local Screen = require('lib/ScreenManager/Screen')
-require('src/utils/home-render')
+require('src/render/home-render')
 require('src/utils/start-game')
 require 'src/utils/saveload'
 

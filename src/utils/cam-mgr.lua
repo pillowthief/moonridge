@@ -103,7 +103,7 @@ function moveCameraTowards()
 
   if path:getLength() < 2 then --we're close enough, clamp to location
     Cam:setPosition(cameraDestination[1] * TileW, cameraDestination[2] * TileH)
-    updateAllGlyphs()
+    redrawAllGlyphs()
     edgeSanityCounter = 0
   else
     local newX, newY
@@ -124,7 +124,7 @@ function moveCameraTowards()
       newY = cameraPosition[2] - cameraSpeed
     end
     Cam:setPosition(newX * TileW, newY * TileH)
-    updateAllGlyphs()
+    redrawAllGlyphs()
     edgeSanityCounter = edgeSanityCounter + 1 -- add to the sanity checker
   end
 

@@ -1,6 +1,6 @@
 local Grid = require ("lib/jumper/grid") -- The grid class
 local Pathfinder = require ("lib/jumper/pathfinder") -- The pathfinder class
-require('src/utils/worldgen-render')
+require('src/render/worldgen-render')
 
 local zoneSize = 384
 

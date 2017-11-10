@@ -1,5 +1,5 @@
-require ('src/utils/gui/gui-clock')
-require ('src/utils/gui/gui-main-panel')
+require ('src/render/gui/gui-clock')
+require ('src/render/gui/gui-main-panel')
 
 function generateMainPanel()
   local panel = {}

@@ -4,15 +4,15 @@ sodapop = require('lib/sodapop')
 
 require 'src/utils/start-game'
 require 'src/utils/chunk-mgr'
-require 'src/utils/map-render'
+require 'src/render/map-render'
 require 'src/utils/map-utils'
-require 'src/utils/anim-sprite-utils'
-require 'src/utils/anim-sprites'
+require 'src/render/anim-sprite-utils'
+require 'src/render/anim-sprites'
 require 'src/utils/key-mgr'
 require 'src/utils/cam-mgr'
 require 'src/utils/shdr-mgr'
 require 'src/utils/debug-gui'
-require 'src/utils/draw-gui'
+require 'src/render/draw-gui'
 require 'src/utils/saveload'
 require 'src/gen/cave-gen'
 require 'src/gen/forest-gen'
@@ -27,7 +27,7 @@ require 'src/classes/glyph'
 require 'src/classes/block'
 require 'src/systems/calendar'
 
-require 'src/shaders/colorassign'
+require 'src/render/shaders/colorassign'
 
 Floor_Tiles = loadTileImage('assets/floor_tiles.png')
 Floor_Quads = newTileMap(32,32,Floor_Tiles)
@@ -51,6 +51,7 @@ function GameScreen.new()
     love.graphics.setColor(255,255,255)
 
     function self:draw()
+      updateAllGlyphs()
       effect.draw(function()
         Cam:draw(function(l,t,w,h)
           local visible = getVisibleTiles()
