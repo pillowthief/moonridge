@@ -67,10 +67,10 @@ function setEmptyMap()
 end
 
 
-function drawWolrdGenCurMap(TileTable)
-  for y=1,#TileTable do
-    for x=1,#TileTable[y] do
-      local color = TileTable[y][x]
+function drawWolrdGenCurMap(tiles)
+  for y=1,#tiles do
+    for x=1,#tiles[y] do
+      local color = tiles[y][x]
       love.graphics.setColor(color)
       love.graphics.rectangle("fill", ((x-1)*2)+512, ((y-1)*2), 2, 2 )
     end

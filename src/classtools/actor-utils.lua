@@ -1,9 +1,11 @@
 require 'src/entities/actors'
 
 function checkSpecialTile(x,y)
-  if TileTable[y+1][x+1]:getIsStairs() == 'up' then
+  local chunk = getLocalChunk('cen')
+  local tiles = chunk:getTileMap()
+  if tiles[y+1][x+1]:getIsStairs() == 'up' then
 
-  elseif TileTable[y+1][x+1]:getIsStairs() == 'down' then
+  elseif tiles[y+1][x+1]:getIsStairs() == 'down' then
     CHANGEMAP()
   end
 end

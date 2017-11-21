@@ -7,8 +7,7 @@ function STARTGAME(atlas, time)
   local chunk = getLocalChunk('cen')
 
   TileTable = chunk:getTileMap()
-  --BlockTable = chunk:getBlockMap() USE THIS VERSION ASAP
-  BlockTable = makeForestBlocks(MAP_WIDTH, MAP_HEIGHT)
+  BlockTable = chunk:getBlockMap()
   ActorList = chunk:getActorList() or {}
   local Time = time or 0
 
@@ -30,7 +29,7 @@ function CHANGEMAP(oX,oY,cX,cY,pX,pY)
 
   local chunk = getLocalChunk('cen')
   TileTable = chunk:getTileMap()
-  BlockTable = makeForestBlocks(MAP_WIDTH, MAP_HEIGHT)
+  BlockTable = chunk:getBlockMap()
   ActorList = chunk:getActorList() or {}
 
   BumpWorld = bump.newWorld(32)

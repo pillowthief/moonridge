@@ -44,15 +44,17 @@ function addPlayer(x,y)
   while success == false do --attempt to add player at a random location on the map
     local x = x or love.math.random(10, MAP_WIDTH-10)
     local y = y or love.math.random(10, MAP_HEIGHT-10)
-    if BlockTable[y][x]:getWalkable() == true then --if the location is walkable, use it
-      local nX,nY = (x-1)*TileW,(y-1)*TileH
+    local chunk = getLocalChunk('cen')
+    local blocks = chunk:getBlockMap()
+    if blocks[y][x]:getWalkable() == true then --if the location is walkable, use it
+      local nX,nY = ((x-1)*TileW),((y-1)*TileH)
       Player = GamePlayer:new(ActorPlayer, nX, nY)
       ActorList[#ActorList + 1] = Player
       BumpWorld:add(Player,nX,nY,TileW,TileH)
       playerSprite = setPlayerSprite()
       playerSprite:switch('standDown')
       success = true
-    end    
+    end
   end
 end
 

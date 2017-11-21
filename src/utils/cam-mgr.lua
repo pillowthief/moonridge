@@ -16,21 +16,21 @@ local cameraSpeed = 1
 
 function setupCamera() --add camera to the map for the first time
   PlayerPosition = {Player:getApproxGridY(), Player:getApproxGridX()}
-  Cam = gamera.new(0,0,(MAP_WIDTH*TileW*3),(MAP_HEIGHT*TileH*3))
+  Cam = gamera.new(0,0,(80*32),(80*32))
   Cam:setWindow(0,0,1280,768)
   Cam:setScale(1.0)
 
   createCameraGrid()
 
-  Cam:setPosition(PlayerPosition[2] * TileW, PlayerPosition[1] * TileH)
+  Cam:setPosition((PlayerPosition[2] * TileW), (PlayerPosition[1] * TileH))
 end
 
 function createCameraGrid()
   --an empty space for the camera to pathfind in, mostly so it can see things on other grids in relation to itself
 
-  for rowIndex=1, MAP_WIDTH*3 do
+  for rowIndex=1, 80 do
     cameragridtable[rowIndex] = {}
-    for columnIndex=1, MAP_HEIGHT*3 do
+    for columnIndex=1, 80 do
       cameragridtable[rowIndex][columnIndex] = 0
     end
   end

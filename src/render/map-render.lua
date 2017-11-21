@@ -11,13 +11,11 @@ ItemGlyphs = {}
 function updateAllGlyphs()
   TileGlyphs = updateGlyphs(TileTable, Floor_Tiles, Floor_Quads)
   BlockGlyphs = updateGlyphs(BlockTable, Block_Tiles, Block_Quads)
-  drawActors()
 end
 
 function redrawAllGlyphs()
   TileGlyphs = redrawGlyphs(TileTable, Floor_Tiles, Floor_Quads)
   BlockGlyphs = redrawGlyphs(BlockTable, Block_Tiles, Block_Quads)
-  drawActors()
 end
 
 function redrawGlyphs(tiles, spriteset, quads)
@@ -136,8 +134,12 @@ function getVisibleTiles()
   if visible[1] == 0 then x_offset = 0
   else x_offset = (visible[1] / TileW) end
 
+  --x_offset = x_offset + 45
+
   if visible[2] == 0 then y_offset = 0
   else y_offset = (visible[2] / TileH) end
+
+  --y_offset = y_offset + 30
 
   local max_x = (visible[3] / TileW)
   local max_y = (visible[4] / TileH)

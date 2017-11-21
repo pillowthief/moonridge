@@ -55,7 +55,7 @@ function generateMapChunk(atlas,atlasX,atlasY)
 
   local tiles = generateSurfaceTiles(atlas,atlasX,atlasY,lwet,ltmp,lwater)
 
-  local chunk = MapChunk:new((atlasX),(atlasY), tiles)
+  local chunk = MapChunk:new((atlasX),(atlasY), tiles, makeForestBlocks(80, 80))
 
   atlas:addChunk(chunk)
 end

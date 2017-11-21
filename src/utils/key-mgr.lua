@@ -31,6 +31,8 @@ function updateKeys(dt)
       elseif key == "g" then
         local x = Player:getApproxGridX()
         local y = Player:getApproxGridY()
+        --local chunk = getLocalChunk('cen')
+        --local tiles = chunk:getTileMap()
         TileTable[y][x] = Tile:new(ForestFloorGrass)
       elseif key == "escape" then
         ScreenManager.push('menu')

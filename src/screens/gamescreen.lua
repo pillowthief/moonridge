@@ -2,17 +2,17 @@ local Screen = require('lib/ScreenManager/Screen')
 local moonshine = require('lib/moonshine')
 sodapop = require('lib/sodapop')
 
-require 'src/utils/start-game'
-require 'src/utils/chunk-mgr'
+require 'src/render/draw-gui'
 require 'src/render/map-render'
-require 'src/utils/map-utils'
 require 'src/render/anim-sprite-utils'
 require 'src/render/anim-sprites'
+require 'src/render/shdr-mgr'
+require 'src/utils/start-game'
+require 'src/utils/chunk-mgr'
+require 'src/utils/map-utils'
 require 'src/utils/key-mgr'
 require 'src/utils/cam-mgr'
-require 'src/utils/shdr-mgr'
 require 'src/utils/debug-gui'
-require 'src/render/draw-gui'
 require 'src/utils/saveload'
 require 'src/gen/cave-gen'
 require 'src/gen/forest-gen'
@@ -61,7 +61,6 @@ function GameScreen.new()
           drawDebugTiles()
         end)
       end)
-
         drawGUI()
     end
 
